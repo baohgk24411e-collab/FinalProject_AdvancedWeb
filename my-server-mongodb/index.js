@@ -9,11 +9,11 @@ const fs = require('fs');
 const { MongoClient, ObjectId } = require('mongodb');
 
 const app = express();
-const port = 3002;
+const port = process.env.PORT || 3002;
 
 app.use(morgan('dev'));
 app.use(cors({
-  origin: ['http://localhost:4200', 'http://127.0.0.1:4200', 'http://localhost:3000'],
+  origin: true, // Allow all origins in dev & production (Vercel, Render, Localhost, etc.)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: true
@@ -22,6 +22,15 @@ app.use(cookieParser());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Root health check endpoint for cloud platforms (Render, Railway, etc.)
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    service: 'Tu Quy Garden Backend API',
+    database: db ? 'connected' : 'connecting'
+  });
+});
 
 // Database connection
 const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
