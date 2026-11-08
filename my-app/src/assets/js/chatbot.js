@@ -1,4 +1,4 @@
-// js/chatbot.js — Rule-based Tứ Quý Garden customer support chatbot (frontend only)
+﻿// js/chatbot.js — Rule-based Tứ Quý Garden customer support chatbot (frontend only)
 (function () {
   "use strict";
 
@@ -538,7 +538,7 @@
       return;
     }
 
-    const apiKey = localStorage.getItem("tqg_gemini_key") || "AQ.Ab8RN6L53Rw6w1KP37pj1ghA5zjQwWQtUat10wjjSz-qrhwNbw";
+    const apiKey = localStorage.getItem("tqg_gemini_key") || "";
     
     // Check current user health goal for contextual recommendations
     let userGoal = "";
