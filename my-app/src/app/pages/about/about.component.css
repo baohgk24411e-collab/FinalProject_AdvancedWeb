@@ -1,1 +1,149 @@
-/* Component-specific styles */
+/* ============================================================
+   TEAM FOUNDERS SECTION - 5 MEMBERS IN 1 ROW
+   ============================================================ */
+.team-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 18px !important;
+  margin-top: 50px !important;
+  padding-top: 70px !important;
+  width: 100% !important;
+}
+
+.team-card {
+  position: relative !important;
+  height: 330px !important;
+  background: #f5f3ee !important;
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 30px rgba(31, 77, 43, 0.10) !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease !important;
+}
+
+.team-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 48px rgba(31, 77, 43, 0.18) !important;
+}
+
+.team-bg-shape {
+  position: absolute !important;
+  top: -55px !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 50% !important;
+  height: calc(100% + 55px) !important;
+  background: linear-gradient(160deg, #2d6a4f 0%, #1c5222 100%) !important;
+  border-radius: 16px 0 0 16px !important;
+  z-index: 1 !important;
+  transition: background 0.3s ease !important;
+}
+
+.team-card:hover .team-bg-shape {
+  background: linear-gradient(160deg, #3d8b5a 0%, #133a18 100%) !important;
+}
+
+.team-bg-text {
+  position: absolute !important;
+  top: 14% !important;
+  left: 4px !important;
+  z-index: 2 !important;
+  color: rgba(255, 255, 255, 0.08) !important;
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  writing-mode: vertical-rl !important;
+  transform: rotate(180deg) !important;
+  text-transform: uppercase !important;
+  font-family: 'Outfit', sans-serif !important;
+  letter-spacing: 2px !important;
+  pointer-events: none !important;
+}
+
+.team-portrait-wrapper {
+  position: absolute !important;
+  top: -55px !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 3 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-end !important;
+  overflow: visible !important;
+}
+
+.team-portrait-wrapper img {
+  height: 115% !important;
+  width: auto !important;
+  max-width: 115% !important;
+  object-fit: contain !important;
+  object-position: bottom center !important;
+  display: block !important;
+  transition: transform 0.4s ease !important;
+  transform-origin: bottom center !important;
+}
+
+.team-card:hover .team-portrait-wrapper img {
+  transform: scale(1.04) !important;
+}
+
+.team-info-overlay {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 38% !important;
+  background: linear-gradient(to top, rgba(10, 45, 18, 0.95) 0%, rgba(13, 56, 23, 0.60) 50%, rgba(0, 0, 0, 0) 100%) !important;
+  z-index: 4 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  padding: 16px 14px !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+.team-name {
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  margin: 0 0 3px 0 !important;
+  text-align: left !important;
+  letter-spacing: 0.2px !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.team-role {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .team-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}

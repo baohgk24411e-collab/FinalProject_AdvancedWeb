@@ -12430,55 +12430,53 @@ a, button, .product-card, .category-card,
 .team-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  margin-top: 60px;
-  /* Extra top padding to create space for portrait overflow above cards */
-  padding-top: 60px;
+  gap: 18px;
+  margin-top: 50px;
+  padding-top: 70px;
+  width: 100%;
 }
 
 .team-card {
   position: relative;
-  height: 340px;
+  height: 330px;
   background: #f5f3ee;
   border: none;
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(31, 77, 43, 0.12);
-  /* Allow portrait image to overflow upward out of the card */
+  box-shadow: 0 8px 30px rgba(31, 77, 43, 0.10);
   overflow: visible;
   padding: 0;
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
 }
 
 .team-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 24px 56px rgba(31, 77, 43, 0.20);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(31, 77, 43, 0.18);
 }
 
 .team-bg-shape {
   position: absolute;
-  /* Extend 60px above the card so the green fills the portrait overflow zone */
-  top: -60px;
+  top: -55px;
   bottom: 0;
   left: 0;
-  width: 52%;
-  height: calc(100% + 60px);
-  background: linear-gradient(160deg, var(--color-primary) 0%, #1c5222 100%);
+  width: 50%;
+  height: calc(100% + 55px);
+  background: linear-gradient(160deg, var(--color-primary, #2d6a4f) 0%, #1c5222 100%);
   border-radius: 16px 0 0 16px;
   z-index: 1;
   transition: background 0.3s ease;
 }
 
 .team-card:hover .team-bg-shape {
-  background: linear-gradient(160deg, #488030 0%, #133a18 100%);
+  background: linear-gradient(160deg, #3d8b5a 0%, #133a18 100%);
 }
 
 .team-bg-text {
   position: absolute;
-  top: 12%;
-  left: 6px;
+  top: 14%;
+  left: 4px;
   z-index: 2;
-  color: rgba(255, 255, 255, 0.07);
-  font-size: 30px;
+  color: rgba(255, 255, 255, 0.08);
+  font-size: 24px;
   font-weight: 900;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -12490,8 +12488,7 @@ a, button, .product-card, .category-card,
 
 .team-portrait-wrapper {
   position: absolute;
-  /* Start 60px above the card to match the bg-shape overflow zone */
-  top: -60px;
+  top: -55px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -12499,15 +12496,13 @@ a, button, .product-card, .category-card,
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  /* Allow portrait to overflow upward */
   overflow: visible;
 }
 
 .team-portrait-wrapper img {
-  /* 120% of card height so the person is larger and overflows the top */
-  height: 120%;
+  height: 115%;
   width: auto;
-  max-width: 120%;
+  max-width: 115%;
   object-fit: contain;
   object-position: bottom center;
   display: block;
@@ -12516,7 +12511,7 @@ a, button, .product-card, .category-card,
 }
 
 .team-card:hover .team-portrait-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .team-info-overlay {
@@ -12525,12 +12520,12 @@ a, button, .product-card, .category-card,
   left: 0;
   right: 0;
   height: 38%;
-  background: linear-gradient(to top, rgba(10, 45, 18, 0.96) 0%, rgba(13, 56, 23, 0.65) 50%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to top, rgba(10, 45, 18, 0.95) 0%, rgba(13, 56, 23, 0.60) 50%, rgba(0, 0, 0, 0) 100%);
   z-index: 4;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 20px 18px;
+  padding: 16px 14px;
   border-radius: 0 0 16px 16px;
 }
 
@@ -12538,14 +12533,17 @@ a, button, .product-card, .category-card,
   color: #ffffff !important;
   font-size: 15px !important;
   font-weight: 800 !important;
-  margin: 0 0 4px 0 !important;
+  margin: 0 0 3px 0 !important;
   text-align: left !important;
   letter-spacing: 0.2px;
   line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .team-role {
-  color: rgba(255, 255, 255, 0.82) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
   font-size: 11px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
@@ -12554,21 +12552,21 @@ a, button, .product-card, .category-card,
   margin: 0 !important;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 960px) {
   .team-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-}
-
-@media (max-width: 768px) {
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 420px) {
   .team-grid {
     grid-template-columns: 1fr;
     gap: 24px;
