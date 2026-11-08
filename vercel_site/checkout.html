@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Tứ Quý Garden</title>
+  <meta name="description" content="Secure checkout for your Tứ Quý Garden order.">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="lang-vi">
+
+  <!-- CHECKOUT HEADER -->
+  <header class="checkout-header">
+    <div class="checkout-header-container container">
+      <a href="index.html" class="checkout-logo" aria-label="Tứ Quý Garden">
+        <img src="images/logo/logo ngang.png" alt="Tứ Quý Garden Logo">
+      </a>
+
+      <a href="cart.html" class="checkout-back-link">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+        Back to cart
+      </a>
+
+      <div class="checkout-progress" aria-label="Tiến trình thanh toán">
+        <div class="checkout-progress-step is-done">
+          <span>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg>
+          </span>
+          <b>Cart</b>
+        </div>
+        <i></i>
+        <div class="checkout-progress-step is-active">
+          <span>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 10h10"></path><path d="M7 14h5"></path></svg>
+          </span>
+          <b>Checkout</b>
+        </div>
+        <i></i>
+        <div class="checkout-progress-step">
+          <span>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+          </span>
+          <b>Completed</b>
+        </div>
+      </div>
+
+      <div class="checkout-secure-note">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg>
+        <span>Secure Payment<br>Data Protection</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div id="checkout-root">
+    <!-- Rendered dynamically by js/checkout.js -->
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer-contact">
+    <div class="footer-top container">
+      <div class="footer-block brand-block">
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo/logo_white.png" alt="Tứ Quý Garden Logo" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">“Fresh fruits seasonal, healthy seeds daily”</p>
+        <p class="footer-desc">
+          <span class="lang-vi">Tứ Quý Garden cam kết mang đến nông sản hữu cơ theo mùa tươi ngon, hạt dinh dưỡng chọn lọc và granola lành mạnh chăm sóc sức khỏe gia đình bạn mỗi ngày.</span>
+          <span class="lang-en">Tứ Quý Garden commits to bringing ripe seasonal organic produce, premium seeds, and clean healthy granola to nourish your family daily.</span>
+        </p>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Danh mục</span><span class="lang-en">Categories</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="products.html?category=Fruits"><span class="lang-vi">Trái cây theo mùa</span><span class="lang-en">Seasonal Fruits</span></a></li>
+          <li><a href="products.html?category=Nutritional Seeds"><span class="lang-vi">Hạt dinh dưỡng</span><span class="lang-en">Seeds</span></a></li>
+          <li><a href="products.html?category=Granola"><span class="lang-vi">Granola ngũ cốc</span><span class="lang-en">Granola</span></a></li>
+          <li><a href="products.html?category=Combo Healthy"><span class="lang-vi">Combo sống khỏe</span><span class="lang-en">Healthy Combos</span></a></li>
+          <li><a href="nutrition.html"><span class="lang-vi">Dinh dưỡng cá nhân</span><span class="lang-en">Nutrition Plan</span></a></li>
+          <li><a href="traceability.html"><span class="lang-vi">Tra cứu nguồn gốc</span><span class="lang-en">Traceability</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Hỗ trợ khách hàng</span><span class="lang-en">Customer Service</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="about.html"><span class="lang-vi">Giới thiệu cửa hàng</span><span class="lang-en">About Store</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách đổi trả</span><span class="lang-en">Exchange & Refund</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách giao hàng</span><span class="lang-en">Shipping Policies</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block contact-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Kết nối với chúng tôi</span><span class="lang-en">Contact Info</span>
+        </h3>
+        <ul class="contact-info-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>Hotline: <strong>1900 633 123</strong></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>Email: <a href="mailto:info@tuquygarden.vn">info@tuquygarden.vn</a></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Address: Cai Be, Tien Giang</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright-txt">&copy; 2026 Tứ Quý Garden. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="about.html"><span class="lang-vi">Điều khoản sử dụng</span><span class="lang-en">Terms of Use</span></a>
+          <span class="divider">|</span>
+          <a href="about.html"><span class="lang-vi">Chính sách bảo mật</span><span class="lang-en">Privacy Policy</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/data.js"></script>
+  <script src="services/cartService.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="services/orderService.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/common.js"></script>
+  <script src="components/ProductCard.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cửa hàng | Tứ Quý Garden</title>
+  <meta name="description"
+    content="Danh sách sản phẩm Tứ Quý Garden - Trái cây tươi ngon, hạt dinh dưỡng, granola ngũ cốc và combo sống khỏe.">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body class="lang-vi">
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-container container">
+      <a href="index.html" class="logo">
+        <img src="images/logo/logo-ngang-cropped.png" alt="Tứ Quý Garden Logo" class="logo-img">
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link"><span class="lang-vi">Trang chủ</span><span class="lang-en">Home</span></a></li>
+          <li><a href="about.html" class="nav-link"><span class="lang-vi">Về chúng tôi</span><span class="lang-en">About Us</span></a></li>
+
+          <li class="dropdown">
+            <a href="products.html" class="nav-link dropdown-toggle active">
+              <span class="lang-vi">Sản phẩm</span>
+              <span class="lang-en">Products</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropdown-chevron">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+
+            <div class="mega-menu">
+              <div class="mega-menu-grid">
+                <a href="products.html?category=Fruits" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Trái cây theo mùa</span>
+                    <span class="mega-title lang-en">Seasonal Fruits</span>
+                    <span class="mega-desc lang-vi">Trái cây tươi ngon, theo mùa</span>
+                    <span class="mega-desc lang-en">Fresh, in-season fruits</span>
+                  </div>
+                </a>
+                <a href="products.html?category=Combo Healthy" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 8V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2M12 4v17M7.5 4a2.5 2.5 0 0 1 0-5C10 -1 12 4 12 4s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Eat Clean Box</span>
+                    <span class="mega-title lang-en">Eat Clean Box</span>
+                    <span class="mega-desc lang-vi">Hộp quà Eat Clean lành mạnh</span>
+                    <span class="mega-desc lang-en">Healthy Eat Clean gift box</span>
+                  </div>
+                </a>
+                <a href="products.html?category=Combo Healthy&promo=bestseller" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78a5.5 5.5 0 0 0 1.06-8.84z"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Combo quà sức khỏe</span>
+                    <span class="mega-title lang-en">Health Gift Combo</span>
+                    <span class="mega-desc lang-vi">Combo quà tặng ý nghĩa</span>
+                    <span class="mega-desc lang-en">Meaningful gift combos</span>
+                  </div>
+                </a>
+                <a href="products.html?category=Nutritional Seeds" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7.5 9.5l9 5M7.5 14.5l9-5"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Hạt dinh dưỡng</span>
+                    <span class="mega-title lang-en">Nutritional Seeds</span>
+                    <span class="mega-desc lang-vi">Các loại hạt dinh dưỡng cao cấp</span>
+                    <span class="mega-desc lang-en">Premium nutritional seeds</span>
+                  </div>
+                </a>
+                <a href="products.html?category=Granola" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M3 13h18l-1.5 7a2 2 0 0 1-2 1.6H6.5A2 2 0 0 1 4.5 20z"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Granola &amp; Nuts</span>
+                    <span class="mega-title lang-en">Granola &amp; Nuts</span>
+                    <span class="mega-desc lang-vi">Granola &amp; các loại hạt</span>
+                    <span class="mega-desc lang-en">Granola &amp; mixed nuts</span>
+                  </div>
+                </a>
+                <a href="products.html?season=seasonal" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Đặc sản vùng miền</span>
+                    <span class="mega-title lang-en">Regional Specialties</span>
+                    <span class="mega-desc lang-vi">Đặc sản thơm ngon, chất lượng</span>
+                    <span class="mega-desc lang-en">Quality regional specialties</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li><a href="index.html#footer-contact" class="nav-link"><span class="lang-vi">Liên hệ</span><span class="lang-en">Contact</span></a></li>
+          <li><a href="nutrition.html" class="nav-link"><span class="lang-vi">Dinh dưỡng cá nhân</span><span class="lang-en">Personal Nutrition</span></a></li>
+          <li><a href="traceability.html" class="nav-link"><span class="lang-vi">Truy xuất nguồn gốc</span><span class="lang-en">Traceability</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-bar">
+          <input type="text" placeholder="Search products..." id="header-search-input">
+          <button class="search-btn" id="header-search-btn" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+
+        <button class="lang-switch-btn" id="lang-toggle-btn">EN</button>
+
+        <a href="login.html" class="action-icon-btn profile-btn" id="header-profile-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="btn-text" id="header-profile-txt-vi"><span class="lang-vi">Tài khoản</span><span class="lang-en">Account</span></span>
+        </a>
+
+        <a href="wishlist.html" class="action-icon-btn wishlist-btn">
+          <div class="cart-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78a5.5 5.5 0 0 0 1.06-8.84z"></path>
+            </svg>
+            <span class="cart-badge wishlist-badge" id="header-wishlist-badge" style="display:none;">0</span>
+          </div>
+          <span class="btn-text"><span class="lang-vi">Yêu thích</span><span class="lang-en">Wishlist</span></span>
+        </a>
+
+        <a href="cart.html" class="action-icon-btn cart-btn">
+          <div class="cart-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-badge" id="header-cart-badge" style="display:none;">0</span>
+          </div>
+          <span class="btn-text"><span class="lang-vi">Giỏ hàng</span><span class="lang-en">Cart</span></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="shop-hero-section" style="position: relative; padding: 60px 0; color: white; text-align: center; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 300px; background-image: url('images/image/coverpage_5.png'); background-size: cover; background-position: center;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,56,23,0.82) 0%, rgba(31,77,43,0.68) 100%); z-index: 1;"></div>
+    <div class="container" style="position: relative; z-index: 2; width: 100%;">
+      <ul class="breadcrumb-hero" style="display: flex; justify-content: center; gap: 8px; list-style: none; padding: 0; margin-bottom: 15px; font-size: 13px; opacity: 0.9;">
+        <li><a href="index.html" style="color: white; text-decoration: none;"><span class="lang-vi">Trang chủ</span><span class="lang-en">Home</span></a></li>
+        <li style="color: rgba(255,255,255,0.6);">/</li>
+        <li style="color: rgba(255,255,255,0.6);"><span class="lang-vi">Cửa hàng</span><span class="lang-en">Shop</span></li>
+      </ul>
+
+      <h1 class="shop-hero-title font-serif" style="font-size: clamp(28px, 4vw, 42px); color: white; margin-bottom: 12px; font-weight: 800; text-align: center; line-height: 1.2;">
+        <span class="lang-vi">Danh sách sản phẩm</span>
+        <span class="lang-en">Product Catalog</span>
+      </h1>
+      <p class="shop-hero-tagline" style="font-size: 16px; color: rgba(255,255,255,0.9); margin-bottom: 25px; font-style: italic; text-align: center;">
+        <span class="lang-vi">“Fresh fruits seasonal, healthy seeds daily”</span>
+        <span class="lang-en">"Fresh fruits four seasons, healthy seeds every day"</span>
+      </p>
+
+      <div class="shop-hero-badges" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; background: none; border: none; box-shadow: none; padding: 0;">
+        <span class="hero-badge" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; box-shadow: none;">
+          <span>🌿</span>
+          <span class="lang-vi">100% tự nhiên</span>
+          <span class="lang-en">100% Natural</span>
+        </span>
+        <span class="hero-badge" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; box-shadow: none;">
+          <span>🔎</span>
+          <span class="lang-vi">Nguồn gốc rõ ràng</span>
+          <span class="lang-en">Clear Origin</span>
+        </span>
+        <span class="hero-badge" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; box-shadow: none;">
+          <span>🚚</span>
+          <span class="lang-vi">Giao hàng nhanh</span>
+          <span class="lang-en">Fast Delivery</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <main class="products-page-container container">
+    <div class="shop-layout">
+      <aside class="shop-sidebar" id="shop-sidebar">
+        <div class="sidebar-header">
+          <h3>Product Filters</h3>
+          <button type="button" class="clear-filters-link" id="sidebar-clear-filters">Clear filters</button>
+          <button class="close-sidebar-btn" id="close-sidebar-btn">&times;</button>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Seasonality</h4>
+          <ul class="filter-list" id="season-filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="all" checked>
+                <span>All Seasons</span>
+                <span class="filter-count" data-filter="season-all"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="seasonal">
+                <span>Seasonal Specialties</span>
+                <span class="filter-count" data-filter="season-seasonal"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="Mùa hè">
+                <span>Summer</span>
+                <span class="filter-count" data-filter="season-Mùa hè"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="Mùa đông">
+                <span>Winter</span>
+                <span class="filter-count" data-filter="season-Mùa đông"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="Quanh năm">
+                <span>Year-round</span>
+                <span class="filter-count" data-filter="season-Quanh năm"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Lifestyle Goals</h4>
+          <ul class="filter-list" id="health-goal-filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Eat Clean">
+                <span>Eat Clean</span>
+                <span class="filter-count" data-filter="goal-Eat Clean"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Tăng cơ">
+                <span>Gym / Muscle Gain</span>
+                <span class="filter-count" data-filter="goal-Tăng cơ"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Giảm cân">
+                <span>Weight Loss</span>
+                <span class="filter-count" data-filter="goal-Giảm cân"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Bổ sung năng lượng">
+                <span>Energy Boost</span>
+                <span class="filter-count" data-filter="goal-Bổ sung năng lượng"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Gia đình">
+                <span>Family Nutrition</span>
+                <span class="filter-count" data-filter="goal-Gia đình"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Snack lành mạnh">
+                <span>Healthy Snacking</span>
+                <span class="filter-count" data-filter="goal-Snack lành mạnh"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Price Range</h4>
+          <ul class="filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="all" checked>
+                <span>All Prices</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="under-50">
+                <span>Under 50,000đ</span>
+                <span class="filter-count" data-filter="price-under-50"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="50-100">
+                <span>50,000đ - 100,000đ</span>
+                <span class="filter-count" data-filter="price-50-100"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="100-200">
+                <span>100,000đ - 200,000đ</span>
+                <span class="filter-count" data-filter="price-100-200"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="over-200">
+                <span>Over 200,000đ</span>
+                <span class="filter-count" data-filter="price-over-200"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Product Categories</h4>
+          <ul class="filter-list" id="category-filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="productCategory" value="Fruits">
+                <span>Seasonal Fruits</span>
+                <span class="filter-count" data-filter="cat-Fruits"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="productCategory" value="Nutritional Seeds">
+                <span>Nutritional Seeds</span>
+                <span class="filter-count" data-filter="cat-Nutritional Seeds"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="productCategory" value="Granola">
+                <span>Granola &amp; Healthy snacks</span>
+                <span class="filter-count" data-filter="cat-Granola"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="productCategory" value="Combo Healthy">
+                <span>Eat Clean Box &amp; Combo</span>
+                <span class="filter-count" data-filter="cat-Combo Healthy"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Offers</h4>
+          <ul class="filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="promo" value="bestseller">
+                <span>Bestsellers</span>
+                <span class="filter-count" data-filter="promo-bestseller"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="promo" value="sale">
+                <span>On Sale</span>
+                <span class="filter-count" data-filter="promo-sale"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="promo" value="seasonal">
+                <span>Seasonal Products</span>
+                <span class="filter-count" data-filter="promo-seasonal"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <button id="reset-filters-btn" class="btn btn-outline btn-block btn-sm">
+          Reset Filters
+        </button>
+      </aside>
+
+      <section class="shop-main-content">
+        <div class="shop-toolbar">
+          <div class="toolbar-left">
+            <button id="mobile-filter-btn" class="btn btn-outline btn-sm mobile-filter-trigger">
+              Filter & Search
+            </button>
+
+            <span class="results-count">
+              Showing <strong id="product-count">0</strong> products
+              <strong id="product-count-en" style="display:none;">0</strong>
+            </span>
+          </div>
+
+          <div class="toolbar-right">
+            <div class="view-toggle-group" id="view-toggle-group">
+              <button type="button" class="view-toggle-btn active" data-view="grid" title="Dạng lưới" aria-label="Grid view">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              </button>
+              <button type="button" class="view-toggle-btn" data-view="list" title="Dạng danh sách" aria-label="List view">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </button>
+            </div>
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+              <option value="newest">Newest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="bestseller">Best Sellers</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="active-filters-bar" class="active-filters-bar"></div>
+
+        <div id="search-badge" class="active-search-indicator">
+          <span>Search results for: "<strong><span id="search-keyword-vi"></span><span id="search-keyword-en"></span></strong>"</span>
+          <button id="clear-search-btn">&times;</button>
+        </div>
+
+        <div class="products-listing-grid" id="products-catalog-grid">
+        </div>
+
+        <div id="empty-state" class="empty-state-container text-center">
+          <div class="empty-icon-circle">🔎</div>
+          <h3>No products found</h3>
+          <p>We could not find any products matching your filters. Please try again or reset filters.</p>
+          <button id="reset-empty-btn" class="btn btn-primary">Show all products</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="trust-badges-bar trust-badges-bottom container">
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">🌿</span>
+      <div>
+        <strong>
+          <span class="lang-vi">100% tự nhiên</span>
+          <span class="lang-en">100% Natural</span>
+        </strong>
+        <span>
+          <span class="lang-vi">Không chất bảo quản</span>
+          <span class="lang-en">No Preservatives</span>
+        </span>
+      </div>
+    </div>
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">🔎</span>
+      <div>
+        <strong>
+          <span class="lang-vi">Nguồn gốc rõ ràng</span>
+          <span class="lang-en">Clear Origin</span>
+        </strong>
+        <span>
+          <span class="lang-vi">Truy xuất minh bạch</span>
+          <span class="lang-en">Fully Traceable</span>
+        </span>
+      </div>
+    </div>
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">🚚</span>
+      <div>
+        <strong>
+          <span class="lang-vi">Giao hàng nhanh</span>
+          <span class="lang-en">Fast Delivery</span>
+        </strong>
+        <span>
+          <span class="lang-vi">Toàn quốc</span>
+          <span class="lang-en">Nationwide</span>
+        </span>
+      </div>
+    </div>
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">🎁</span>
+      <div>
+        <strong>
+          <span class="lang-vi">Đóng gói cẩn thận</span>
+          <span class="lang-en">Careful Packaging</span>
+        </strong>
+        <span>
+          <span class="lang-vi">Tươi ngon trọn vẹn</span>
+          <span class="lang-en">Freshly Preserved</span>
+        </span>
+      </div>
+    </div>
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">💬</span>
+      <div>
+        <strong>
+          <span class="lang-vi">Hỗ trợ tận tâm</span>
+          <span class="lang-en">Dedicated Support</span>
+        </strong>
+        <span>
+          <span class="lang-vi">7 ngày / tuần</span>
+          <span class="lang-en">24/7 Support</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="main-footer" id="footer-contact">
+    <div class="footer-top container">
+      <div class="footer-block brand-block">
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo/logo-white-cropped.png" alt="Tứ Quý Garden Logo" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">“Fresh fruits seasonal, healthy seeds daily”</p>
+        <p class="footer-desc">
+          Tứ Quý Garden commits to bringing ripe seasonal organic produce, premium seeds, and clean healthy granola to nourish your family daily.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Facebook" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" title="Instagram" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" title="Zalo"><span class="zalo-text-icon">Z</span></a>
+        </div>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">Categories</h3>
+        <ul class="footer-links">
+          <li><a href="products.html?category=Fruits">Seasonal Fruits</a></li>
+          <li><a href="products.html?category=Nutritional Seeds">Nutritional Seeds</a></li>
+          <li><a href="products.html?category=Granola">Cereal Granola</a></li>
+          <li><a href="products.html?category=Combo Healthy">Healthy Combo</a></li>
+          <li><a href="nutrition.html">Personalized Nutrition</a></li>
+          <li><a href="traceability.html">Trace Origin</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">Customer Support</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Store</a></li>
+          <li><a href="about.html">Return Policy</a></li>
+          <li><a href="about.html">Shipping Policy</a></li>
+          <li><a href="about.html">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block contact-block">
+        <h3 class="footer-title">Connect With Us</h3>
+        <ul class="contact-info-list">
+          <li>Hotline: <strong>1900 633 123</strong></li>
+          <li>Email: <a href="mailto:info@tuquygarden.vn">info@tuquygarden.vn</a></li>
+          <li>Address: Tu Quy Eco-Farm, Cai Be, Tien Giang</li>
+        </ul>
+        <div class="footer-newsletter">
+          <p class="newsletter-txt">Subscribe for offers:</p>
+          <form class="newsletter-form" id="footer-newsletter-form">
+            <input type="email" placeholder="Email..." required>
+            <button type="submit" class="btn btn-secondary">Ok</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright-txt">&copy; 2026 Tứ Quý Garden. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="about.html">Terms of Use</a>
+          <span class="divider">|</span>
+          <a href="about.html">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/data.js"></script>
+  <script src="services/cartService.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="js/common.js"></script>
+  <script src="components/ProductCard.js"></script>
+  <script src="js/products.js"></script>
+</body>
+
+</html>

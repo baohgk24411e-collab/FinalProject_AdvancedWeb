@@ -1,0 +1,470 @@
+<!-- CONTENT -->
+  <div class="container" style="margin-bottom: 80px;">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb" style="display:flex; list-style:none; gap:10px; font-size:14px; margin-top: 20px; padding:0;">
+      <li><a routerLink="/" style="color:var(--color-text-light);"><span class="lang-vi">Trang chủ</span><span class="lang-en">Home</span></a></li>
+      <li><span style="color:var(--color-text-light);">/</span></li>
+      <li style="color:var(--color-primary); font-weight:600;"><span class="lang-vi">Dinh dưỡng cá nhân</span><span class="lang-en">Personal Nutrition</span></li>
+    </ul>
+
+    <!-- Hero Section -->
+    <div class="nutrition-hero-section">
+      <div class="container">
+        <h1>
+          <span class="lang-vi">Cá Nhân Hóa Dinh Dưỡng Theo Mục Tiêu</span>
+          <span class="lang-en">Personalized Nutrition & Meal Preps</span>
+        </h1>
+        <p>
+          <span class="lang-vi">Khám phá công thức sinh tố hữu cơ và meal prep thiết kế riêng cho cơ thể bạn dựa trên mục tiêu tăng cơ, giảm mỡ, chống dị ứng hoặc detox thanh nhiệt.</span>
+          <span class="lang-en">Discover organic smoothie recipes and healthy meal prep bowls tailored to your health goals, allergy filters, and calorie budgets.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Quiz Wizard Card -->
+    <div class="studio-card">
+      <!-- Steps nodes (5 steps) -->
+      <div class="quiz-progress-bar no-print">
+        <div class="quiz-progress-fill" id="progress-fill"></div>
+        <div class="quiz-step-node active" data-step="1">1</div>
+        <div class="quiz-step-node" data-step="2">2</div>
+        <div class="quiz-step-node" data-step="3">3</div>
+        <div class="quiz-step-node" data-step="4">4</div>
+        <div class="quiz-step-node" data-step="5">5</div>
+      </div>
+
+      <!-- Step labels -->
+      <div class="no-print" style="display:flex; justify-content:space-between; max-width:500px; margin:-22px auto 32px auto; font-size:10px; color:var(--color-text-light); font-weight:600; text-align:center;">
+        <span style="width:32px;"><span class="lang-vi">Mục tiêu</span><span class="lang-en">Goal</span></span>
+        <span style="width:32px;"><span class="lang-vi">Thể trạng</span><span class="lang-en">Profile</span></span>
+        <span style="width:32px;"><span class="lang-vi">Lối sống</span><span class="lang-en">Lifestyle</span></span>
+        <span style="width:32px;"><span class="lang-vi">Chế độ ăn</span><span class="lang-en">Diet</span></span>
+        <span style="width:32px;"><span class="lang-vi">Thời điểm</span><span class="lang-en">Timing</span></span>
+      </div>
+
+      <!-- Quiz Form Area -->
+      <div id="quiz-form-area" class="no-print">
+
+        <!-- STEP 1: CHOOSE GOAL -->
+        <div class="quiz-step-content active" id="quiz-step-1">
+          <h2 class="step-title">
+            <span class="lang-vi">🎯 Mục tiêu sức khỏe của bạn là gì?</span>
+            <span class="lang-en">🎯 What is your main health goal?</span>
+          </h2>
+          <div class="options-grid">
+            <div class="option-card" onclick="selectGoal('gain-muscle', this)">
+              <div class="option-icon">💪</div>
+              <div class="option-info">
+                <div class="option-label"><span class="lang-vi">Tăng cơ & Bồi bổ lực</span><span class="lang-en">Gain Muscle / Strength</span></div>
+                <div class="option-desc"><span class="lang-vi">Giàu Protein, bổ sung amino acid tốt từ hạt và bơ sáp</span><span class="lang-en">High protein, healthy fats from nuts & avocados</span></div>
+              </div>
+            </div>
+            <div class="option-card" onclick="selectGoal('lose-fat', this)">
+              <div class="option-icon">🔥</div>
+              <div class="option-info">
+                <div class="option-label"><span class="lang-vi">Giảm mỡ & Kiểm soát cân nặng</span><span class="lang-en">Lose Fat / Weight Loss</span></div>
+                <div class="option-desc"><span class="lang-vi">Thấp calo, giàu xơ, chống oxy hóa, hỗ trợ tiêu hóa</span><span class="lang-en">Low calorie, high fiber, antioxidants support</span></div>
+              </div>
+            </div>
+            <div class="option-card" onclick="selectGoal('eat-clean', this)">
+              <div class="option-icon">🍃</div>
+              <div class="option-info">
+                <div class="option-label"><span class="lang-vi">Eat Clean & Đẹp da, Thải độc</span><span class="lang-en">Eat Clean & Glow Skin</span></div>
+                <div class="option-desc"><span class="lang-vi">Nông sản mùa hữu cơ 100%, bổ sung vitamin khoáng chất</span><span class="lang-en">100% organic seasonal fruits, vitamins and hydration</span></div>
+              </div>
+            </div>
+            <div class="option-card" onclick="selectGoal('brain-focus', this)">
+              <div class="option-icon">🧠</div>
+              <div class="option-info">
+                <div class="option-label"><span class="lang-vi">Tập trung trí não & Năng lượng</span><span class="lang-en">Mental Focus & Sustained Energy</span></div>
+                <div class="option-desc"><span class="lang-vi">Omega-3 từ quả óc chó, dồi dào năng lượng tốt từ granola</span><span class="lang-en">Rich in Omega-3 and healthy carbs from grain mixes</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: PERSONAL INFO (Gender / Age / Weight / Height + live BMI preview) -->
+        <div class="quiz-step-content" id="quiz-step-2">
+          <h2 class="step-title">
+            <span class="lang-vi">📋 Thông tin cơ thể của bạn</span>
+            <span class="lang-en">📋 Your Body Profile</span>
+          </h2>
+
+          <!-- Gender selection -->
+          <div style="text-align:center; margin-bottom:24px;">
+            <p style="font-weight:700; font-size:14px; color:var(--color-text-dark); margin-bottom:12px;">
+              <span class="lang-vi">Giới tính:</span><span class="lang-en">Gender:</span>
+            </p>
+            <div style="display:flex; gap:15px; justify-content:center;">
+              <div class="option-card selected" id="gender-male" onclick="selectGender('male', this)" style="max-width:155px; padding:15px 20px;">
+                <div class="option-icon">♂️</div>
+                <div class="option-info">
+                  <div class="option-label"><span class="lang-vi">Nam</span><span class="lang-en">Male</span></div>
+                </div>
+              </div>
+              <div class="option-card" id="gender-female" onclick="selectGender('female', this)" style="max-width:155px; padding:15px 20px;">
+                <div class="option-icon">♀️</div>
+                <div class="option-info">
+                  <div class="option-label"><span class="lang-vi">Nữ</span><span class="lang-en">Female</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Age / Weight / Height number inputs -->
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; max-width:480px; margin:0 auto 24px auto;">
+            <div>
+              <label style="font-weight:700; font-size:13px; color:var(--color-text-dark); display:block; margin-bottom:7px; text-align:center;">
+                <span class="lang-vi">Tuổi</span><span class="lang-en">Age</span>
+              </label>
+              <input type="number" id="input-age" min="10" max="90" value="25" oninput="updateBMIPreview()"
+                style="width:100%; padding:10px 8px; border:2px solid var(--color-gray-border); border-radius:10px; font-size:18px; font-weight:700; color:var(--color-text-dark); text-align:center; outline:none; box-sizing:border-box;"
+                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-gray-border)'">
+              <div style="font-size:11px; color:var(--color-text-light); text-align:center; margin-top:4px;"><span class="lang-vi">tuổi</span><span class="lang-en">years</span></div>
+            </div>
+            <div>
+              <label style="font-weight:700; font-size:13px; color:var(--color-text-dark); display:block; margin-bottom:7px; text-align:center;">
+                <span class="lang-vi">Cân nặng</span><span class="lang-en">Weight</span>
+              </label>
+              <input type="number" id="input-weight" min="30" max="200" value="60" oninput="updateBMIPreview()"
+                style="width:100%; padding:10px 8px; border:2px solid var(--color-gray-border); border-radius:10px; font-size:18px; font-weight:700; color:var(--color-text-dark); text-align:center; outline:none; box-sizing:border-box;"
+                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-gray-border)'">
+              <div style="font-size:11px; color:var(--color-text-light); text-align:center; margin-top:4px;">kg</div>
+            </div>
+            <div>
+              <label style="font-weight:700; font-size:13px; color:var(--color-text-dark); display:block; margin-bottom:7px; text-align:center;">
+                <span class="lang-vi">Chiều cao</span><span class="lang-en">Height</span>
+              </label>
+              <input type="number" id="input-height" min="100" max="230" value="165" oninput="updateBMIPreview()"
+                style="width:100%; padding:10px 8px; border:2px solid var(--color-gray-border); border-radius:10px; font-size:18px; font-weight:700; color:var(--color-text-dark); text-align:center; outline:none; box-sizing:border-box;"
+                onfocus="this.style.borderColor='var(--color-primary)'" onblur="this.style.borderColor='var(--color-gray-border)'">
+              <div style="font-size:11px; color:var(--color-text-light); text-align:center; margin-top:4px;">cm</div>
+            </div>
+          </div>
+
+          <!-- Live BMI + TDEE Preview Card -->
+          <div style="background:linear-gradient(135deg,#f0faf0,#e6f5e6); border:1px solid var(--color-gray-border); border-radius:14px; padding:20px 30px; max-width:480px; margin:0 auto; display:flex; gap:0; justify-content:space-around; align-items:center; flex-wrap:wrap;">
+            <div style="text-align:center; padding:0 10px;">
+              <div style="font-size:11px; font-weight:700; color:var(--color-text-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;">BMI</div>
+              <div style="font-size:36px; font-weight:800;" id="bmi-value">22.1</div>
+              <div style="font-size:13px; font-weight:600;" id="bmi-category">Normal</div>
+            </div>
+            <div style="width:1px; height:55px; background:var(--color-gray-border);"></div>
+            <div style="text-align:center; padding:0 10px;">
+              <div style="font-size:11px; font-weight:700; color:var(--color-text-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px;"><span class="lang-vi">Nhu cầu Calo/ngày</span><span class="lang-en">Daily Caloric Need</span></div>
+              <div style="font-size:36px; font-weight:800; color:var(--color-primary);" id="tdee-preview">1,960</div>
+              <div style="font-size:13px; font-weight:600; color:var(--color-text-light);">kcal</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: ACTIVITY LEVEL & ALLERGENS -->
+        <div class="quiz-step-content" id="quiz-step-3">
+          <h2 class="step-title">
+            <span class="lang-vi">🏃 Mức vận động & Dị ứng thực phẩm</span>
+            <span class="lang-en">🏃 Activity Level & Food Allergies</span>
+          </h2>
+
+          <div class="stats-form-group">
+            <label>
+              <span><span class="lang-vi">Mức độ hoạt động thể chất:</span><span class="lang-en">Physical Activity Level:</span></span>
+              <span id="label-activity-val" style="color:var(--color-primary); font-weight:700;"><span class="lang-vi">Vừa phải</span><span class="lang-en">Moderately Active</span></span>
+            </label>
+            <input type="range" id="input-activity" min="1" max="5" value="3" oninput="updateActivityLabel(this.value)">
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--color-text-light); margin-top:5px;">
+              <span><span class="lang-vi">Ngủ nghỉ</span><span class="lang-en">Sedentary</span></span>
+              <span><span class="lang-vi">Nhẹ nhàng</span><span class="lang-en">Light</span></span>
+              <span><span class="lang-vi">Vừa phải</span><span class="lang-en">Moderate</span></span>
+              <span><span class="lang-vi">Tích cực</span><span class="lang-en">Very Active</span></span>
+              <span><span class="lang-vi">Cường độ cao</span><span class="lang-en">Extreme</span></span>
+            </div>
+          </div>
+
+          <div style="margin:28px 0 0 0; text-align:center;">
+            <label style="font-weight:700; font-size:14px; color:var(--color-text-dark); display:block; margin-bottom:14px;">
+              <span class="lang-vi">Chọn nguyên liệu bạn KHÔNG ăn được (Dị ứng / Không thích):</span>
+              <span class="lang-en">Select ingredients you CANNOT eat (Allergies / Dislikes):</span>
+            </label>
+            <div class="allergens-row">
+              <div class="allergen-tag" onclick="toggleAllergen('walnut', this)">🥜 <span class="lang-vi">Hạt óc chó</span><span class="lang-en">Walnut</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('cashew', this)">🥜 <span class="lang-vi">Hạt điều</span><span class="lang-en">Cashew</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('avocado', this)">🥑 <span class="lang-vi">Bơ sáp</span><span class="lang-en">Avocado</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('mango', this)">🥭 <span class="lang-vi">Xoài</span><span class="lang-en">Mango</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('melon', this)">🍈 <span class="lang-vi">Dưa lưới</span><span class="lang-en">Melon</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('banana', this)">🍌 <span class="lang-vi">Chuối</span><span class="lang-en">Banana</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('dairy', this)">🥛 <span class="lang-vi">Sữa bò</span><span class="lang-en">Dairy</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('gluten', this)">🌾 <span class="lang-vi">Gluten / Lúa mì</span><span class="lang-en">Gluten / Wheat</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('granola', this)">🥣 <span class="lang-vi">Granola / Yến mạch</span><span class="lang-en">Granola / Oats</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('honey', this)">🍯 <span class="lang-vi">Mật ong</span><span class="lang-en">Honey</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('citrus', this)">🍊 <span class="lang-vi">Cam / Quýt</span><span class="lang-en">Citrus fruits</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('dragonfruit', this)">🐉 <span class="lang-vi">Thanh long</span><span class="lang-en">Dragon Fruit</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('soy', this)">🫘 <span class="lang-vi">Đậu nành</span><span class="lang-en">Soy</span></div>
+              <div class="allergen-tag" onclick="toggleAllergen('guava', this)">🍐 <span class="lang-vi">Ổi</span><span class="lang-en">Guava</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: DIET PREFERENCE & SERVINGS -->
+        <div class="quiz-step-content" id="quiz-step-4">
+          <h2 class="step-title">
+            <span class="lang-vi">🥗 Chế độ ăn & Khẩu phần mỗi lần</span>
+            <span class="lang-en">🥗 Dietary Style & Serving Size</span>
+          </h2>
+
+          <div style="margin-bottom:24px;">
+            <p style="font-weight:700; font-size:14px; color:var(--color-text-dark); margin-bottom:12px; text-align:center;">
+              <span class="lang-vi">Bạn đang theo chế độ ăn nào?</span>
+              <span class="lang-en">Which dietary style do you follow?</span>
+            </p>
+            <div class="options-grid">
+              <div class="option-card selected" onclick="selectDiet('omnivore', this)">
+                <div class="option-icon">🍖</div>
+                <div class="option-info">
+                  <div class="option-label"><span class="lang-vi">Ăn tạp (mặc định)</span><span class="lang-en">Omnivore (Default)</span></div>
+                  <div class="option-desc"><span class="lang-vi">Cân bằng đầy đủ các nhóm thực phẩm</span><span class="lang-en">Balanced diet including all food groups</span></div>
+                </div>
+              </div>
+              <div class="option-card" onclick="selectDiet('vegetarian', this)">
+                <div class="option-icon">🥦</div>
+                <div class="option-info">
+                  <div class="option-label"><span class="lang-vi">Ăn chay có trứng/sữa</span><span class="lang-en">Vegetarian</span></div>
+                  <div class="option-desc"><span class="lang-vi">Không thịt, nhưng dùng trứng và sữa</span><span class="lang-en">No meat, includes eggs and dairy</span></div>
+                </div>
+              </div>
+              <div class="option-card" onclick="selectDiet('vegan', this)">
+                <div class="option-icon">🌱</div>
+                <div class="option-info">
+                  <div class="option-label"><span class="lang-vi">Thuần chay (Vegan)</span><span class="lang-en">Vegan (Plant-Based)</span></div>
+                  <div class="option-desc"><span class="lang-vi">Hoàn toàn không dùng sản phẩm động vật</span><span class="lang-en">Strictly plant-based, no animal products</span></div>
+                </div>
+              </div>
+              <div class="option-card" onclick="selectDiet('keto', this)">
+                <div class="option-icon">🥩</div>
+                <div class="option-info">
+                  <div class="option-label"><span class="lang-vi">Keto / Low-Carb</span><span class="lang-en">Keto / Low-Carb</span></div>
+                  <div class="option-desc"><span class="lang-vi">Hạn chế tinh bột, tăng cường chất béo tốt</span><span class="lang-en">Restrict carbs, prioritize healthy fats</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align:center;">
+            <p style="font-weight:700; font-size:14px; color:var(--color-text-dark); margin-bottom:12px;">
+              <span class="lang-vi">Khẩu phần mỗi lần pha chế:</span>
+              <span class="lang-en">Serving size per batch:</span>
+            </p>
+            <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+              <div class="option-card selected" id="srv-1" onclick="selectServings(1, this)" style="max-width:130px; padding:16px 12px; flex-direction:column; text-align:center;">
+                <div class="option-icon" style="margin:0 auto 8px auto; font-size:22px;">1×</div>
+                <div class="option-label" style="font-size:13px;"><span class="lang-vi">1 khẩu phần</span><span class="lang-en">Single</span></div>
+                <div class="option-desc"><span class="lang-vi">Cá nhân</span><span class="lang-en">For yourself</span></div>
+              </div>
+              <div class="option-card" id="srv-2" onclick="selectServings(2, this)" style="max-width:130px; padding:16px 12px; flex-direction:column; text-align:center;">
+                <div class="option-icon" style="margin:0 auto 8px auto; font-size:22px;">2×</div>
+                <div class="option-label" style="font-size:13px;"><span class="lang-vi">2 khẩu phần</span><span class="lang-en">Double</span></div>
+                <div class="option-desc"><span class="lang-vi">Cho 2 người</span><span class="lang-en">For 2 people</span></div>
+              </div>
+              <div class="option-card" id="srv-3" onclick="selectServings(3, this)" style="max-width:130px; padding:16px 12px; flex-direction:column; text-align:center;">
+                <div class="option-icon" style="margin:0 auto 8px auto; font-size:22px;">3×</div>
+                <div class="option-label" style="font-size:13px;"><span class="lang-vi">3 khẩu phần</span><span class="lang-en">Triple</span></div>
+                <div class="option-desc"><span class="lang-vi">Cả gia đình</span><span class="lang-en">Family size</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: CONSUMPTION TIME -->
+        <div class="quiz-step-content" id="quiz-step-5">
+          <h2 class="step-title">
+            <span class="lang-vi">⏰ Thời điểm bạn muốn sử dụng meal prep?</span>
+            <span class="lang-en">⏰ When will you consume the meal?</span>
+          </h2>
+          <div class="options-grid">
+            <div class="option-card" onclick="selectTime('breakfast', this)">
+              <div class="option-icon">☀️</div>
+              <div class="option-info">
+                <div class="option-label"><span class="lang-vi">Bữa sáng năng lượng</span><span class="lang-en">Breakfast Booster</span></div>
+                <div class="option-desc"><span class="lang-vi">Nhanh chóng, bổ sung xơ, đánh thức năng lượng cơ thể</span><span class="lang-en">Quick digest, high energy to wake up the body</span></div>
+              </div>
+            </div>
+            <div class="option-card" onclick="selectTime('workout', this)">
+              <div class="option-icon">🏃‍♂️</div>
+              <div class="option-info">
+                <div class="option-label"><span class="lang-vi">Trước hoặc Sau tập luyện</span><span class="lang-en">Pre / Post Workout</span></div>
+                <div class="option-desc"><span class="lang-vi">Chứa protein hấp thu nhanh và carbs bù đắp năng lượng</span><span class="lang-en">Active fuel & muscle restoration nutrients</span></div>
+              </div>
+            </div>
+            <div class="option-card" onclick="selectTime('afternoon', this)">
+              <div class="option-icon">☕</div>
+              <div class="option-info">
+                <div class="option-label"><span class="lang-vi">Bữa phụ xế chiều</span><span class="lang-en">Afternoon Snack</span></div>
+                <div class="option-desc"><span class="lang-vi">Lành mạnh, kiểm soát cơn thèm ăn, ít calo</span><span class="lang-en">Satiety-inducing, calorie-controlled healthy bite</span></div>
+              </div>
+            </div>
+            <div class="option-card" onclick="selectTime('all-day', this)">
+              <div class="option-icon">⚖️</div>
+              <div class="option-info">
+                <div class="option-label"><span class="lang-vi">Thay thế bữa ăn chính</span><span class="lang-en">Meal Replacement</span></div>
+                <div class="option-desc"><span class="lang-vi">Đầy đủ dinh dưỡng vàng, cân bằng Carbs, Protein & Chất béo</span><span class="lang-en">Fully balanced meal replacement formula</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="quiz-nav-row">
+          <button class="btn btn-outline" id="btn-back" onclick="goBack()" style="padding:10px 24px; border-radius:40px; visibility:hidden;">
+            <span class="lang-vi">← Quay lại</span><span class="lang-en">← Back</span>
+          </button>
+          <button class="btn btn-primary" id="btn-next" onclick="goNext()" style="padding:10px 28px; border-radius:40px; color:white;">
+            <span class="lang-vi">Tiếp tục →</span><span class="lang-en">Next →</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULTS DASHBOARD -->
+      <div class="results-dashboard" id="results-root">
+        <div id="print-area">
+          <h2 class="step-title" style="margin-bottom:5px;">
+            <span class="lang-vi">Thực Đơn Dinh Dưỡng Cá Nhân Hóa</span>
+            <span class="lang-en">Your Personalized Nutrition Card</span>
+          </h2>
+          <p style="text-align:center; color:var(--color-text-light); font-size:14px; margin-bottom:24px;">
+            <span class="lang-vi">Được nghiên cứu bởi Chuyên gia dinh dưỡng Tứ Quý Garden</span>
+            <span class="lang-en">Certified by Tứ Quý Garden Dieticians</span>
+          </p>
+
+          <!-- BMI / TDEE / Goal Summary Banner -->
+          <div style="background:linear-gradient(135deg, var(--color-primary), var(--color-secondary)); border-radius:14px; padding:22px 30px; margin-bottom:30px; display:flex; justify-content:space-around; color:white; flex-wrap:wrap; gap:15px; align-items:center;">
+            <div style="text-align:center;">
+              <div style="font-size:11px; opacity:.85; text-transform:uppercase; letter-spacing:1.2px; margin-bottom:5px; font-weight:600;">BMI</div>
+              <div style="font-size:34px; font-weight:800; line-height:1;" id="result-bmi-val">--</div>
+              <div style="font-size:12px; opacity:.9; margin-top:4px;" id="result-bmi-cat">--</div>
+            </div>
+            <div style="width:1px; height:55px; background:rgba(255,255,255,.3);"></div>
+            <div style="text-align:center;">
+              <div style="font-size:11px; opacity:.85; text-transform:uppercase; letter-spacing:1.2px; margin-bottom:5px; font-weight:600;"><span class="lang-vi">Calo/ngày (TDEE)</span><span class="lang-en">Daily Calories (TDEE)</span></div>
+              <div style="font-size:34px; font-weight:800; line-height:1;" id="result-tdee-val">--</div>
+              <div style="font-size:12px; opacity:.9; margin-top:4px;">kcal</div>
+            </div>
+            <div style="width:1px; height:55px; background:rgba(255,255,255,.3);"></div>
+            <div style="text-align:center;">
+              <div style="font-size:11px; opacity:.85; text-transform:uppercase; letter-spacing:1.2px; margin-bottom:5px; font-weight:600;"><span class="lang-vi">Mục tiêu</span><span class="lang-en">Goal</span></div>
+              <div style="font-size:28px; font-weight:800; line-height:1;" id="result-goal-icon">🎯</div>
+              <div style="font-size:12px; opacity:.9; margin-top:4px;" id="result-goal-txt">--</div>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <!-- Charts Column -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <!-- Macro donut / Radial chart -->
+              <div class="macro-chart-container" style="background:var(--color-cream-light); border-radius:12px; border:1px solid var(--color-gray-border); padding:25px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                <h3 style="font-size:15px; color:var(--color-text-light); text-transform:uppercase; font-weight:600;"><span class="lang-vi">Tổng Calo đề xuất</span><span class="lang-en">Calorie Target</span></h3>
+                <div class="macro-total-calories" id="macro-calories" style="font-size:32px; font-weight:800; color:var(--color-primary); margin-top:10px;">1,850 kcal</div>
+                <!-- SVG Radial Chart -->
+                <svg width="200" height="200" style="margin-top:15px;">
+                  <circle cx="100" cy="100" r="70" fill="none" stroke="var(--color-gray-border)" stroke-width="15" />
+                  <circle id="arc-protein" cx="100" cy="100" r="70" fill="none" stroke="#2980B9" stroke-width="15" stroke-dasharray="440" stroke-dashoffset="330" transform="rotate(-90, 100, 100)" stroke-linecap="round" />
+                  <circle id="arc-carbs" cx="100" cy="100" r="70" fill="none" stroke="#F5C542" stroke-width="15" stroke-dasharray="440" stroke-dashoffset="220" transform="rotate(45, 100, 100)" stroke-linecap="round" />
+                  <circle id="arc-fat" cx="100" cy="100" r="70" fill="none" stroke="#E06A55" stroke-width="15" stroke-dasharray="440" stroke-dashoffset="370" transform="rotate(180, 100, 100)" stroke-linecap="round" />
+                  <text id="macro-ratio-label" x="100" y="105" text-anchor="middle" font-size="14" font-weight="700" fill="var(--color-text-dark)">Macros Ratio</text>
+                </svg>
+                <div style="display:flex; gap:12px; margin-top:20px; font-size:11px; font-weight:700; flex-wrap:wrap; justify-content:center;">
+                  <span style="color:#2980B9; display:flex; align-items:center; gap:4px;">
+                    <span style="display:inline-block; width:8px; height:8px; background:#2980B9; border-radius:2px;"></span>
+                    <span class="lang-vi">Đạm:</span><span class="lang-en">Protein:</span> <span id="val-pct-protein">25%</span>
+                  </span>
+                  <span style="color:#F5C542; display:flex; align-items:center; gap:4px;">
+                    <span style="display:inline-block; width:8px; height:8px; background:#F5C542; border-radius:2px;"></span>
+                    <span class="lang-vi">Carbs:</span><span class="lang-en">Carbs:</span> <span id="val-pct-carbs">50%</span>
+                  </span>
+                  <span style="color:#E06A55; display:flex; align-items:center; gap:4px;">
+                    <span style="display:inline-block; width:8px; height:8px; background:#E06A55; border-radius:2px;"></span>
+                    <span class="lang-vi">Béo:</span><span class="lang-en">Fat:</span> <span id="val-pct-fat">25%</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Line Chart Progress Projection -->
+              <div class="line-chart-container" style="background:white; border:1px solid var(--color-gray-border); border-radius:12px; padding:20px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; align-items:center;">
+                <h3 style="font-size:13px; color:var(--color-text-light); text-transform:uppercase; font-weight:600; margin-bottom:12px; text-align:center;">
+                  <span class="lang-vi">Dự báo tiến trình (7 ngày tới)</span>
+                  <span class="lang-en">7-Day Progress Forecast</span>
+                </h3>
+                <svg id="svg-line-chart" width="280" height="150" style="margin-top:10px; overflow:visible;">
+                  <line x1="35" y1="20" x2="35" y2="120" stroke="var(--color-gray-border)" stroke-width="1" />
+                  <line x1="35" y1="120" x2="275" y2="120" stroke="var(--color-gray-border)" stroke-width="1" />
+                  <text id="y-label-max" x="30" y="25" text-anchor="end" font-size="9" fill="var(--color-text-light)">Max</text>
+                  <text id="y-label-mid" x="30" y="75" text-anchor="end" font-size="9" fill="var(--color-text-light)">Mid</text>
+                  <text id="y-label-min" x="30" y="120" text-anchor="end" font-size="9" fill="var(--color-text-light)">Min</text>
+                  <text x="35" y="135" text-anchor="middle" font-size="8" fill="var(--color-text-light)">N1</text>
+                  <text x="75" y="135" text-anchor="middle" font-size="8" fill="var(--color-text-light)">N2</text>
+                  <text x="115" y="135" text-anchor="middle" font-size="8" fill="var(--color-text-light)">N3</text>
+                  <text x="155" y="135" text-anchor="middle" font-size="8" fill="var(--color-text-light)">N4</text>
+                  <text x="195" y="135" text-anchor="middle" font-size="8" fill="var(--color-text-light)">N5</text>
+                  <text x="235" y="135" text-anchor="middle" font-size="8" fill="var(--color-text-light)">N6</text>
+                  <text x="275" y="135" text-anchor="middle" font-size="8" fill="var(--color-text-light)">N7</text>
+                  <path id="chart-area-path" d="" fill="rgba(47, 107, 47, 0.1)" stroke="none" />
+                  <path id="chart-line-path" d="" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" />
+                  <g id="chart-dots-group"></g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Recipe Description -->
+            <div>
+              <h3 style="font-size:18px; color:var(--color-text-dark); margin-bottom:15px;" id="rec-title">Avocado Mango Nut Smoothie</h3>
+              <p style="font-size:14px; line-height:1.6; color:var(--color-text-light); margin-bottom:15px;" id="rec-desc">This formulation provides a healthy energy source from rich buttery avocado combined with the sweet taste of Hoa Loc mango and premium nuts micronutrients.</p>
+              <div class="nutri-tag-row">
+                <span class="nutri-tag protein" id="rec-protein">Protein: 24g</span>
+                <span class="nutri-tag carbs" id="rec-carbs">Carbs: 48g</span>
+                <span class="nutri-tag fat" id="rec-fat">Fats: 12g</span>
+                <span class="nutri-tag" id="rec-fiber">Fiber: 8g</span>
+              </div>
+              <h4 style="font-size:13.5px; color:var(--color-text-dark); margin-bottom:8px;"><span class="lang-vi">Danh sách nguyên liệu phối trộn:</span><span class="lang-en">Ingredients Mix List:</span></h4>
+              <table class="ingredients-table" id="ingredients-table-body">
+                <!-- Rendered dynamically -->
+              </table>
+            </div>
+          </div>
+
+          <!-- Recipe detailed prep steps -->
+          <div style="background:var(--color-cream-light); border-radius:12px; padding:25px; border:1px solid var(--color-gray-border); margin-bottom:30px;">
+            <h3 style="font-size:16px; margin-bottom:12px; color:var(--color-text-dark); font-weight:700;"><span class="lang-vi">Quy trình pha chế (Meal Prep Guide):</span><span class="lang-en">Preparation Instructions:</span></h3>
+            <ol style="margin-left:20px; font-size:13.5px; color:var(--color-text-light); line-height:1.6;" id="prep-steps">
+              <!-- Rendered dynamically -->
+            </ol>
+          </div>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; border-top:1px solid var(--color-gray-border); padding-top:30px;" class="no-print">
+          <button class="btn btn-outline" onclick="resetQuiz()" style="padding:12px 28px; border-radius:40px;">
+            <span class="lang-vi">Làm lại trắc nghiệm</span>
+            <span class="lang-en">Retake Quiz</span>
+          </button>
+          <button class="btn btn-secondary" onclick="window.print()" style="padding:12px 28px; border-radius:40px; font-weight:600; display:flex; align-items:center; gap:8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span class="lang-vi">In / Lưu thực đơn</span>
+            <span class="lang-en">Print Diet Card</span>
+          </button>
+          <button class="btn btn-primary" onclick="addAllIngredientsToCart()" style="padding:12px 32px; border-radius:40px; font-weight:600; display:flex; align-items:center; gap:8px; color:white; box-shadow:var(--shadow-md);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="lang-vi">Mua trọn bộ Nguyên liệu (Giảm 10%)</span>
+            <span class="lang-en">Add All Ingredients to Cart</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->

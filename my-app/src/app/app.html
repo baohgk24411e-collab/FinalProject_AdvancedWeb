@@ -1,0 +1,16 @@
+<div class="app-layout">
+  <!-- Shared storefront header -->
+  <app-header *ngIf="!isAdminRoute"></app-header>
+
+  <!-- Main Routed Content -->
+  <main class="app-main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Shared storefront footer -->
+  <app-footer *ngIf="!isAdminRoute"></app-footer>
+
+  <!-- Floating interactive chatbot -->
+  <app-chatbot *ngIf="!isAdminRoute"></app-chatbot>
+</div>
+

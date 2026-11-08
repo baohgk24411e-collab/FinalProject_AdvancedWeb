@@ -1,0 +1,78 @@
+<div class="product-card" [attr.data-id]="product.id" *ngIf="product">
+  <div class="card-img-wrapper">
+    <!-- Badges -->
+    <div class="card-badges-row">
+      <span class="card-badge bestseller-badge" *ngIf="product.isBestSeller">
+        <span class="badge-icon">🔥</span>
+        <span class="lang-vi">Bán chạy</span>
+        <span class="lang-en">Bestseller</span>
+      </span>
+      <span class="card-badge seasonal-badge" *ngIf="product.isSeasonal && !product.isBestSeller">
+        <span class="badge-icon">🍃</span>
+        <span class="lang-vi">Theo mùa</span>
+        <span class="lang-en">Seasonal</span>
+      </span>
+      <span class="discount-badge" *ngIf="discountPercent > 0">-{{ discountPercent }}%</span>
+    </div>
+
+    <!-- Wishlist Button -->
+    <button class="wishlist-toggle-btn"
+      (click)="toggleWishlist($event)"
+      [class.active]="isWishlisted"
+      [title]="isWishlisted ? 'Bỏ yêu thích' : 'Yêu thích'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+        viewBox="0 0 24 24"
+        [attr.fill]="isWishlisted ? 'currentColor' : 'none'"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    </button>
+
+    <!-- Product Image Link -->
+    <a [routerLink]="['/detail', product.id]" class="card-link">
+      <img [src]="product.image" [alt]="product.name" class="product-img" loading="lazy"
+        onerror="this.onerror=null; this.src='images/logo/logo.png'">
+    </a>
+
+    <!-- Quick View Button -->
+    <a [routerLink]="['/detail', product.id]" class="quick-view-btn">
+      <span class="lang-vi">Xem nhanh</span>
+      <span class="lang-en">Quick view</span>
+    </a>
+  </div>
+
+  <div class="card-body">
+    <h3 class="card-title">
+      <a [routerLink]="['/detail', product.id]">{{ product.name }}</a>
+    </h3>
+
+    <p class="card-short-desc">{{ product.description || 'Sản phẩm tự nhiên, nguồn gốc rõ ràng.' }}</p>
+
+    <div class="card-rating-row">
+      <div class="card-stars">
+        <span *ngFor="let s of getStarsArray()" class="star" [class.fill]="s.fill" [class.half]="s.half">&#9733;</span>
+      </div>
+      <span class="card-rating-num">{{ product.rating || 5 | number:'1.1-1' }} ({{ product.reviewsCount || 12 }})</span>
+    </div>
+
+    <div class="card-bottom-row">
+      <div class="card-price-box">
+        <span class="current-price">{{ product.price | number:'1.0-0' }}đ</span>
+        <span class="old-price" *ngIf="product.originalPrice && product.originalPrice > product.price">{{ product.originalPrice | number:'1.0-0' }}đ</span>
+      </div>
+
+      <button class="circle-cart-btn" (click)="addToCart($event)" [title]="addedAlert ? 'Đã thêm' : 'Thêm giỏ hàng'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

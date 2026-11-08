@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tứ Quý Garden | Trái Tươi Bốn Mùa, Hạt Lành Mỗi Ngày</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tứ Quý Garden cung cấp nông sản sạch theo mùa, hạt dinh dưỡng cao cấp, granola hữu cơ sấy tự nhiên và combo sống khỏe.">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <script>
+    // SPA DOMContentLoaded Polyfill: executes listener immediately if DOM is already ready
+    (function() {
+      var origAdd = EventTarget.prototype.addEventListener;
+      EventTarget.prototype.addEventListener = function(type, listener, options) {
+        if (type === 'DOMContentLoaded' && (document.readyState === 'interactive' || document.readyState === 'complete')) {
+          setTimeout(listener, 10);
+        }
+        return origAdd.call(this, type, listener, options);
+      };
+    })();
+  </script>
+
+  <!-- Core Mock Data & Services for complete backwards-compatible DOM scripts -->
+  <script src="data/data.js"></script>
+  <script src="data/categories.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/users.js"></script>
+  <script src="data/orders.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="services/cartService.js"></script>
+  <script src="services/orderService.js"></script>
+  <script src="components/ProductCard.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/products.js"></script>
+</head>
+<body class="lang-en">
+  <app-root></app-root>
+</body>
+</html>

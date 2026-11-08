@@ -1,0 +1,220 @@
+<!-- CONTENT -->
+  <main class="auth-page-wrapper">
+    <!-- Breadcrumbs -->
+    <ul class="auth-breadcrumb">
+      <li><a routerLink="/"><span class="lang-vi">Trang chủ</span><span class="lang-en">Home</span></a></li>
+      <li><span class="auth-breadcrumb-separator">/</span></li>
+      <li class="auth-breadcrumb-current"><span class="lang-vi">Tài khoản</span><span class="lang-en">Account</span></li>
+    </ul>
+
+    <div class="auth-page-container auth-card" id="auth-page-container" data-auth-mode="login">
+      <!-- Left side banner -->
+      <div class="auth-banner auth-brand-panel">
+        <div class="auth-banner-top">
+          <img src="images/logo/logo.png" alt="Tứ Quý Garden Logo" class="banner-logo auth-brand-logo">
+        </div>
+        <div class="auth-banner-middle">
+          <div class="auth-banner-copy login-copy">
+            <h2 class="auth-brand-title">
+              <span class="lang-vi">Fresh fruits seasonal<br>healthy seeds daily</span>
+              <span class="lang-en">Seasonal fruits<br>healthy daily seeds</span>
+            </h2>
+            <p class="auth-brand-desc">
+              <span class="lang-vi">Tứ Quý Garden mang đến nông sản theo mùa tươi ngon, hạt dinh dưỡng và sản phẩm lành mạnh - chăm sóc sức khỏe cho bạn và gia đình mỗi ngày.</span>
+              <span class="lang-en">Tứ Quý Garden offers fresh seasonal produce, nutritious seeds, and healthy options to care for your family's health daily.</span>
+            </p>
+          </div>
+          <div class="auth-banner-copy register-copy">
+            <h2 class="auth-brand-title">
+              <span class="lang-vi">Chào mừng bạn đến<br>với Tứ Quý Garden</span>
+              <span class="lang-en">Welcome to<br>Tứ Quý Garden</span>
+            </h2>
+            <p class="auth-brand-desc">
+              <span class="lang-vi">Tạo tài khoản để khám phá nông sản tươi theo mùa, lưu sản phẩm yêu thích và nhận ưu đãi dành riêng cho thành viên.</span>
+              <span class="lang-en">Create an account to discover fresh seasonal produce, save your favorites, and get exclusive member rewards.</span>
+            </p>
+          </div>
+        </div>
+        <div class="auth-banner-bottom">
+          <span class="auth-feature-pill">
+            <span class="lang-vi">Theo mùa</span>
+            <span class="lang-en">Seasonal</span>
+          </span>
+          <span class="auth-feature-pill">
+            <span class="lang-vi">Hữu cơ</span>
+            <span class="lang-en">Organic</span>
+          </span>
+          <span class="auth-feature-pill">
+            <span class="lang-vi">Lành mạnh</span>
+            <span class="lang-en">Healthy</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Right side forms -->
+      <div class="auth-form-side">
+        <div class="auth-tabs">
+          <div class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">
+            <span class="lang-vi">Đăng nhập</span>
+            <span class="lang-en">Log In</span>
+          </div>
+          <div class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">
+            <span class="lang-vi">Đăng ký</span>
+            <span class="lang-en">Register</span>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="auth-form-panel active" id="panel-login">
+          <h1 class="auth-form-title">
+            <span class="lang-vi">Đăng nhập</span>
+            <span class="lang-en">Log In</span>
+          </h1>
+          <p class="auth-form-subtitle">
+            <span class="lang-vi">Chào mừng bạn quay lại Tứ Quý Garden</span>
+            <span class="lang-en">Welcome back to Tứ Quý Garden</span>
+          </p>
+          <form id="auth-login-form">
+            <div class="auth-form-group">
+              <label for="login-email"><span class="lang-vi">Email</span><span class="lang-en">Email</span></label>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <input type="email" id="login-email" class="auth-input" required placeholder="example@tuquygarden.vn">
+              </div>
+            </div>
+            <div class="auth-form-group">
+              <label for="login-password"><span class="lang-vi">Mật khẩu</span><span class="lang-en">Password</span></label>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <input type="password" id="login-password" class="auth-input has-toggle" required placeholder="••••••••">
+                <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('login-password', this)" aria-label="Hiện hoặc ẩn mật khẩu">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="auth-flex-row">
+              <label class="auth-checkbox-label">
+                <input type="checkbox" id="login-remember">
+                <span class="lang-vi">Ghi nhớ đăng nhập</span>
+                <span class="lang-en">Remember me</span>
+              </label>
+              <a href="#" class="auth-forgot-link" onclick="handleForgotPassword(event)">
+                <span class="lang-vi">Quên mật khẩu?</span>
+                <span class="lang-en">Forgot password?</span>
+              </a>
+            </div>
+
+            <button type="submit" class="auth-submit-btn">
+              <span class="lang-vi">Đăng nhập</span>
+              <span class="lang-en">Log In</span>
+            </button>
+
+            <div class="auth-divider">
+              <span>
+                <span class="lang-vi">Hoặc đăng nhập với</span>
+                <span class="lang-en">Or sign in with</span>
+              </span>
+            </div>
+            <div class="social-login-row">
+              <button type="button" class="social-login-btn google-btn" onclick="window.handleGoogleLogin()">Google</button>
+              <button type="button" class="social-login-btn" onclick="showToast('Tính năng đăng nhập Facebook đang được mô phỏng.', 'info')">Facebook</button>
+            </div>
+
+            <p class="auth-bottom-prompt">
+              <span class="lang-vi">Chưa có tài khoản? <button type="button" class="auth-inline-link" onclick="switchAuthTab('register')">Đăng ký ngay</button></span>
+              <span class="lang-en">Don't have an account? <button type="button" class="auth-inline-link" onclick="switchAuthTab('register')">Register now</button></span>
+            </p>
+          </form>
+        </div>
+
+        <!-- Register Form -->
+        <div class="auth-form-panel" id="panel-register">
+          <h1 class="auth-form-title">
+            <span class="lang-vi">Đăng ký</span>
+            <span class="lang-en">Register</span>
+          </h1>
+          <p class="auth-form-subtitle">
+            <span class="lang-vi">Tạo tài khoản để nhận ưu đãi và gợi ý dinh dưỡng cá nhân</span>
+            <span class="lang-en">Create an account for exclusive deals and personalized nutrition plans</span>
+          </p>
+          <form id="auth-register-form">
+            <div class="auth-form-group">
+              <label for="register-name"><span class="lang-vi">Họ và tên</span><span class="lang-en">Full Name</span></label>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <input type="text" id="register-name" class="auth-input" required placeholder="Nguyễn Văn A">
+              </div>
+            </div>
+
+            <div class="auth-grid-2">
+              <div class="auth-form-group">
+                <label for="register-email"><span class="lang-vi">Email</span><span class="lang-en">Email</span></label>
+                <div class="auth-input-wrapper">
+                  <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  <input type="email" id="register-email" class="auth-input" required placeholder="name@domain.com">
+                </div>
+              </div>
+              <div class="auth-form-group">
+                <label for="register-phone"><span class="lang-vi">Số điện thoại</span><span class="lang-en">Phone</span></label>
+                <div class="auth-input-wrapper">
+                  <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.33 4.11 2 2 0 0 1 4.31 2h3a2 2 0 0 1 2 1.72c.13.98.35 1.95.66 2.86a2 2 0 0 1-.45 2.11L8.25 9.96a16 16 0 0 0 5.79 5.79l1.27-1.27a2 2 0 0 1 2.11-.45c.91.31 1.88.53 2.86.66A2 2 0 0 1 22 16.92z"></path></svg>
+                  <input type="tel" id="register-phone" class="auth-input" required placeholder="0912345678">
+                </div>
+              </div>
+            </div>
+
+            <div class="auth-grid-password">
+              <div class="auth-form-group">
+                <label for="register-password"><span class="lang-vi">Mật khẩu</span><span class="lang-en">Password</span></label>
+                <div class="auth-input-wrapper">
+                  <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <input type="password" id="register-password" class="auth-input has-toggle" required placeholder="••••••••">
+                  <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('register-password', this)" aria-label="Hiện hoặc ẩn mật khẩu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="auth-form-group">
+                <label for="register-goal">
+                  <span class="lang-vi">Mục tiêu sức khỏe</span>
+                  <span class="lang-en">Health Goal</span>
+                </label>
+                <div class="auth-input-wrapper">
+                  <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <select id="register-goal" class="auth-select">
+                    <option value="Eat Clean">Eat Clean</option>
+                    <option value="Tăng cơ">Tăng cơ / Gym & Fitness</option>
+                    <option value="Giảm cân">Giảm cân / Weight Loss</option>
+                    <option value="Mẹ bầu">Mẹ bầu & Bé / Mother & Baby</option>
+                    <option value="Gia đình">Sức khỏe Gia đình / Family Health</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <label class="auth-checkbox-label auth-terms-row">
+              <input type="checkbox" required>
+              <span>
+                <span class="lang-vi">Tôi đồng ý với điều khoản sử dụng và chính sách bảo mật.</span>
+                <span class="lang-en">I agree to the terms of service and privacy policy.</span>
+              </span>
+            </label>
+
+            <button type="submit" class="auth-submit-btn">
+              <span class="lang-vi">Đăng ký tài khoản</span>
+              <span class="lang-en">Create Account</span>
+            </button>
+
+            <p class="auth-bottom-prompt">
+              <span class="lang-vi">Đã có tài khoản? <button type="button" class="auth-inline-link" onclick="switchAuthTab('login')">Đăng nhập</button></span>
+              <span class="lang-en">Already have an account? <button type="button" class="auth-inline-link" onclick="switchAuthTab('login')">Log In</button></span>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->

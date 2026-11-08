@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail | Tứ Quý Garden</title>
+  <meta name="description" content="Explore Tứ Quý Garden product details with transparent nutrition and traceability.">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="lang-en">
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-container container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <img src="images/logo/logo-ngang-cropped.png" alt="Tứ Quý Garden Logo" class="logo-img">
+      </a>
+
+      <!-- Mobile toggle menu -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Navigation links -->
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <span class="lang-vi">Trang chủ</span>
+              <span class="lang-en">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="nav-link">
+              <span class="lang-vi">Về chúng tôi</span>
+              <span class="lang-en">About Us</span>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="products.html" class="nav-link dropdown-toggle active">
+              <span class="lang-vi">Sản phẩm</span>
+              <span class="lang-en">Products</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropdown-chevron">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="mega-menu">
+              <div class="mega-menu-grid">
+                <a href="products.html?category=Fruits" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Trái cây theo mùa</span>
+                    <span class="mega-title lang-en">Seasonal Fruits</span>
+                    <span class="mega-desc lang-vi">Trái cây tươi ngon, theo mùa</span>
+                    <span class="mega-desc lang-en">Fresh, in-season fruits</span>
+                  </div>
+                </a>
+                <a href="products.html?category=Combo Healthy" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 8V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2M12 4v17M7.5 4a2.5 2.5 0 0 1 0-5C10 -1 12 4 12 4s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Eat Clean Box</span>
+                    <span class="mega-title lang-en">Eat Clean Box</span>
+                    <span class="mega-desc lang-vi">Hộp quà Eat Clean lành mạnh</span>
+                    <span class="mega-desc lang-en">Healthy Eat Clean gift box</span>
+                  </div>
+                </a>
+                <a href="products.html?category=Combo Healthy&promo=bestseller" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78a5.5 5.5 0 0 0 1.06-8.84z"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Combo quà sức khỏe</span>
+                    <span class="mega-title lang-en">Health Gift Combo</span>
+                    <span class="mega-desc lang-vi">Combo quà tặng ý nghĩa</span>
+                    <span class="mega-desc lang-en">Meaningful gift combos</span>
+                  </div>
+                </a>
+                <a href="products.html?category=Nutritional Seeds" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7.5 9.5l9 5M7.5 14.5l9-5"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Hạt dinh dưỡng</span>
+                    <span class="mega-title lang-en">Nutritional Seeds</span>
+                    <span class="mega-desc lang-vi">Các loại hạt dinh dưỡng cao cấp</span>
+                    <span class="mega-desc lang-en">Premium nutritional seeds</span>
+                  </div>
+                </a>
+                <a href="products.html?category=Granola" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M3 13h18l-1.5 7a2 2 0 0 1-2 1.6H6.5A2 2 0 0 1 4.5 20z"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Granola &amp; Nuts</span>
+                    <span class="mega-title lang-en">Granola &amp; Nuts</span>
+                    <span class="mega-desc lang-vi">Granola &amp; các loại hạt</span>
+                    <span class="mega-desc lang-en">Granola &amp; mixed nuts</span>
+                  </div>
+                </a>
+                <a href="products.html?season=seasonal" class="mega-menu-item">
+                  <div class="mega-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <div class="mega-text">
+                    <span class="mega-title lang-vi">Đặc sản vùng miền</span>
+                    <span class="mega-title lang-en">Regional Specialties</span>
+                    <span class="mega-desc lang-vi">Đặc sản thơm ngon, chất lượng</span>
+                    <span class="mega-desc lang-en">Quality regional specialties</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="index.html#footer-contact" class="nav-link">
+              <span class="lang-vi">Liên hệ</span>
+              <span class="lang-en">Contact</span>
+            </a>
+          </li>
+          <li>
+            <a href="nutrition.html" class="nav-link">
+              <span class="lang-vi">Dinh dưỡng cá nhân</span>
+              <span class="lang-en">Nutrition Plan</span>
+            </a>
+          </li>
+          <li>
+            <a href="traceability.html" class="nav-link">
+              <span class="lang-vi">Truy xuất nguồn gốc</span>
+              <span class="lang-en">Traceability</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right actions -->
+      <div class="header-actions">
+        <!-- Search bar -->
+        <div class="search-bar">
+          <input type="text" placeholder="Search products..." id="header-search-input">
+          <button class="search-btn" id="header-search-btn" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Language toggle button -->
+        <button class="lang-switch-btn" id="lang-toggle-btn" title="Toggle Language">
+          <span class="lang-vi">EN</span>
+          <span class="lang-en">VI</span>
+        </button>
+
+        <!-- Account -->
+        <a href="login.html" class="action-icon-btn profile-btn" id="header-profile-btn" title="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="btn-text">
+            <span class="lang-vi" id="header-profile-txt-vi">Tài khoản</span>
+            <span class="lang-en" id="header-profile-txt-en">Account</span>
+          </span>
+        </a>
+
+        <!-- Wishlist -->
+        <a href="wishlist.html" class="action-icon-btn wishlist-btn" title="Wishlist">
+          <div class="cart-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78a5.5 5.5 0 0 0 1.06-8.84z"></path>
+            </svg>
+            <span class="cart-badge wishlist-badge" id="header-wishlist-badge" style="display:none;">0</span>
+          </div>
+          <span class="btn-text">
+            <span class="lang-vi">Yêu thích</span>
+            <span class="lang-en">Wishlist</span>
+          </span>
+        </a>
+
+        <!-- Cart -->
+        <a href="cart.html" class="action-icon-btn cart-btn" title="Cart">
+          <div class="cart-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-badge" id="header-cart-badge" style="display:none;">0</span>
+          </div>
+          <span class="btn-text">
+            <span class="lang-vi">Giỏ hàng</span>
+            <span class="lang-en">Cart</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div id="product-detail-root">
+    <!-- Rendered dynamically by js/detail.js -->
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer-contact">
+    <div class="footer-top container">
+      <div class="footer-block brand-block">
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo/logo-white-cropped.png" alt="Tứ Quý Garden Logo" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">“Fresh fruits seasonal, healthy seeds daily”</p>
+        <p class="footer-desc">
+          <span class="lang-vi">Tứ Quý Garden cam kết mang đến nông sản hữu cơ theo mùa tươi ngon, hạt dinh dưỡng chọn lọc và granola lành mạnh chăm sóc sức khỏe gia đình bạn mỗi ngày.</span>
+          <span class="lang-en">Tứ Quý Garden commits to bringing ripe seasonal organic produce, premium seeds, and clean healthy granola to nourish your family daily.</span>
+        </p>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Danh mục</span><span class="lang-en">Categories</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="products.html?category=Fruits"><span class="lang-vi">Trái cây theo mùa</span><span class="lang-en">Seasonal Fruits</span></a></li>
+          <li><a href="products.html?category=Nutritional Seeds"><span class="lang-vi">Hạt dinh dưỡng</span><span class="lang-en">Seeds</span></a></li>
+          <li><a href="products.html?category=Granola"><span class="lang-vi">Granola ngũ cốc</span><span class="lang-en">Granola</span></a></li>
+          <li><a href="products.html?category=Combo Healthy"><span class="lang-vi">Combo sống khỏe</span><span class="lang-en">Healthy Combos</span></a></li>
+          <li><a href="nutrition.html"><span class="lang-vi">Dinh dưỡng cá nhân</span><span class="lang-en">Nutrition Plan</span></a></li>
+          <li><a href="traceability.html"><span class="lang-vi">Tra cứu nguồn gốc</span><span class="lang-en">Traceability</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Hỗ trợ khách hàng</span><span class="lang-en">Customer Service</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="about.html"><span class="lang-vi">Giới thiệu cửa hàng</span><span class="lang-en">About Store</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách đổi trả</span><span class="lang-en">Exchange & Refund</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách giao hàng</span><span class="lang-en">Shipping Policies</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block contact-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Kết nối với chúng tôi</span><span class="lang-en">Contact Info</span>
+        </h3>
+        <ul class="contact-info-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>Hotline: <strong>1900 633 123</strong></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>Email: <a href="mailto:info@tuquygarden.vn">info@tuquygarden.vn</a></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Address: Cai Be, Tien Giang</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright-txt">&copy; 2026 Tứ Quý Garden. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="about.html"><span class="lang-vi">Điều khoản sử dụng</span><span class="lang-en">Terms of Use</span></a>
+          <span class="divider">|</span>
+          <a href="about.html"><span class="lang-vi">Chính sách bảo mật</span><span class="lang-en">Privacy Policy</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/data.js"></script>
+  <script src="services/cartService.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="js/common.js"></script>
+  <script src="components/ProductCard.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>

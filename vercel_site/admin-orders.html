@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Management | Tứ Quý Garden</title>
+  <meta name="description" content="Order management dashboard for viewing and updating customer orders at Tứ Quý Garden.">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/admin.css">
+</head>
+<body class="lang-vi">
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-container container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <img src="images/logo/logo ngang.png" alt="Tứ Quý Garden Logo" class="logo-img">
+      </a>
+
+      <!-- Mobile toggle menu -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Navigation links -->
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <span class="lang-vi">Trang chủ</span>
+              <span class="lang-en">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="nav-link">
+              <span class="lang-vi">Về chúng tôi</span>
+              <span class="lang-en">About Us</span>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="products.html" class="nav-link dropdown-toggle">
+              <span class="lang-vi">Sản phẩm</span>
+              <span class="lang-en">Products</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropdown-chevron">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="products.html?category=all">
+                  <span class="lang-vi">Tất cả sản phẩm</span>
+                  <span class="lang-en">All Products</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Fruits">
+                  <span class="lang-vi">Trái cây tươi</span>
+                  <span class="lang-en">Fresh Fruits</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Nutritional Seeds">
+                  <span class="lang-vi">Hạt dinh dưỡng</span>
+                  <span class="lang-en">Nutritional Seeds</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Granola">
+                  <span class="lang-vi">Granola ngũ cốc</span>
+                  <span class="lang-en">Granola</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Combo Healthy">
+                  <span class="lang-vi">Combo sống khỏe</span>
+                  <span class="lang-en">Combo Healthy</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="index.html#footer-contact" class="nav-link">
+              <span class="lang-vi">Liên hệ</span>
+              <span class="lang-en">Contact</span>
+            </a>
+          </li>
+          <li>
+            <a href="nutrition.html" class="nav-link">
+              <span class="lang-vi">Dinh dưỡng cá nhân</span>
+              <span class="lang-en">Nutrition Plan</span>
+            </a>
+          </li>
+          <li>
+            <a href="traceability.html" class="nav-link">
+              <span class="lang-vi">Truy xuất nguồn gốc</span>
+              <span class="lang-en">Traceability</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right actions -->
+      <div class="header-actions">
+        <!-- Search bar -->
+        <div class="search-bar">
+          <input type="text" placeholder="Search products..." id="header-search-input">
+          <button class="search-btn" id="header-search-btn" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Account Dropdown -->
+        <div class="dropdown">
+          <a href="#" class="action-icon-btn profile-btn active" id="header-profile-btn" title="Account" style="display: flex; align-items: center; gap: 6px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="btn-text">
+              <span class="lang-vi" id="header-profile-txt-vi">Quản trị</span>
+              <span class="lang-en" id="header-profile-txt-en">Admin</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" style="right: 0; left: auto; background: white; border: 1px solid var(--color-gray-border); box-shadow: var(--shadow-md); border-radius: 8px; list-style: none; padding: 10px 0; min-width: 180px; position: absolute; top: 100%; z-index: 1000;">
+            <li><a href="#" onclick="window.showAdminChangePasswordModal(event)" style="display: block; padding: 8px 20px; font-size: 13.5px; color: var(--color-text-dark); text-decoration: none;">🔑 <span class="lang-vi">Đổi mật khẩu</span><span class="lang-en">Change Password</span></a></li>
+            <li><a href="#" onclick="handleAdminLogout()" style="display: block; padding: 8px 20px; font-size: 13.5px; color: #ff8787; text-decoration: none; border-top: 1px solid var(--color-gray-light);">🚪 <span class="lang-vi">Đăng xuất</span><span class="lang-en">Log Out</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Cart -->
+        <a href="cart.html" class="action-icon-btn cart-btn" title="Cart">
+          <div class="cart-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-badge" id="header-cart-badge" style="display:none;">0</span>
+          </div>
+          <span class="btn-text">
+            <span class="lang-vi">Giỏ hàng</span>
+            <span class="lang-en">Cart</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="container admin-container">
+    <div class="admin-layout-grid">
+      <!-- Admin Sidebar -->
+      <div class="admin-sidebar">
+        <div class="admin-sidebar-header">
+          <div class="admin-sidebar-logo">
+            <img src="images/logo/logo ngang.png" alt="" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Logo'">
+            <div class="admin-sidebar-brand">
+              Tứ Quý Garden
+              <span class="lang-vi">Quản trị viên</span><span class="lang-en">Administrator</span>
+            </div>
+          </div>
+          <div class="admin-sidebar-profile">
+            <div class="admin-sidebar-avatar-wrapper" onclick="window.changeAdminAvatar(event)" style="cursor:pointer;" title="Click to change avatar">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" alt="Avatar" class="admin-sidebar-avatar">
+              <span class="admin-sidebar-status-dot"></span>
+            </div>
+            <span class="admin-sidebar-user-role">Administrator</span>
+            <h4 class="admin-sidebar-user-name">Tứ Quý Garden</h4>
+            <p class="admin-sidebar-user-status"><span class="lang-vi">Chào mừng trở lại!</span><span class="lang-en">Welcome back!</span></p>
+          </div>
+        </div>
+
+
+        <ul class="admin-menu">
+          <li class="admin-menu-li">
+            <a href="admin-dashboard.html" class="admin-menu-item">
+              <span class="admin-menu-item-left">📊 <span class="lang-vi">Thống kê chung</span><span class="lang-en">Dashboard</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="admin-products.html" class="admin-menu-item">
+              <span class="admin-menu-item-left">📦 <span class="lang-vi">Quản lý sản phẩm</span><span class="lang-en">Products</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="admin-orders.html" class="admin-menu-item active">
+              <span class="admin-menu-item-left">📝 <span class="lang-vi">Quản lý đơn hàng</span><span class="lang-en">Manage Orders</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminCustomersModal(event)">
+              <span class="admin-menu-item-left">👤 <span class="lang-vi">Khách hàng</span><span class="lang-en">Customers</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminCategoriesModal(event)">
+              <span class="admin-menu-item-left">📁 <span class="lang-vi">Danh mục</span><span class="lang-en">Categories</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminPromotionsModal(event)">
+              <span class="admin-menu-item-left">🏷️ <span class="lang-vi">Khuyến mãi</span><span class="lang-en">Promotions</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminReportsModal(event)">
+              <span class="admin-menu-item-left">📈 <span class="lang-vi">Báo cáo</span><span class="lang-en">Reports</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminSettingsModal(event)">
+              <span class="admin-menu-item-left">⚙️ <span class="lang-vi">Cài đặt</span><span class="lang-en">Settings</span></span>
+            </a>
+          </li>
+          <li>
+            <button class="admin-menu-item" onclick="handleAdminLogout()" style="color: #ff8787; border-top: 1px solid rgba(255,255,255,0.1); border-radius: 0; margin-top: 15px; padding-top: 15px; background:none; border-bottom:none; border-left:none; border-right:none; text-align:left;">
+              <span class="admin-menu-item-left">🚪 <span class="lang-vi">Đăng xuất</span><span class="lang-en">Log Out</span></span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Fresh & Healthy promo card -->
+        <div class="sidebar-promo-card">
+          <h5 class="sidebar-promo-title">Fresh & Healthy</h5>
+          <p class="sidebar-promo-desc">
+            <span class="lang-vi">Tự nhiên, tươi ngon Cho cuộc sống khỏe mạnh</span>
+            <span class="lang-en">Natural, fresh fruit For healthy living</span>
+          </p>
+          <button class="sidebar-promo-btn" aria-label="Learn more">&gt;</button>
+        </div>
+      </div>
+
+      <!-- Main Panel content -->
+      <div class="admin-content-panel">
+        <div class="admin-section-title">
+          <span>📝 <span class="lang-vi">Quản Lý Đơn Hàng Khách Hàng</span><span class="lang-en">Order Management Console</span></span>
+        </div>
+
+        <!-- Order Statistics Summary -->
+        <div class="admin-summary-grid">
+          <div class="admin-summary-card" onclick="filterOrdersByStatus('all')">
+            <span class="admin-summary-label"><span class="lang-vi">Tổng đơn hàng</span><span class="lang-en">Total Orders</span></span>
+            <span class="admin-summary-value" id="kpi-orders-total">0</span>
+          </div>
+          <div class="admin-summary-card" style="border-left: 4px solid #d97706;" onclick="filterOrdersByStatus('Chờ xác nhận')">
+            <span class="admin-summary-label"><span class="lang-vi">Chờ xác nhận</span><span class="lang-en">Pending</span></span>
+            <span class="admin-summary-value" id="kpi-orders-pending" style="color: #d97706;">0</span>
+          </div>
+          <div class="admin-summary-card" style="border-left: 4px solid #0369a1;" onclick="filterOrdersByStatus('Đang xử lý')">
+            <span class="admin-summary-label"><span class="lang-vi">Đang xử lý / giao</span><span class="lang-en">Processing</span></span>
+            <span class="admin-summary-value" id="kpi-orders-processing" style="color: #0369a1;">0</span>
+          </div>
+          <div class="admin-summary-card" style="border-left: 4px solid #15803d;" onclick="filterOrdersByStatus('Hoàn thành')">
+            <span class="admin-summary-label"><span class="lang-vi">Đã hoàn thành</span><span class="lang-en">Completed</span></span>
+            <span class="admin-summary-value" id="kpi-orders-completed" style="color: #15803d;">0</span>
+          </div>
+          <div class="admin-summary-card" style="border-left: 4px solid #dc2626;" onclick="filterOrdersByStatus('refund-requests')">
+            <span class="admin-summary-label"><span class="lang-vi">Yêu cầu hoàn trả</span><span class="lang-en">Refund Requests</span></span>
+            <span class="admin-summary-value" id="kpi-orders-refund-requests" style="color: #dc2626;">0</span>
+          </div>
+        </div>
+
+        <!-- Search / Tabs row -->
+        <div class="orders-header-row">
+          <div class="orders-search-wrapper">
+            <svg class="search-icon-inside" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="orders-search-input" class="orders-search" placeholder="Order ID, customer name..." oninput="handleOrdersSearch(this.value)">
+          </div>
+          
+          <div class="status-tab-row">
+            <div class="status-filter-tab active" id="tab-status-all" onclick="filterOrdersByStatus('all')"><span class="lang-vi">Tất cả</span><span class="lang-en">All</span></div>
+            <div class="status-filter-tab" id="tab-status-pending" onclick="filterOrdersByStatus('Chờ xác nhận')"><span class="lang-vi">Chờ xác nhận</span><span class="lang-en">Pending</span></div>
+            <div class="status-filter-tab" id="tab-status-processing" onclick="filterOrdersByStatus('Đang xử lý')"><span class="lang-vi">Đang xử lý</span><span class="lang-en">Processing</span></div>
+            <div class="status-filter-tab" id="tab-status-shipping" onclick="filterOrdersByStatus('Đang giao')"><span class="lang-vi">Đang giao</span><span class="lang-en">Shipping</span></div>
+            <div class="status-filter-tab" id="tab-status-completed" onclick="filterOrdersByStatus('Hoàn thành')"><span class="lang-vi">Hoàn thành</span><span class="lang-en">Completed</span></div>
+            <div class="status-filter-tab" id="tab-status-cancelled" onclick="filterOrdersByStatus('Đã hủy')"><span class="lang-vi">Đã hủy</span><span class="lang-en">Cancelled</span></div>
+            <div class="status-filter-tab" id="tab-status-refund-requests" onclick="filterOrdersByStatus('refund-requests')"><span class="lang-vi">Yêu cầu hoàn trả</span><span class="lang-en">Refund Requests</span></div>
+            <div class="status-filter-tab" id="tab-status-refunded" onclick="filterOrdersByStatus('Trả hàng/Hoàn tiền')"><span class="lang-vi">Đã hoàn tiền</span><span class="lang-en">Refunded</span></div>
+          </div>
+        </div>
+
+        <!-- Table list -->
+        <div class="table-container">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th><span class="lang-vi">Mã ĐH</span><span class="lang-en">Order ID</span></th>
+                <th><span class="lang-vi">Khách hàng</span><span class="lang-en">Customer</span></th>
+                <th><span class="lang-vi">Ngày đặt</span><span class="lang-en">Date</span></th>
+                <th><span class="lang-vi">Thanh toán</span><span class="lang-en">Payment</span></th>
+                <th><span class="lang-vi">Tổng tiền</span><span class="lang-en">Total</span></th>
+                <th style="width: 170px;"><span class="lang-vi">Trạng thái</span><span class="lang-en">Status</span></th>
+                <th style="width: 120px; text-align: center;"><span class="lang-vi">Thao tác</span><span class="lang-en">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="orders-table-body">
+              <!-- Loaded dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Total count summary -->
+        <div style="font-size:13px; color: var(--color-text-light); text-align:right;" id="orders-total-txt">
+          <span class="lang-vi">Đang hiển thị 0 đơn hàng</span><span class="lang-en">Showing 0 orders</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer-contact">
+    <div class="footer-top container">
+      <div class="footer-block brand-block">
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo/logo_white.png" alt="Tứ Quý Garden Logo" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">“Fresh fruits seasonal, healthy seeds daily”</p>
+        <p class="footer-desc">
+          <span class="lang-vi">Tứ Quý Garden cam kết mang đến nông sản hữu cơ theo mùa tươi ngon, hạt dinh dưỡng chọn lọc và granola lành mạnh chăm sóc sức khỏe gia đình bạn mỗi ngày.</span>
+          <span class="lang-en">Tứ Quý Garden commits to bringing ripe seasonal organic produce, premium seeds, and clean healthy granola to nourish your family daily.</span>
+        </p>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Danh mục</span><span class="lang-en">Categories</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="products.html?category=Fruits"><span class="lang-vi">Trái cây theo mùa</span><span class="lang-en">Seasonal Fruits</span></a></li>
+          <li><a href="products.html?category=Nutritional Seeds"><span class="lang-vi">Hạt dinh dưỡng</span><span class="lang-en">Seeds</span></a></li>
+          <li><a href="products.html?category=Granola"><span class="lang-vi">Granola ngũ cốc</span><span class="lang-en">Granola</span></a></li>
+          <li><a href="products.html?category=Combo Healthy"><span class="lang-vi">Combo sống khỏe</span><span class="lang-en">Healthy Combos</span></a></li>
+          <li><a href="nutrition.html"><span class="lang-vi">Dinh dưỡng cá nhân</span><span class="lang-en">Nutrition Plan</span></a></li>
+          <li><a href="traceability.html"><span class="lang-vi">Tra cứu nguồn gốc</span><span class="lang-en">Traceability</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Hỗ trợ khách hàng</span><span class="lang-en">Customer Service</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="about.html"><span class="lang-vi">Giới thiệu cửa hàng</span><span class="lang-en">About Store</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách đổi trả</span><span class="lang-en">Exchange & Refund</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách giao hàng</span><span class="lang-en">Shipping Policies</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block contact-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Kết nối với chúng tôi</span><span class="lang-en">Contact Info</span>
+        </h3>
+        <ul class="contact-info-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>Hotline: <strong>1900 633 123</strong></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>Email: <a href="mailto:info@tuquygarden.vn">info@tuquygarden.vn</a></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Address: Cai Be, Tien Giang</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright-txt">&copy; 2026 Tứ Quý Garden. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="about.html"><span class="lang-vi">Điều khoản sử dụng</span><span class="lang-en">Terms of Use</span></a>
+          <span class="divider">|</span>
+          <a href="about.html"><span class="lang-vi">Chính sách bảo mật</span><span class="lang-en">Privacy Policy</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/data.js"></script>
+  <script src="services/cartService.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="services/orderService.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

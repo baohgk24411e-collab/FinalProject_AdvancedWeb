@@ -1,0 +1,2700 @@
+{
+  "provinces": [
+    {
+      "code": "92",
+      "name": "Thành phố Cần Thơ"
+    },
+    {
+      "code": "48",
+      "name": "Thành phố Đà Nẵng"
+    },
+    {
+      "code": "01",
+      "name": "Thành phố Hà Nội"
+    },
+    {
+      "code": "31",
+      "name": "Thành phố Hải Phòng"
+    },
+    {
+      "code": "79",
+      "name": "Thành phố Hồ Chí Minh"
+    },
+    {
+      "code": "46",
+      "name": "Thành phố Huế"
+    },
+    {
+      "code": "91",
+      "name": "Tỉnh An Giang"
+    },
+    {
+      "code": "24",
+      "name": "Tỉnh Bắc Ninh"
+    },
+    {
+      "code": "96",
+      "name": "Tỉnh Cà Mau"
+    },
+    {
+      "code": "04",
+      "name": "Tỉnh Cao Bằng"
+    },
+    {
+      "code": "66",
+      "name": "Tỉnh Đắk Lắk"
+    },
+    {
+      "code": "11",
+      "name": "Tỉnh Điện Biên"
+    },
+    {
+      "code": "75",
+      "name": "Tỉnh Đồng Nai"
+    },
+    {
+      "code": "82",
+      "name": "Tỉnh Đồng Tháp"
+    },
+    {
+      "code": "52",
+      "name": "Tỉnh Gia Lai"
+    },
+    {
+      "code": "42",
+      "name": "Tỉnh Hà Tĩnh"
+    },
+    {
+      "code": "33",
+      "name": "Tỉnh Hưng Yên"
+    },
+    {
+      "code": "56",
+      "name": "Tỉnh Khánh Hòa"
+    },
+    {
+      "code": "12",
+      "name": "Tỉnh Lai Châu"
+    },
+    {
+      "code": "20",
+      "name": "Tỉnh Lạng Sơn"
+    },
+    {
+      "code": "15",
+      "name": "Tỉnh Lào Cai"
+    },
+    {
+      "code": "68",
+      "name": "Tỉnh Lâm Đồng"
+    },
+    {
+      "code": "40",
+      "name": "Tỉnh Nghệ An"
+    },
+    {
+      "code": "37",
+      "name": "Tỉnh Ninh Bình"
+    },
+    {
+      "code": "25",
+      "name": "Tỉnh Phú Thọ"
+    },
+    {
+      "code": "51",
+      "name": "Tỉnh Quảng Ngãi"
+    },
+    {
+      "code": "22",
+      "name": "Tỉnh Quảng Ninh"
+    },
+    {
+      "code": "44",
+      "name": "Tỉnh Quảng Trị"
+    },
+    {
+      "code": "14",
+      "name": "Tỉnh Sơn La"
+    },
+    {
+      "code": "80",
+      "name": "Tỉnh Tây Ninh"
+    },
+    {
+      "code": "19",
+      "name": "Tỉnh Thái Nguyên"
+    },
+    {
+      "code": "38",
+      "name": "Tỉnh Thanh Hóa"
+    },
+    {
+      "code": "08",
+      "name": "Tỉnh Tuyên Quang"
+    },
+    {
+      "code": "86",
+      "name": "Tỉnh Vĩnh Long"
+    }
+  ],
+  "wardsByProvince": {
+    "11": [
+      {
+        "code": "03127",
+        "name": "Phường Điện Biên Phủ",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03151",
+        "name": "Phường Mường Lay",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03334",
+        "name": "Phường Mường Thanh",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03301",
+        "name": "Xã Búng Lao",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03175",
+        "name": "Xã Chà Tở",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03283",
+        "name": "Xã Chiềng Sinh",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03256",
+        "name": "Xã Mường Ảng",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03166",
+        "name": "Xã Mường Chà",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03313",
+        "name": "Xã Mường Lạn",
+        "provinceCode": "11"
+      },
+      {
+        "code": "03214",
+        "name": "Xã Mường Luân",
+        "provinceCode": "11"
+      }
+    ],
+    "12": [
+      {
+        "code": "03388",
+        "name": "Phường Đoàn Kết",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03408",
+        "name": "Phường Tân Phong",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03424",
+        "name": "Xã Bản Bo",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03390",
+        "name": "Xã Bình Lư",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03466",
+        "name": "Xã Bum Nưa",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03433",
+        "name": "Xã Bum Tở",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03571",
+        "name": "Xã Dào San",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03508",
+        "name": "Xã Hồng Thu",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03460",
+        "name": "Xã Hua Bum",
+        "provinceCode": "12"
+      },
+      {
+        "code": "03640",
+        "name": "Xã Khoen On",
+        "provinceCode": "12"
+      }
+    ],
+    "14": [
+      {
+        "code": "03664",
+        "name": "Phường Chiềng An",
+        "provinceCode": "14"
+      },
+      {
+        "code": "03670",
+        "name": "Phường Chiềng Cơi",
+        "provinceCode": "14"
+      },
+      {
+        "code": "03679",
+        "name": "Phường Chiềng Sinh",
+        "provinceCode": "14"
+      },
+      {
+        "code": "03980",
+        "name": "Phường Mộc Châu",
+        "provinceCode": "14"
+      },
+      {
+        "code": "03979",
+        "name": "Phường Mộc Sơn",
+        "provinceCode": "14"
+      },
+      {
+        "code": "03982",
+        "name": "Phường Thảo Nguyên",
+        "provinceCode": "14"
+      },
+      {
+        "code": "03646",
+        "name": "Phường Tô Hiệu",
+        "provinceCode": "14"
+      },
+      {
+        "code": "04033",
+        "name": "Phường Vân Sơn",
+        "provinceCode": "14"
+      },
+      {
+        "code": "03856",
+        "name": "Xã Bắc Yên",
+        "provinceCode": "14"
+      },
+      {
+        "code": "03724",
+        "name": "Xã Bình Thuận",
+        "provinceCode": "14"
+      }
+    ],
+    "15": [
+      {
+        "code": "04543",
+        "name": "Phường Âu Lâu",
+        "provinceCode": "15"
+      },
+      {
+        "code": "02671",
+        "name": "Phường Cam Đường",
+        "provinceCode": "15"
+      },
+      {
+        "code": "04681",
+        "name": "Phường Cầu Thia",
+        "provinceCode": "15"
+      },
+      {
+        "code": "02647",
+        "name": "Phường Lào Cai",
+        "provinceCode": "15"
+      },
+      {
+        "code": "04273",
+        "name": "Phường Nam Cường",
+        "provinceCode": "15"
+      },
+      {
+        "code": "04288",
+        "name": "Phường Nghĩa Lộ",
+        "provinceCode": "15"
+      },
+      {
+        "code": "03006",
+        "name": "Phường Sa Pa",
+        "provinceCode": "15"
+      },
+      {
+        "code": "04663",
+        "name": "Phường Trung Tâm",
+        "provinceCode": "15"
+      },
+      {
+        "code": "04279",
+        "name": "Phường Văn Phú",
+        "provinceCode": "15"
+      },
+      {
+        "code": "04252",
+        "name": "Phường Yên Bái",
+        "provinceCode": "15"
+      }
+    ],
+    "19": [
+      {
+        "code": "05533",
+        "name": "Phường Bá Xuyên",
+        "provinceCode": "19"
+      },
+      {
+        "code": "05528",
+        "name": "Phường Bách Quang",
+        "provinceCode": "19"
+      },
+      {
+        "code": "01843",
+        "name": "Phường Bắc Kạn",
+        "provinceCode": "19"
+      },
+      {
+        "code": "01840",
+        "name": "Phường Đức Xuân",
+        "provinceCode": "19"
+      },
+      {
+        "code": "05467",
+        "name": "Phường Gia Sàng",
+        "provinceCode": "19"
+      },
+      {
+        "code": "05710",
+        "name": "Phường Linh Sơn",
+        "provinceCode": "19"
+      },
+      {
+        "code": "05443",
+        "name": "Phường Phan Đình Phùng",
+        "provinceCode": "19"
+      },
+      {
+        "code": "05860",
+        "name": "Phường Phổ Yên",
+        "provinceCode": "19"
+      },
+      {
+        "code": "05857",
+        "name": "Phường Phúc Thuận",
+        "provinceCode": "19"
+      },
+      {
+        "code": "05482",
+        "name": "Phường Quan Triều",
+        "provinceCode": "19"
+      }
+    ],
+    "20": [
+      {
+        "code": "05977",
+        "name": "Phường Đông Kinh",
+        "provinceCode": "20"
+      },
+      {
+        "code": "06187",
+        "name": "Phường Kỳ Lừa",
+        "provinceCode": "20"
+      },
+      {
+        "code": "05983",
+        "name": "Phường Lương Văn Tri",
+        "provinceCode": "20"
+      },
+      {
+        "code": "05986",
+        "name": "Phường Tam Thanh",
+        "provinceCode": "20"
+      },
+      {
+        "code": "06196",
+        "name": "Xã Ba Sơn",
+        "provinceCode": "20"
+      },
+      {
+        "code": "06325",
+        "name": "xã Bắc Sơn",
+        "provinceCode": "20"
+      },
+      {
+        "code": "06475",
+        "name": "Xã Bằng Mạc",
+        "provinceCode": "20"
+      },
+      {
+        "code": "06112",
+        "name": "Xã Bình Gia",
+        "provinceCode": "20"
+      },
+      {
+        "code": "06427",
+        "name": "Xã Cai Kinh",
+        "provinceCode": "20"
+      },
+      {
+        "code": "06211",
+        "name": "Xã Cao Lộc",
+        "provinceCode": "20"
+      }
+    ],
+    "22": [
+      {
+        "code": "07192",
+        "name": "Đặc khu Cô Tô",
+        "provinceCode": "22"
+      },
+      {
+        "code": "06994",
+        "name": "Đặc khu Vân Đồn",
+        "provinceCode": "22"
+      },
+      {
+        "code": "07090",
+        "name": "Phường An Sinh",
+        "provinceCode": "22"
+      },
+      {
+        "code": "06673",
+        "name": "Phường Bãi Cháy",
+        "provinceCode": "22"
+      },
+      {
+        "code": "07081",
+        "name": "Phường Bình Khê",
+        "provinceCode": "22"
+      },
+      {
+        "code": "06658",
+        "name": "Phường Cao Xanh",
+        "provinceCode": "22"
+      },
+      {
+        "code": "06793",
+        "name": "Phường Cẩm Phả",
+        "provinceCode": "22"
+      },
+      {
+        "code": "06781",
+        "name": "Phường Cửa Ông",
+        "provinceCode": "22"
+      },
+      {
+        "code": "07135",
+        "name": "Phường Đông Mai",
+        "provinceCode": "22"
+      },
+      {
+        "code": "07093",
+        "name": "Phường Đông Triều",
+        "provinceCode": "22"
+      }
+    ],
+    "24": [
+      {
+        "code": "07210",
+        "name": "Phường Bắc Giang",
+        "provinceCode": "24"
+      },
+      {
+        "code": "09295",
+        "name": "Phường Bồng Lai",
+        "provinceCode": "24"
+      },
+      {
+        "code": "07738",
+        "name": "Phường Cảnh Thụy",
+        "provinceCode": "24"
+      },
+      {
+        "code": "07525",
+        "name": "Phường Chũ",
+        "provinceCode": "24"
+      },
+      {
+        "code": "07228",
+        "name": "Phường Đa Mai",
+        "provinceCode": "24"
+      },
+      {
+        "code": "09301",
+        "name": "Phường Đào Viên",
+        "provinceCode": "24"
+      },
+      {
+        "code": "09385",
+        "name": "Phường Đồng Nguyên",
+        "provinceCode": "24"
+      },
+      {
+        "code": "09325",
+        "name": "Phường Hạp Lĩnh",
+        "provinceCode": "24"
+      },
+      {
+        "code": "09187",
+        "name": "Phường Kinh Bắc",
+        "provinceCode": "24"
+      },
+      {
+        "code": "09409",
+        "name": "Phường Mão Điền",
+        "provinceCode": "24"
+      }
+    ],
+    "25": [
+      {
+        "code": "07948",
+        "name": "Phường Âu Cơ",
+        "provinceCode": "25"
+      },
+      {
+        "code": "04795",
+        "name": "Phường Hòa Bình",
+        "provinceCode": "25"
+      },
+      {
+        "code": "04894",
+        "name": "Phường Kỳ Sơn",
+        "provinceCode": "25"
+      },
+      {
+        "code": "07894",
+        "name": "Phường Nông Trang",
+        "provinceCode": "25"
+      },
+      {
+        "code": "07954",
+        "name": "Phường Phong Châu",
+        "provinceCode": "25"
+      },
+      {
+        "code": "07942",
+        "name": "Phường Phú Thọ",
+        "provinceCode": "25"
+      },
+      {
+        "code": "08740",
+        "name": "Phường Phúc Yên",
+        "provinceCode": "25"
+      },
+      {
+        "code": "04792",
+        "name": "Phường Tân Hòa",
+        "provinceCode": "25"
+      },
+      {
+        "code": "07909",
+        "name": "Phường Thanh Miếu",
+        "provinceCode": "25"
+      },
+      {
+        "code": "04828",
+        "name": "Phường Thống Nhất",
+        "provinceCode": "25"
+      }
+    ],
+    "31": [
+      {
+        "code": "11948",
+        "name": "Đặc khu Bạch Long Vĩ",
+        "provinceCode": "31"
+      },
+      {
+        "code": "11914",
+        "name": "Đặc khu Cát Hải",
+        "provinceCode": "31"
+      },
+      {
+        "code": "10660",
+        "name": "Phường Ái Quốc",
+        "provinceCode": "31"
+      },
+      {
+        "code": "11407",
+        "name": "Phường An Biên",
+        "provinceCode": "31"
+      },
+      {
+        "code": "11581",
+        "name": "Phường An Dương",
+        "provinceCode": "31"
+      },
+      {
+        "code": "11617",
+        "name": "Phường An Hải",
+        "provinceCode": "31"
+      },
+      {
+        "code": "11593",
+        "name": "Phường An Phong",
+        "provinceCode": "31"
+      },
+      {
+        "code": "11473",
+        "name": "Phường Bạch Đằng",
+        "provinceCode": "31"
+      },
+      {
+        "code": "10678",
+        "name": "Phường Bắc An Phụ",
+        "provinceCode": "31"
+      },
+      {
+        "code": "10546",
+        "name": "Phường Chí Linh",
+        "provinceCode": "31"
+      }
+    ],
+    "33": [
+      {
+        "code": "12133",
+        "name": "Phường Đường Hào",
+        "provinceCode": "33"
+      },
+      {
+        "code": "11980",
+        "name": "Phường Hồng Châu",
+        "provinceCode": "33"
+      },
+      {
+        "code": "12103",
+        "name": "Phường Mỹ Hào",
+        "provinceCode": "33"
+      },
+      {
+        "code": "11953",
+        "name": "Phường Phố Hiến",
+        "provinceCode": "33"
+      },
+      {
+        "code": "11983",
+        "name": "Phường Sơn Nam",
+        "provinceCode": "33"
+      },
+      {
+        "code": "13225",
+        "name": "Phường Thái Bình",
+        "provinceCode": "33"
+      },
+      {
+        "code": "12127",
+        "name": "Phường Thượng Hồng",
+        "provinceCode": "33"
+      },
+      {
+        "code": "12817",
+        "name": "Phường Trà Lý",
+        "provinceCode": "33"
+      },
+      {
+        "code": "12452",
+        "name": "Phường Trần Hưng Đạo",
+        "provinceCode": "33"
+      },
+      {
+        "code": "12454",
+        "name": "Phường Trần Lãm",
+        "provinceCode": "33"
+      }
+    ],
+    "37": [
+      {
+        "code": "13318",
+        "name": "Phường Châu Sơn",
+        "provinceCode": "37"
+      },
+      {
+        "code": "13336",
+        "name": "Phường Duy Hà",
+        "provinceCode": "37"
+      },
+      {
+        "code": "13330",
+        "name": "Phường Duy Tân",
+        "provinceCode": "37"
+      },
+      {
+        "code": "13324",
+        "name": "Phường Duy Tiên",
+        "provinceCode": "37"
+      },
+      {
+        "code": "13693",
+        "name": "Phường Đông A",
+        "provinceCode": "37"
+      },
+      {
+        "code": "14566",
+        "name": "Phường Đông Hoa Lư",
+        "provinceCode": "37"
+      },
+      {
+        "code": "13348",
+        "name": "Phường Đồng Văn",
+        "provinceCode": "37"
+      },
+      {
+        "code": "13366",
+        "name": "Phường Hà Nam",
+        "provinceCode": "37"
+      },
+      {
+        "code": "14329",
+        "name": "Phường Hoa Lư",
+        "provinceCode": "37"
+      },
+      {
+        "code": "13984",
+        "name": "Phường Hồng Quang",
+        "provinceCode": "37"
+      }
+    ],
+    "38": [
+      {
+        "code": "14812",
+        "name": "Phường Bỉm Sơn",
+        "provinceCode": "38"
+      },
+      {
+        "code": "16609",
+        "name": "Phường Đào Duy Từ",
+        "provinceCode": "38"
+      },
+      {
+        "code": "16417",
+        "name": "Phường Đông Quang",
+        "provinceCode": "38"
+      },
+      {
+        "code": "16378",
+        "name": "Phường Đông Sơn",
+        "provinceCode": "38"
+      },
+      {
+        "code": "15853",
+        "name": "Phường Đông Tiến",
+        "provinceCode": "38"
+      },
+      {
+        "code": "14797",
+        "name": "Phường Hạc Thành",
+        "provinceCode": "38"
+      },
+      {
+        "code": "16645",
+        "name": "Phường Hải Bình",
+        "provinceCode": "38"
+      },
+      {
+        "code": "16597",
+        "name": "Phường Hải Lĩnh",
+        "provinceCode": "38"
+      },
+      {
+        "code": "14758",
+        "name": "Phường Hàm Rồng",
+        "provinceCode": "38"
+      },
+      {
+        "code": "16516",
+        "name": "Phường Nam Sầm Sơn",
+        "provinceCode": "38"
+      }
+    ],
+    "40": [
+      {
+        "code": "16732",
+        "name": "Phường Cửa Lò",
+        "provinceCode": "40"
+      },
+      {
+        "code": "17110",
+        "name": "Phường Hoàng Mai",
+        "provinceCode": "40"
+      },
+      {
+        "code": "17125",
+        "name": "Phường Quỳnh Mai",
+        "provinceCode": "40"
+      },
+      {
+        "code": "17128",
+        "name": "Phường Tân Mai",
+        "provinceCode": "40"
+      },
+      {
+        "code": "17011",
+        "name": "Phường Tây Hiếu",
+        "provinceCode": "40"
+      },
+      {
+        "code": "16939",
+        "name": "Phường Thái Hòa",
+        "provinceCode": "40"
+      },
+      {
+        "code": "16681",
+        "name": "Phường Thành Vinh",
+        "provinceCode": "40"
+      },
+      {
+        "code": "16690",
+        "name": "Phường Trường Vinh",
+        "provinceCode": "40"
+      },
+      {
+        "code": "17920",
+        "name": "Phường Vinh Hưng",
+        "provinceCode": "40"
+      },
+      {
+        "code": "16708",
+        "name": "Phường Vinh Lộc",
+        "provinceCode": "40"
+      }
+    ],
+    "42": [
+      {
+        "code": "18115",
+        "name": "Phường Bắc Hồng Lĩnh",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18652",
+        "name": "Phường Hà Huy Tập",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18781",
+        "name": "Phường Hải Ninh",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18832",
+        "name": "Phường Hoành Sơn",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18118",
+        "name": "Phường Nam Hồng Lĩnh",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18754",
+        "name": "Phường Sông Trí",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18073",
+        "name": "Phường Thành Sen",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18100",
+        "name": "Phường Trần Phú",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18823",
+        "name": "Phường Vũng Áng",
+        "provinceCode": "42"
+      },
+      {
+        "code": "18406",
+        "name": "Xã Can Lộc",
+        "provinceCode": "42"
+      }
+    ],
+    "44": [
+      {
+        "code": "19742",
+        "name": "Đặc khu Cồn Cỏ",
+        "provinceCode": "44"
+      },
+      {
+        "code": "19009",
+        "name": "Phường Ba Đồn",
+        "provinceCode": "44"
+      },
+      {
+        "code": "19066",
+        "name": "Phường Bắc Gianh",
+        "provinceCode": "44"
+      },
+      {
+        "code": "19333",
+        "name": "Phường Đông Hà",
+        "provinceCode": "44"
+      },
+      {
+        "code": "18880",
+        "name": "Phường Đồng Hới",
+        "provinceCode": "44"
+      },
+      {
+        "code": "18871",
+        "name": "Phường Đồng Sơn",
+        "provinceCode": "44"
+      },
+      {
+        "code": "18859",
+        "name": "Phường Đồng Thuận",
+        "provinceCode": "44"
+      },
+      {
+        "code": "19351",
+        "name": "Phường Nam Đông Hà",
+        "provinceCode": "44"
+      },
+      {
+        "code": "19360",
+        "name": "Phường Quảng Trị",
+        "provinceCode": "44"
+      },
+      {
+        "code": "19483",
+        "name": "Xã A Dơi",
+        "provinceCode": "44"
+      }
+    ],
+    "46": [
+      {
+        "code": "19815",
+        "name": "Phường An Cựu",
+        "provinceCode": "46"
+      },
+      {
+        "code": "19909",
+        "name": "Phường Dương Nỗ",
+        "provinceCode": "46"
+      },
+      {
+        "code": "20014",
+        "name": "Phường Hóa Châu",
+        "provinceCode": "46"
+      },
+      {
+        "code": "19804",
+        "name": "Phường Hương An",
+        "provinceCode": "46"
+      },
+      {
+        "code": "19975",
+        "name": "Phường Hương Thủy",
+        "provinceCode": "46"
+      },
+      {
+        "code": "19996",
+        "name": "Phường Hương Trà",
+        "provinceCode": "46"
+      },
+      {
+        "code": "19774",
+        "name": "Phường Kim Long",
+        "provinceCode": "46"
+      },
+      {
+        "code": "20017",
+        "name": "Phường Kim Trà",
+        "provinceCode": "46"
+      },
+      {
+        "code": "19930",
+        "name": "Phường Mỹ Thượng",
+        "provinceCode": "46"
+      },
+      {
+        "code": "19831",
+        "name": "Phường Phong Dinh",
+        "provinceCode": "46"
+      }
+    ],
+    "48": [
+      {
+        "code": "20333",
+        "name": "Đặc khu Hoàng Sa",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20275",
+        "name": "Phường An Hải",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20305",
+        "name": "Phường An Khê",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20575",
+        "name": "Phường An Thắng",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20335",
+        "name": "Phường Bàn Thạch",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20260",
+        "name": "Phường Cẩm Lệ",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20551",
+        "name": "Phường Điện Bàn",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20557",
+        "name": "Phường Điện Bàn Bắc",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20579",
+        "name": "Phường Điện Bàn Đông",
+        "provinceCode": "48"
+      },
+      {
+        "code": "20242",
+        "name": "Phường Hải Châu",
+        "provinceCode": "48"
+      }
+    ],
+    "51": [
+      {
+        "code": "21548",
+        "name": "Đặc khu Lý Sơn",
+        "provinceCode": "51"
+      },
+      {
+        "code": "21025",
+        "name": "Phường Cẩm Thành",
+        "provinceCode": "51"
+      },
+      {
+        "code": "23302",
+        "name": "Phường Đăk Bla",
+        "provinceCode": "51"
+      },
+      {
+        "code": "23284",
+        "name": "Phường Đăk Cấm",
+        "provinceCode": "51"
+      },
+      {
+        "code": "21439",
+        "name": "Phường Đức Phổ",
+        "provinceCode": "51"
+      },
+      {
+        "code": "23293",
+        "name": "Phường Kon Tum",
+        "provinceCode": "51"
+      },
+      {
+        "code": "21028",
+        "name": "Phường Nghĩa Lộ",
+        "provinceCode": "51"
+      },
+      {
+        "code": "21478",
+        "name": "Phường Sa Huỳnh",
+        "provinceCode": "51"
+      },
+      {
+        "code": "21451",
+        "name": "Phường Trà Câu",
+        "provinceCode": "51"
+      },
+      {
+        "code": "21172",
+        "name": "Phường Trương Quang Trọng",
+        "provinceCode": "51"
+      }
+    ],
+    "52": [
+      {
+        "code": "23614",
+        "name": "Phường An Bình",
+        "provinceCode": "52"
+      },
+      {
+        "code": "23617",
+        "name": "Phường An Khê",
+        "provinceCode": "52"
+      },
+      {
+        "code": "21910",
+        "name": "Phường An Nhơn",
+        "provinceCode": "52"
+      },
+      {
+        "code": "21925",
+        "name": "Phường An Nhơn Bắc",
+        "provinceCode": "52"
+      },
+      {
+        "code": "21934",
+        "name": "Phường An Nhơn Đông",
+        "provinceCode": "52"
+      },
+      {
+        "code": "21943",
+        "name": "Phường An Nhơn Nam",
+        "provinceCode": "52"
+      },
+      {
+        "code": "23602",
+        "name": "Phường An Phú",
+        "provinceCode": "52"
+      },
+      {
+        "code": "24044",
+        "name": "Phường Ayun Pa",
+        "provinceCode": "52"
+      },
+      {
+        "code": "21907",
+        "name": "Phường Bình Định",
+        "provinceCode": "52"
+      },
+      {
+        "code": "21640",
+        "name": "Phường Bồng Sơn",
+        "provinceCode": "52"
+      }
+    ],
+    "56": [
+      {
+        "code": "22736",
+        "name": "Đặc khu Trường Sa",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22423",
+        "name": "Phường Ba Ngòi",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22741",
+        "name": "Phường Bảo An",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22411",
+        "name": "Phường Bắc Cam Ranh",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22333",
+        "name": "Phường Bắc Nha Trang",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22432",
+        "name": "Phường Cam Linh",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22420",
+        "name": "Phường Cam Ranh",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22738",
+        "name": "Phường Đô Vinh",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22780",
+        "name": "Phường Đông Hải",
+        "provinceCode": "56"
+      },
+      {
+        "code": "22561",
+        "name": "Phường Đông Ninh Hòa",
+        "provinceCode": "56"
+      }
+    ],
+    "66": [
+      {
+        "code": "22045",
+        "name": "Phường Bình Kiến",
+        "provinceCode": "66"
+      },
+      {
+        "code": "24305",
+        "name": "Phường Buôn Hồ",
+        "provinceCode": "66"
+      },
+      {
+        "code": "24133",
+        "name": "Phường Buôn Ma Thuột",
+        "provinceCode": "66"
+      },
+      {
+        "code": "24340",
+        "name": "Phường Cư Bao",
+        "provinceCode": "66"
+      },
+      {
+        "code": "22258",
+        "name": "Phường Đông Hòa",
+        "provinceCode": "66"
+      },
+      {
+        "code": "24169",
+        "name": "Phường Ea Kao",
+        "provinceCode": "66"
+      },
+      {
+        "code": "22261",
+        "name": "Phường Hòa Hiệp",
+        "provinceCode": "66"
+      },
+      {
+        "code": "22240",
+        "name": "Phường Phú Yên",
+        "provinceCode": "66"
+      },
+      {
+        "code": "22051",
+        "name": "Phường Sông Cầu",
+        "provinceCode": "66"
+      },
+      {
+        "code": "24163",
+        "name": "Phường Tân An",
+        "provinceCode": "66"
+      }
+    ],
+    "68": [
+      {
+        "code": "23272",
+        "name": "Đặc khu Phú Quý",
+        "provinceCode": "68"
+      },
+      {
+        "code": "24823",
+        "name": "Phường 1 Bảo Lộc",
+        "provinceCode": "68"
+      },
+      {
+        "code": "24820",
+        "name": "Phường 2 Bảo Lộc",
+        "provinceCode": "68"
+      },
+      {
+        "code": "24841",
+        "name": "Phường 3 Bảo Lộc",
+        "provinceCode": "68"
+      },
+      {
+        "code": "24829",
+        "name": "Phường B’Lao",
+        "provinceCode": "68"
+      },
+      {
+        "code": "24611",
+        "name": "Phường Bắc Gia Nghĩa",
+        "provinceCode": "68"
+      },
+      {
+        "code": "22960",
+        "name": "Phường Bình Thuận",
+        "provinceCode": "68"
+      },
+      {
+        "code": "24787",
+        "name": "Phường Cam Ly - Đà Lạt",
+        "provinceCode": "68"
+      },
+      {
+        "code": "24617",
+        "name": "Phường Đông Gia Nghĩa",
+        "provinceCode": "68"
+      },
+      {
+        "code": "22933",
+        "name": "Phường Hàm Thắng",
+        "provinceCode": "68"
+      }
+    ],
+    "75": [
+      {
+        "code": "25333",
+        "name": "Phường An Lộc",
+        "provinceCode": "75"
+      },
+      {
+        "code": "26098",
+        "name": "Phường Bảo Vinh",
+        "provinceCode": "75"
+      },
+      {
+        "code": "26068",
+        "name": "Phường Biên Hòa",
+        "provinceCode": "75"
+      },
+      {
+        "code": "25326",
+        "name": "Phường Bình Long",
+        "provinceCode": "75"
+      },
+      {
+        "code": "26089",
+        "name": "Phường Bình Lộc",
+        "provinceCode": "75"
+      },
+      {
+        "code": "25195",
+        "name": "Phường Bình Phước",
+        "provinceCode": "75"
+      },
+      {
+        "code": "25432",
+        "name": "Phường Chơn Thành",
+        "provinceCode": "75"
+      },
+      {
+        "code": "25210",
+        "name": "Phường Đồng Xoài",
+        "provinceCode": "75"
+      },
+      {
+        "code": "26113",
+        "name": "Phường Hàng Gòn",
+        "provinceCode": "75"
+      },
+      {
+        "code": "26005",
+        "name": "Phường Hố Nai",
+        "provinceCode": "75"
+      }
+    ],
+    "79": [
+      {
+        "code": "26732",
+        "name": "Đặc khu Côn Đảo",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27316",
+        "name": "Phường An Đông",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26878",
+        "name": "Phường An Hội Đông",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26882",
+        "name": "Phường An Hội Tây",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27094",
+        "name": "Phường An Khánh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27460",
+        "name": "Phường An Lạc",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26876",
+        "name": "Phường An Nhơn",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25975",
+        "name": "Phường An Phú",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26767",
+        "name": "Phường An Phú Đông",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26560",
+        "name": "Phường Bà Rịa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27154",
+        "name": "Phường Bàn Cờ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26983",
+        "name": "Phường Bảy Hiền",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25813",
+        "name": "Phường Bến Cát",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26743",
+        "name": "Phường Bến Thành",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25915",
+        "name": "Phường Bình Cơ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25760",
+        "name": "Phường Bình Dương",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27424",
+        "name": "Phường Bình Đông",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25987",
+        "name": "Phường Bình Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27439",
+        "name": "Phường Bình Hưng Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26905",
+        "name": "Phường Bình Lợi Trung",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27364",
+        "name": "Phường Bình Phú",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26911",
+        "name": "Phường Bình Quới",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27442",
+        "name": "Phường Bình Tân",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27367",
+        "name": "Phường Bình Tây",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26929",
+        "name": "Phường Bình Thạnh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27232",
+        "name": "Phường Bình Thới",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27373",
+        "name": "Phường Bình Tiên",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27448",
+        "name": "Phường Bình Trị Đông",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27097",
+        "name": "Phường Bình Trưng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27112",
+        "name": "Phường Cát Lái",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27058",
+        "name": "Phường Cầu Kiệu",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26758",
+        "name": "Phường Cầu Ông Lãnh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25771",
+        "name": "Phường Chánh Hiệp",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27418",
+        "name": "Phường Chánh Hưng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25837",
+        "name": "Phường Chánh Phú Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27343",
+        "name": "Phường Chợ Lớn",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27301",
+        "name": "Phường Chợ Quán",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25942",
+        "name": "Phường Dĩ An",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27169",
+        "name": "Phường Diên Hồng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25951",
+        "name": "Phường Đông Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26791",
+        "name": "Phường Đông Hưng Thuận",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27043",
+        "name": "Phường Đức Nhuận",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26944",
+        "name": "Phường Gia Định",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26884",
+        "name": "Phường Gò Vấp",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26890",
+        "name": "Phường Hạnh Thông",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26809",
+        "name": "Phường Hiệp Bình",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27211",
+        "name": "Phường Hòa Bình",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27163",
+        "name": "Phường Hòa Hưng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25849",
+        "name": "Phường Hòa Lợi",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27265",
+        "name": "Phường Khánh Hội",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25966",
+        "name": "Phường Lái Thiêu",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26800",
+        "name": "Phường Linh Xuân",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26833",
+        "name": "Phường Long Bình",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26566",
+        "name": "Phường Long Hương",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25840",
+        "name": "Phường Long Nguyên",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26857",
+        "name": "Phường Long Phước",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26860",
+        "name": "Phường Long Trường",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27238",
+        "name": "Phường Minh Phụng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27142",
+        "name": "Phường Nhiêu Lộc",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25768",
+        "name": "Phường Phú An",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27427",
+        "name": "Phường Phú Định",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27349",
+        "name": "Phường Phú Lâm",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25750",
+        "name": "Phường Phú Lợi",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26704",
+        "name": "Phường Phú Mỹ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27073",
+        "name": "Phường Phú Nhuận",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27028",
+        "name": "Phường Phú Thạnh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27226",
+        "name": "Phường Phú Thọ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27022",
+        "name": "Phường Phú Thọ Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27484",
+        "name": "Phường Phú Thuận",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26848",
+        "name": "Phường Phước Long",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26542",
+        "name": "Phường Phước Thắng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26536",
+        "name": "Phường Rạch Dừa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26740",
+        "name": "Phường Sài Gòn",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26803",
+        "name": "Phường Tam Bình",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26572",
+        "name": "Phường Tam Long",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26526",
+        "name": "Phường Tam Thắng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26842",
+        "name": "Phường Tăng Nhơn Phú",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27004",
+        "name": "Phường Tân Bình",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26737",
+        "name": "Phường Tân Định",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25945",
+        "name": "Phường Tân Đông Hiệp",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26710",
+        "name": "Phường Tân Hải",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25920",
+        "name": "Phường Tân Hiệp",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26995",
+        "name": "Phường Tân Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27475",
+        "name": "Phường Tân Hưng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25891",
+        "name": "Phường Tân Khánh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27487",
+        "name": "Phường Tân Mỹ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27031",
+        "name": "Phường Tân Phú",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26713",
+        "name": "Phường Tân Phước",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27007",
+        "name": "Phường Tân Sơn",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26977",
+        "name": "Phường Tân Sơn Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26968",
+        "name": "Phường Tân Sơn Nhất",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27019",
+        "name": "Phường Tân Sơn Nhì",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27457",
+        "name": "Phường Tân Tạo",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26725",
+        "name": "Phường Tân Thành",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26782",
+        "name": "Phường Tân Thới Hiệp",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27478",
+        "name": "Phường Tân Thuận",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25888",
+        "name": "Phường Tân Uyên",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25843",
+        "name": "Phường Tây Nam",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27013",
+        "name": "Phường Tây Thạnh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26956",
+        "name": "Phường Thạnh Mỹ Tây",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26898",
+        "name": "Phường Thông Tây Hội",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26773",
+        "name": "Phường Thới An",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25846",
+        "name": "Phường Thới Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25747",
+        "name": "Phường Thủ Dầu Một",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26824",
+        "name": "Phường Thủ Đức",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25978",
+        "name": "Phường Thuận An",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25969",
+        "name": "Phường Thuận Giao",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26785",
+        "name": "Phường Trung Mỹ Tây",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27286",
+        "name": "Phường Vĩnh Hội",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25912",
+        "name": "Phường Vĩnh Tân",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26506",
+        "name": "Phường Vũng Tàu",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27190",
+        "name": "Phường Vườn Lài",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27259",
+        "name": "Phường Xóm Chiếu",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27139",
+        "name": "Phường Xuân Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25867",
+        "name": "Xã An Long",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27508",
+        "name": "Xã An Nhơn Tây",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27673",
+        "name": "Xã An Thới Đông",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27592",
+        "name": "Xã Bà Điểm",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25822",
+        "name": "Xã Bàu Bàng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26638",
+        "name": "Xã Bàu Lâm",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25906",
+        "name": "Xã Bắc Tân Uyên",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27637",
+        "name": "Xã Bình Chánh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26656",
+        "name": "Xã Bình Châu",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26590",
+        "name": "Xã Bình Giã",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27619",
+        "name": "Xã Bình Hưng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27667",
+        "name": "Xã Bình Khánh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27610",
+        "name": "Xã Bình Lợi",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27544",
+        "name": "Xã Bình Mỹ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27664",
+        "name": "Xã Cần Giờ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26596",
+        "name": "Xã Châu Đức",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26728",
+        "name": "Xã Châu Pha",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27553",
+        "name": "Xã Củ Chi",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25777",
+        "name": "Xã Dầu Tiếng",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26680",
+        "name": "Xã Đất Đỏ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27568",
+        "name": "Xã Đông Thạnh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27658",
+        "name": "Xã Hiệp Phước",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26647",
+        "name": "Xã Hòa Hiệp",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26641",
+        "name": "Xã Hòa Hội",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27559",
+        "name": "Xã Hóc Môn",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26620",
+        "name": "Xã Hồ Tràm",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27628",
+        "name": "Xã Hưng Long",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26608",
+        "name": "Xã Kim Long",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26659",
+        "name": "Xã Long Điền",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26662",
+        "name": "Xã Long Hải",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25792",
+        "name": "Xã Long Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26545",
+        "name": "Xã Long Sơn",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25780",
+        "name": "Xã Minh Thạnh",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26575",
+        "name": "Xã Ngãi Giao",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26617",
+        "name": "Xã Nghĩa Thành",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27655",
+        "name": "Xã Nhà Bè",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27511",
+        "name": "Xã Nhuận Đức",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25858",
+        "name": "Xã Phú Giáo",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27541",
+        "name": "Xã Phú Hòa Đông",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26686",
+        "name": "Xã Phước Hải",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25882",
+        "name": "Xã Phước Hòa",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25864",
+        "name": "Xã Phước Thành",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27496",
+        "name": "Xã Tân An Hội",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27595",
+        "name": "Xã Tân Nhựt",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27604",
+        "name": "Xã Tân Vĩnh Lộc",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27526",
+        "name": "Xã Thái Mỹ",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25807",
+        "name": "Xã Thanh An",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27676",
+        "name": "Xã Thạnh An",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25909",
+        "name": "Xã Thường Tân",
+        "provinceCode": "79"
+      },
+      {
+        "code": "25819",
+        "name": "Xã Trừ Văn Thố",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27601",
+        "name": "Xã Vĩnh Lộc",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26584",
+        "name": "Xã Xuân Sơn",
+        "provinceCode": "79"
+      },
+      {
+        "code": "27577",
+        "name": "Xã Xuân Thới Sơn",
+        "provinceCode": "79"
+      },
+      {
+        "code": "26632",
+        "name": "Xã Xuyên Mộc",
+        "provinceCode": "79"
+      }
+    ],
+    "80": [
+      {
+        "code": "25732",
+        "name": "Phường An Tịnh",
+        "provinceCode": "80"
+      },
+      {
+        "code": "25480",
+        "name": "Phường Bình Minh",
+        "provinceCode": "80"
+      },
+      {
+        "code": "25672",
+        "name": "Phường Gia Lộc",
+        "provinceCode": "80"
+      },
+      {
+        "code": "25654",
+        "name": "Phường Gò Dầu",
+        "provinceCode": "80"
+      },
+      {
+        "code": "25645",
+        "name": "Phường Hòa Thành",
+        "provinceCode": "80"
+      },
+      {
+        "code": "27715",
+        "name": "Phường Khánh Hậu",
+        "provinceCode": "80"
+      },
+      {
+        "code": "27787",
+        "name": "Phường Kiến Tường",
+        "provinceCode": "80"
+      },
+      {
+        "code": "27694",
+        "name": "Phường Long An",
+        "provinceCode": "80"
+      },
+      {
+        "code": "25630",
+        "name": "Phường Long Hoa",
+        "provinceCode": "80"
+      },
+      {
+        "code": "25567",
+        "name": "Phường Ninh Thạnh",
+        "provinceCode": "80"
+      }
+    ],
+    "82": [
+      {
+        "code": "29954",
+        "name": "Phường An Bình",
+        "provinceCode": "82"
+      },
+      {
+        "code": "28315",
+        "name": "Phường Bình Xuân",
+        "provinceCode": "82"
+      },
+      {
+        "code": "28439",
+        "name": "Phường Cai Lậy",
+        "provinceCode": "82"
+      },
+      {
+        "code": "29869",
+        "name": "Phường Cao Lãnh",
+        "provinceCode": "82"
+      },
+      {
+        "code": "28249",
+        "name": "Phường Đạo Thạnh",
+        "provinceCode": "82"
+      },
+      {
+        "code": "28306",
+        "name": "Phường Gò Công",
+        "provinceCode": "82"
+      },
+      {
+        "code": "29955",
+        "name": "Phường Hồng Ngự",
+        "provinceCode": "82"
+      },
+      {
+        "code": "28297",
+        "name": "Phường Long Thuận",
+        "provinceCode": "82"
+      },
+      {
+        "code": "29884",
+        "name": "Phường Mỹ Ngãi",
+        "provinceCode": "82"
+      },
+      {
+        "code": "28273",
+        "name": "Phường Mỹ Phong",
+        "provinceCode": "82"
+      }
+    ],
+    "86": [
+      {
+        "code": "28777",
+        "name": "Phường An Hội",
+        "provinceCode": "86"
+      },
+      {
+        "code": "28789",
+        "name": "Phường Bến Tre",
+        "provinceCode": "86"
+      },
+      {
+        "code": "29771",
+        "name": "Phường Bình Minh",
+        "provinceCode": "86"
+      },
+      {
+        "code": "29770",
+        "name": "Phường Cái Vồn",
+        "provinceCode": "86"
+      },
+      {
+        "code": "29512",
+        "name": "Phường Duyên Hải",
+        "provinceCode": "86"
+      },
+      {
+        "code": "29812",
+        "name": "Phường Đông Thành",
+        "provinceCode": "86"
+      },
+      {
+        "code": "29398",
+        "name": "Phường Hòa Thuận",
+        "provinceCode": "86"
+      },
+      {
+        "code": "29551",
+        "name": "Phường Long Châu",
+        "provinceCode": "86"
+      },
+      {
+        "code": "29263",
+        "name": "Phường Long Đức",
+        "provinceCode": "86"
+      },
+      {
+        "code": "29254",
+        "name": "Phường Nguyệt Hóa",
+        "provinceCode": "86"
+      }
+    ],
+    "91": [
+      {
+        "code": "31108",
+        "name": "Đặc khu Kiên Hải",
+        "provinceCode": "91"
+      },
+      {
+        "code": "31078",
+        "name": "Đặc khu Phú Quốc",
+        "provinceCode": "91"
+      },
+      {
+        "code": "31105",
+        "name": "Đặc khu Thổ Châu",
+        "provinceCode": "91"
+      },
+      {
+        "code": "30292",
+        "name": "Phường Bình Đức",
+        "provinceCode": "91"
+      },
+      {
+        "code": "30316",
+        "name": "Phường Châu Đốc",
+        "provinceCode": "91"
+      },
+      {
+        "code": "30505",
+        "name": "Phường Chi Lăng",
+        "provinceCode": "91"
+      },
+      {
+        "code": "30769",
+        "name": "Phường Hà Tiên",
+        "provinceCode": "91"
+      },
+      {
+        "code": "30377",
+        "name": "Phường Long Phú",
+        "provinceCode": "91"
+      },
+      {
+        "code": "30307",
+        "name": "Phường Long Xuyên",
+        "provinceCode": "91"
+      },
+      {
+        "code": "30301",
+        "name": "Phường Mỹ Thới",
+        "provinceCode": "91"
+      }
+    ],
+    "92": [
+      {
+        "code": "31150",
+        "name": "Phường An Bình",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31168",
+        "name": "Phường Bình Thủy",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31120",
+        "name": "Phường Cái Khế",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31186",
+        "name": "Phường Cái Răng",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31411",
+        "name": "Phường Đại Thành",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31201",
+        "name": "Phường Hưng Phú",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31789",
+        "name": "Phường Khánh Hòa",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31473",
+        "name": "Phường Long Bình",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31471",
+        "name": "Phường Long Mỹ",
+        "provinceCode": "92"
+      },
+      {
+        "code": "31480",
+        "name": "Phường Long Phú 1",
+        "provinceCode": "92"
+      }
+    ],
+    "96": [
+      {
+        "code": "32002",
+        "name": "Phường An Xuyên",
+        "provinceCode": "96"
+      },
+      {
+        "code": "31825",
+        "name": "Phường Bạc Liêu",
+        "provinceCode": "96"
+      },
+      {
+        "code": "31942",
+        "name": "Phường Giá Rai",
+        "provinceCode": "96"
+      },
+      {
+        "code": "31840",
+        "name": "Phường Hiệp Thành",
+        "provinceCode": "96"
+      },
+      {
+        "code": "32041",
+        "name": "Phường Hòa Thành",
+        "provinceCode": "96"
+      },
+      {
+        "code": "31951",
+        "name": "Phường Láng Tròn",
+        "provinceCode": "96"
+      },
+      {
+        "code": "32014",
+        "name": "Phường Lý Văn Lâm",
+        "provinceCode": "96"
+      },
+      {
+        "code": "32025",
+        "name": "Phường Tân Thành",
+        "provinceCode": "96"
+      },
+      {
+        "code": "31834",
+        "name": "Phường Vĩnh Trạch",
+        "provinceCode": "96"
+      },
+      {
+        "code": "31988",
+        "name": "Xã An Trạch",
+        "provinceCode": "96"
+      }
+    ],
+    "01": [
+      {
+        "code": "00070",
+        "name": "Phường \nHoàn Kiếm",
+        "provinceCode": "01"
+      },
+      {
+        "code": "00004",
+        "name": "Phường Ba Đình",
+        "provinceCode": "01"
+      },
+      {
+        "code": "00292",
+        "name": "Phường Bạch Mai",
+        "provinceCode": "01"
+      },
+      {
+        "code": "00118",
+        "name": "Phường Bồ Đề",
+        "provinceCode": "01"
+      },
+      {
+        "code": "00166",
+        "name": "Phường Cầu Giấy",
+        "provinceCode": "01"
+      },
+      {
+        "code": "10015",
+        "name": "Phường Chương Mỹ",
+        "provinceCode": "01"
+      },
+      {
+        "code": "00082",
+        "name": "Phường Cửa Nam",
+        "provinceCode": "01"
+      },
+      {
+        "code": "09886",
+        "name": "Phường Dương Nội",
+        "provinceCode": "01"
+      },
+      {
+        "code": "00637",
+        "name": "Phường Đại Mỗ",
+        "provinceCode": "01"
+      },
+      {
+        "code": "00316",
+        "name": "Phường Định Công",
+        "provinceCode": "01"
+      }
+    ],
+    "04": [
+      {
+        "code": "01279",
+        "name": "Phường Nùng Trí Cao",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01288",
+        "name": "Phường Tân Giang",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01273",
+        "name": "Phường Thục Phán",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01708",
+        "name": "Xã Bạch Đằng",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01321",
+        "name": "Xã Bảo Lạc",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01290",
+        "name": "Xã Bảo Lâm",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01636",
+        "name": "Xã Bế Văn Đàn",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01738",
+        "name": "Xã Ca Thành",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01789",
+        "name": "Xã Canh Tân",
+        "provinceCode": "04"
+      },
+      {
+        "code": "01366",
+        "name": "Xã Cần Yên",
+        "provinceCode": "04"
+      }
+    ],
+    "08": [
+      {
+        "code": "02512",
+        "name": "Phường An Tường",
+        "provinceCode": "08"
+      },
+      {
+        "code": "02524",
+        "name": "Phường Bình Thuận",
+        "provinceCode": "08"
+      },
+      {
+        "code": "00694",
+        "name": "Phường Hà Giang 1",
+        "provinceCode": "08"
+      },
+      {
+        "code": "00691",
+        "name": "Phường Hà Giang 2",
+        "provinceCode": "08"
+      },
+      {
+        "code": "02215",
+        "name": "Phường Minh Xuân",
+        "provinceCode": "08"
+      },
+      {
+        "code": "02509",
+        "name": "Phường Mỹ Lâm",
+        "provinceCode": "08"
+      },
+      {
+        "code": "02212",
+        "name": "Phường Nông Tiến",
+        "provinceCode": "08"
+      },
+      {
+        "code": "00832",
+        "name": "Xã Bạch Đích",
+        "provinceCode": "08"
+      },
+      {
+        "code": "00976",
+        "name": "Xã Bạch Ngọc",
+        "provinceCode": "08"
+      },
+      {
+        "code": "02380",
+        "name": "Xã Bạch Xa",
+        "provinceCode": "08"
+      }
+    ]
+  }
+}

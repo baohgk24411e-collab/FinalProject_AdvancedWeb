@@ -1,0 +1,117 @@
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-img {
+  height: 42px !important;
+  max-height: 44px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  transition: transform 0.25s ease;
+}
+.logo-img:hover {
+  transform: scale(1.02);
+}
+
+.header-container {
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+.nav-list {
+  gap: 16px !important;
+  flex-wrap: nowrap;
+}
+
+.nav-link {
+  white-space: nowrap !important;
+  font-size: 14px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+.search-bar {
+  flex-shrink: 1;
+}
+
+.search-bar input {
+  width: 140px !important;
+}
+
+.search-bar input:focus {
+  width: 180px !important;
+}
+
+.action-icon-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.btn-text {
+  display: inline-flex !important;
+  align-items: center;
+  white-space: nowrap !important;
+}
+
+.btn-text span {
+  white-space: nowrap !important;
+}
+
+:host-context(body.lang-en) .lang-vi,
+body.lang-en .lang-vi {
+  display: none !important;
+}
+
+:host-context(body.lang-vi) .lang-en,
+body.lang-vi .lang-en {
+  display: none !important;
+}
+
+/* Language Switcher Pill */
+.lang-switch-btn,
+#lang-toggle-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 20px;
+  border: 1.5px solid var(--color-primary, #1e5e2e);
+  background: rgba(30, 94, 46, 0.08);
+  color: var(--color-primary, #1e5e2e);
+  cursor: pointer;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s ease;
+}
+
+.lang-switch-btn:hover,
+#lang-toggle-btn:hover {
+  background: var(--color-primary, #1e5e2e);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.user-greeting-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary, #075f2a);
+  white-space: nowrap !important;
+}
+.user-dropdown a:hover {
+  background-color: #f7fbf0;
+  color: var(--color-primary, #075f2a) !important;
+}

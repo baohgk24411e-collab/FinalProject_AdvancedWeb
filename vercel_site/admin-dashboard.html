@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Tứ Quý Garden</title>
+  <meta name="description" content="Admin dashboard for business sales and performance statistics at Tứ Quý Garden.">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/admin.css">
+</head>
+<body class="lang-vi">
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-container container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <img src="images/logo/logo ngang.png" alt="Tứ Quý Garden Logo" class="logo-img">
+      </a>
+
+      <!-- Mobile toggle menu -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Navigation links -->
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <span class="lang-vi">Trang chủ</span>
+              <span class="lang-en">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="nav-link">
+              <span class="lang-vi">Về chúng tôi</span>
+              <span class="lang-en">About Us</span>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="products.html" class="nav-link dropdown-toggle">
+              <span class="lang-vi">Sản phẩm</span>
+              <span class="lang-en">Products</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropdown-chevron">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="products.html?category=all">
+                  <span class="lang-vi">Tất cả sản phẩm</span>
+                  <span class="lang-en">All Products</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Fruits">
+                  <span class="lang-vi">Trái cây tươi</span>
+                  <span class="lang-en">Fresh Fruits</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Nutritional Seeds">
+                  <span class="lang-vi">Hạt dinh dưỡng</span>
+                  <span class="lang-en">Nutritional Seeds</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Granola">
+                  <span class="lang-vi">Granola ngũ cốc</span>
+                  <span class="lang-en">Granola</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Combo Healthy">
+                  <span class="lang-vi">Combo sống khỏe</span>
+                  <span class="lang-en">Combo Healthy</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="index.html#footer-contact" class="nav-link">
+              <span class="lang-vi">Liên hệ</span>
+              <span class="lang-en">Contact</span>
+            </a>
+          </li>
+          <li>
+            <a href="nutrition.html" class="nav-link">
+              <span class="lang-vi">Dinh dưỡng cá nhân</span>
+              <span class="lang-en">Nutrition Plan</span>
+            </a>
+          </li>
+          <li>
+            <a href="traceability.html" class="nav-link">
+              <span class="lang-vi">Truy xuất nguồn gốc</span>
+              <span class="lang-en">Traceability</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right actions -->
+      <div class="header-actions">
+        <!-- Search bar -->
+        <div class="search-bar">
+          <input type="text" placeholder="Search products..." id="header-search-input">
+          <button class="search-btn" id="header-search-btn" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Language toggle button -->
+        <button class="lang-switch-btn" id="lang-toggle-btn" title="Toggle Language">
+          <span class="lang-vi">EN</span>
+          <span class="lang-en">VI</span>
+        </button>
+
+        <!-- Account Dropdown -->
+        <div class="dropdown">
+          <a href="#" class="action-icon-btn profile-btn active" id="header-profile-btn" title="Account" style="display: flex; align-items: center; gap: 6px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="btn-text">
+              <span class="lang-vi" id="header-profile-txt-vi">Quản trị</span>
+              <span class="lang-en" id="header-profile-txt-en">Admin</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" style="right: 0; left: auto; background: white; border: 1px solid var(--color-gray-border); box-shadow: var(--shadow-md); border-radius: 8px; list-style: none; padding: 10px 0; min-width: 180px; position: absolute; top: 100%; z-index: 1000;">
+            <li><a href="#" onclick="window.showAdminChangePasswordModal(event)" style="display: block; padding: 8px 20px; font-size: 13.5px; color: var(--color-text-dark); text-decoration: none;">🔑 <span class="lang-vi">Đổi mật khẩu</span><span class="lang-en">Change Password</span></a></li>
+            <li><a href="#" onclick="handleAdminLogout()" style="display: block; padding: 8px 20px; font-size: 13.5px; color: #ff8787; text-decoration: none; border-top: 1px solid var(--color-gray-light);">🚪 <span class="lang-vi">Đăng xuất</span><span class="lang-en">Log Out</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Cart -->
+        <a href="cart.html" class="action-icon-btn cart-btn" title="Cart">
+          <div class="cart-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-badge" id="header-cart-badge" style="display:none;">0</span>
+          </div>
+          <span class="btn-text">
+            <span class="lang-vi">Giỏ hàng</span>
+            <span class="lang-en">Cart</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="container admin-container">
+    <div class="admin-layout-grid">
+      <!-- Admin Sidebar -->
+      <div class="admin-sidebar">
+        <div class="admin-sidebar-header">
+          <div class="admin-sidebar-logo">
+            <img src="images/logo/logo ngang.png" alt="" onerror="this.onerror=null; this.src='https://placehold.co/100x100?text=Logo'">
+            <div class="admin-sidebar-brand">
+              Tứ Quý Garden
+              <span class="lang-vi">Quản trị viên</span><span class="lang-en">Administrator</span>
+            </div>
+          </div>
+          <div class="admin-sidebar-profile">
+            <div class="admin-sidebar-avatar-wrapper" onclick="window.changeAdminAvatar(event)" style="cursor:pointer;" title="Click to change avatar">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" alt="Avatar" class="admin-sidebar-avatar">
+              <span class="admin-sidebar-status-dot"></span>
+            </div>
+            <span class="admin-sidebar-user-role">Administrator</span>
+            <h4 class="admin-sidebar-user-name">Tứ Quý Garden</h4>
+            <p class="admin-sidebar-user-status"><span class="lang-vi">Chào mừng trở lại!</span><span class="lang-en">Welcome back!</span></p>
+          </div>
+        </div>
+
+        <ul class="admin-menu">
+          <li class="admin-menu-li">
+            <a href="admin-dashboard.html" class="admin-menu-item active">
+              <span class="admin-menu-item-left">📊 <span class="lang-vi">Thống kê chung</span><span class="lang-en">Dashboard</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="admin-products.html" class="admin-menu-item">
+              <span class="admin-menu-item-left">📦 <span class="lang-vi">Quản lý sản phẩm</span><span class="lang-en">Products</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="admin-orders.html" class="admin-menu-item">
+              <span class="admin-menu-item-left">📝 <span class="lang-vi">Quản lý đơn hàng</span><span class="lang-en">Manage Orders</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminCustomersModal(event)">
+              <span class="admin-menu-item-left">👤 <span class="lang-vi">Khách hàng</span><span class="lang-en">Customers</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminCategoriesModal(event)">
+              <span class="admin-menu-item-left">📁 <span class="lang-vi">Danh mục</span><span class="lang-en">Categories</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminPromotionsModal(event)">
+              <span class="admin-menu-item-left">🏷️ <span class="lang-vi">Khuyến mãi</span><span class="lang-en">Promotions</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminReportsModal(event)">
+              <span class="admin-menu-item-left">📈 <span class="lang-vi">Báo cáo</span><span class="lang-en">Reports</span></span>
+            </a>
+          </li>
+          <li class="admin-menu-li">
+            <a href="#" class="admin-menu-item" onclick="window.showAdminSettingsModal(event)">
+              <span class="admin-menu-item-left">⚙️ <span class="lang-vi">Cài đặt</span><span class="lang-en">Settings</span></span>
+            </a>
+          </li>
+          <li>
+            <button class="admin-menu-item" onclick="handleAdminLogout()" style="color: #ff8787; border-top: 1px solid rgba(255,255,255,0.1); border-radius: 0; margin-top: 15px; padding-top: 15px; background:none; border-bottom:none; border-left:none; border-right:none; text-align:left;">
+              <span class="admin-menu-item-left">🚪 <span class="lang-vi">Đăng xuất</span><span class="lang-en">Log Out</span></span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Fresh & Healthy promo card -->
+        <div class="sidebar-promo-card">
+          <h5 class="sidebar-promo-title">Fresh & Healthy</h5>
+          <p class="sidebar-promo-desc">
+            <span class="lang-vi">Tự nhiên, tươi ngon Cho cuộc sống khỏe mạnh</span>
+            <span class="lang-en">Natural, fresh fruit For healthy living</span>
+          </p>
+          <button class="sidebar-promo-btn" aria-label="Learn more">&gt;</button>
+        </div>
+      </div>
+
+      <!-- Main Panel content -->
+      <div class="admin-content-panel">
+        <!-- Title and actions header -->
+        <div style="margin-bottom: 25px;">
+          <div style="font-size: 11px; color: var(--color-text-light); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+            <span class="lang-vi">Tổng quan cửa hàng</span><span class="lang-en">Store Overview</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+              <h2 style="font-size: 26px; font-weight: 800; color: var(--color-text-dark); margin: 0 0 4px 0;">
+                <span class="lang-vi">Thống Kê Hoạt Động Kinh Doanh</span>
+                <span class="lang-en">Business Activity Statistics</span>
+              </h2>
+              <div style="font-size: 13px; color: var(--color-primary); font-style: italic; font-weight: 500;">
+                🌱 <span class="lang-vi">Cập nhật tình hình hoạt động của cửa hàng theo thời gian thực</span>
+                <span class="lang-en">Update store activity status in real-time</span>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <!-- Dynamic calendar date picker -->
+              <div style="background: white; border: 1px solid var(--color-gray-border); border-radius: 8px; padding: 6px 12px; font-size: 12.5px; font-weight: 700; color: var(--color-text-dark); display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+                <span class="lang-vi">Ngày lọc:</span><span class="lang-en">Date Filter:</span>
+                <input type="date" id="current-calendar-date" onchange="window.handleCalendarDateChange(this.value)" style="border: none; outline: none; color: var(--color-primary); font-family: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; background: transparent;">
+              </div>
+              
+              <!-- Export report button -->
+              <button onclick="exportToCSV()" class="btn btn-primary" style="display: flex; align-items: center; gap: 8px; border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(77, 124, 47, 0.2);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span class="lang-vi">Xuất báo cáo</span><span class="lang-en">Export Report</span>
+                <span style="font-size: 10px; opacity: 0.8;">▼</span>
+              </button>
+              
+              <!-- Reset button helper -->
+              <button onclick="resetAdminDataMockup()" class="btn btn-outline" style="border-radius: 8px; padding: 9px; font-size: 13px; border-color: var(--color-gray-border); color: var(--color-text-light);" title="Reset sample data">
+                🔄
+              </button>
+            </div>
+          </div>
+          <div style="border-bottom: 2px solid var(--color-cream-light); margin-top: 15px; margin-bottom: 20px;"></div>
+        </div>
+
+        <!-- 4 Stats Cards -->
+        <div class="admin-stats-grid">
+          <!-- Card 1: Revenue -->
+          <a href="admin-orders.html?filter=Hoàn thành" class="admin-stat-card">
+            <div class="admin-stat-top">
+              <div class="admin-stat-icon icon-revenue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div class="admin-stat-info" style="text-align: right;">
+                <div class="admin-stat-label"><span class="lang-vi">Tổng doanh thu</span><span class="lang-en">Total Revenue</span></div>
+                <div class="admin-stat-value" id="kpi-revenue">0đ</div>
+              </div>
+            </div>
+            <div class="admin-stat-bottom">
+              <div class="admin-stat-trend text-up">
+                ▲ 12.5% <span class="trend-sub"><span class="lang-vi">so với hôm qua</span><span class="lang-en">vs yesterday</span></span>
+              </div>
+              <div class="admin-stat-sparkline">
+                <svg viewBox="0 0 100 30" width="75" height="22" style="overflow: visible;">
+                  <path d="M0,25 Q15,10 30,20 T60,5 T90,15 T100,10" fill="none" stroke="#4D7C2F" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2: Orders -->
+          <a href="admin-orders.html" class="admin-stat-card">
+            <div class="admin-stat-top">
+              <div class="admin-stat-icon icon-orders">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              </div>
+              <div class="admin-stat-info" style="text-align: right;">
+                <div class="admin-stat-label"><span class="lang-vi">Tổng đơn hàng</span><span class="lang-en">Total Orders</span></div>
+                <div class="admin-stat-value" id="kpi-orders">0</div>
+              </div>
+            </div>
+            <div class="admin-stat-bottom">
+              <div class="admin-stat-trend text-up">
+                ▲ 25% <span class="trend-sub"><span class="lang-vi">so với hôm qua</span><span class="lang-en">vs yesterday</span></span>
+              </div>
+              <div class="admin-stat-sparkline">
+                <svg viewBox="0 0 100 30" width="75" height="22" style="overflow: visible;">
+                  <path d="M0,28 L15,22 L35,26 L55,10 L75,18 L100,6" fill="none" stroke="#0369a1" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3: Products -->
+          <a href="admin-products.html" class="admin-stat-card">
+            <div class="admin-stat-top">
+              <div class="admin-stat-icon icon-products">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+              </div>
+              <div class="admin-stat-info" style="text-align: right;">
+                <div class="admin-stat-label"><span class="lang-vi">Tổng sản phẩm</span><span class="lang-en">Total Products</span></div>
+                <div class="admin-stat-value" id="kpi-products">0</div>
+              </div>
+            </div>
+            <div class="admin-stat-bottom">
+              <div class="admin-stat-trend text-up">
+                ▲ 8% <span class="trend-sub"><span class="lang-vi">so với hôm qua</span><span class="lang-en">vs yesterday</span></span>
+              </div>
+              <div class="admin-stat-sparkline">
+                <svg viewBox="0 0 100 30" width="75" height="22" style="overflow: visible;">
+                  <path d="M0,20 Q20,25 40,15 T70,22 T100,5" fill="none" stroke="#d69818" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4: Pending -->
+          <a href="admin-orders.html?filter=Chờ xác nhận" class="admin-stat-card">
+            <div class="admin-stat-top">
+              <div class="admin-stat-icon icon-pending">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div class="admin-stat-info" style="text-align: right;">
+                <div class="admin-stat-label"><span class="lang-vi">Đơn chờ xác nhận</span><span class="lang-en">Pending Orders</span></div>
+                <div class="admin-stat-value" id="kpi-pending">0</div>
+              </div>
+            </div>
+            <div class="admin-stat-bottom">
+              <div class="admin-stat-trend text-down" style="color: #5B6A56;">
+                ▼ 0% <span class="trend-sub"><span class="lang-vi">so với hôm qua</span><span class="lang-en">vs yesterday</span></span>
+              </div>
+              <div class="admin-stat-sparkline">
+                <svg viewBox="0 0 100 30" width="75" height="22" style="overflow: visible;">
+                  <path d="M0,20 L25,18 L50,22 L75,20 L100,20" fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 5: Refund Requests -->
+          <a href="admin-orders.html?filter=refund-requests" class="admin-stat-card" style="border-top: 3px solid #dc2626;">
+            <div class="admin-stat-top">
+              <div class="admin-stat-icon" style="background-color:#fee2e2; color:#dc2626;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2.5 2v6h6M21.5 22v-6h-6"></path>
+                  <path d="M22 11.5A10 10 0 0 0 9.5 2.8L2.5 8"></path>
+                  <path d="M2 12.5A10 10 0 0 0 14.5 21.2L21.5 16"></path>
+                </svg>
+              </div>
+              <div class="admin-stat-info" style="text-align: right;">
+                <div class="admin-stat-label"><span class="lang-vi">Yêu cầu hoàn trả</span><span class="lang-en">Refund Requests</span></div>
+                <div class="admin-stat-value" id="kpi-refund-requests">0</div>
+              </div>
+            </div>
+            <div class="admin-stat-bottom">
+              <div class="admin-stat-trend" style="color: #dc2626; font-weight:700;">
+                ⚠️ <span class="lang-vi">Cần xử lý</span><span class="lang-en">Action Required</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- ROW 1: Revenue Spline + Order Status Donut -->
+        <div class="admin-dashboard-split" style="grid-template-columns: 1.5fr 1fr;">
+
+          <!-- Column 1: Revenue Spline Area Chart (compact) -->
+          <div class="widget-box" style="display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-gray-light); padding-bottom: 10px; margin-bottom: 12px;">
+              <h3 style="font-size: 15px; font-weight: 800; color: var(--color-text-dark); margin: 0;">
+                🍃 <span class="lang-vi">Doanh thu theo tháng (2026)</span><span class="lang-en">Monthly Revenue (2026)</span>
+              </h3>
+              <select style="background: var(--color-cream); border: 1px solid var(--color-gray-border); border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 700; color: var(--color-text-dark); outline: none; cursor: pointer;">
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+              </select>
+            </div>
+            <div class="spline-chart-wrapper" style="position: relative; flex: 1;">
+              <svg id="revenue-spline-svg" viewBox="0 0 560 160" width="100%" height="160" style="overflow: visible;">
+                <defs>
+                  <linearGradient id="chart-area-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#4D7C2F" stop-opacity="0.30"/>
+                    <stop offset="100%" stop-color="#4D7C2F" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <g stroke="#E2DDD5" stroke-width="1" stroke-dasharray="3,3">
+                  <line x1="38" y1="10" x2="548" y2="10" />
+                  <line x1="38" y1="40" x2="548" y2="40" />
+                  <line x1="38" y1="70" x2="548" y2="70" />
+                  <line x1="38" y1="100" x2="548" y2="100" />
+                  <line x1="38" y1="130" x2="548" y2="130" />
+                </g>
+                <g font-size="9" fill="#5B6A56" font-weight="600">
+                  <text x="34" y="13" text-anchor="end">2.5M</text>
+                  <text x="34" y="43" text-anchor="end">2M</text>
+                  <text x="34" y="73" text-anchor="end">1.5M</text>
+                  <text x="34" y="103" text-anchor="end">1M</text>
+                  <text x="34" y="133" text-anchor="end">500k</text>
+                </g>
+                <g font-size="9.5" fill="#5B6A56" font-weight="700">
+                  <text x="38" y="155" text-anchor="middle">T1</text>
+                  <text x="84" y="155" text-anchor="middle">T2</text>
+                  <text x="130" y="155" text-anchor="middle">T3</text>
+                  <text x="176" y="155" text-anchor="middle">T4</text>
+                  <text x="222" y="155" text-anchor="middle">T5</text>
+                  <text x="268" y="155" text-anchor="middle">T6</text>
+                  <text x="314" y="155" text-anchor="middle">T7</text>
+                  <text x="360" y="155" text-anchor="middle">T8</text>
+                  <text x="406" y="155" text-anchor="middle">T9</text>
+                  <text x="452" y="155" text-anchor="middle">T10</text>
+                  <text x="498" y="155" text-anchor="middle">T11</text>
+                  <text x="544" y="155" text-anchor="middle">T12</text>
+                </g>
+                <path id="spline-area-path" d="" fill="url(#chart-area-grad)" />
+                <path id="spline-line-path" d="" fill="none" stroke="#4D7C2F" stroke-width="2.5" stroke-linecap="round" />
+                <g id="spline-dots-group"></g>
+              </svg>
+              <div id="spline-chart-tooltip" class="spline-tooltip" style="position: absolute; display: none; background: #2E3A2B; color: #FFFFFF; padding: 5px 10px; border-radius: 7px; font-size: 11px; font-weight: 700; pointer-events: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transform: translate(-50%, -100%); margin-top: -10px; z-index: 10;"></div>
+            </div>
+            <!-- Mini summary row -->
+            <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 12px; border-top: 1px solid var(--color-gray-border); padding-top: 10px;">
+              <div style="text-align: center;">
+                <div style="font-size: 9.5px; color: var(--color-text-light); text-transform: uppercase; font-weight: 700; margin-bottom: 2px;"><span class="lang-vi">Tổng</span><span class="lang-en">Total</span></div>
+                <strong style="font-size: 12px; color: var(--color-primary);" id="sub-revenue-total">—</strong>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 9.5px; color: var(--color-text-light); text-transform: uppercase; font-weight: 700; margin-bottom: 2px;"><span class="lang-vi">TB/Tháng</span><span class="lang-en">Avg/Mo</span></div>
+                <strong style="font-size: 12px; color: var(--color-text-dark);" id="sub-revenue-avg">—</strong>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 9.5px; color: var(--color-text-light); text-transform: uppercase; font-weight: 700; margin-bottom: 2px;"><span class="lang-vi">Cao nhất</span><span class="lang-en">Peak</span></div>
+                <strong style="font-size: 12px; color: #0369a1;" id="sub-revenue-peak">—</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Order Status Donut Chart -->
+          <div class="widget-box" style="display: flex; flex-direction: column;">
+            <div style="border-bottom: 1px solid var(--color-gray-light); padding-bottom: 10px; margin-bottom: 14px;">
+              <h3 style="font-size: 15px; font-weight: 800; color: var(--color-text-dark); margin: 0;">
+                🥧 <span class="lang-vi">Phân bổ đơn hàng</span><span class="lang-en">Order Distribution</span>
+              </h3>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; flex: 1; gap: 18px; flex-wrap: wrap;">
+              <div style="position: relative;">
+                <svg id="donut-svg" viewBox="0 0 180 180" width="150" height="150">
+                  <defs>
+                    <filter id="donut-shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.10"/></filter>
+                  </defs>
+                  <g id="donut-slices-group" filter="url(#donut-shadow)"></g>
+                  <text x="90" y="84" text-anchor="middle" font-size="24" font-weight="900" fill="#2E3A2B" id="donut-center-value">0</text>
+                  <text x="90" y="102" text-anchor="middle" font-size="9" font-weight="600" fill="#5B6A56"><tspan class="lang-vi">đơn hàng</tspan><tspan class="lang-en"> orders</tspan></text>
+                </svg>
+              </div>
+              <div id="donut-legend" style="display: flex; flex-direction: column; gap: 7px; min-width: 120px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2: Category Bar Chart + Best Sellers -->
+        <div class="admin-dashboard-split" style="grid-template-columns: 1fr 1fr; margin-bottom: 20px;">
+
+          <!-- Column 1: Category Sales Bar Chart -->
+          <div class="widget-box" style="display: flex; flex-direction: column;">
+            <div style="border-bottom: 1px solid var(--color-gray-light); padding-bottom: 10px; margin-bottom: 14px;">
+              <h3 style="font-size: 15px; font-weight: 800; color: var(--color-text-dark); margin: 0;">
+                📊 <span class="lang-vi">Doanh số theo danh mục</span><span class="lang-en">Sales by Category</span>
+              </h3>
+            </div>
+            <div id="category-bar-chart" style="flex: 1; display: flex; flex-direction: column; gap: 11px; justify-content: center;"></div>
+          </div>
+
+          <!-- Column 2: Top Best Sellers -->
+          <div class="widget-box" style="display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-gray-light); padding-bottom: 10px; margin-bottom: 14px;">
+              <h3 style="font-size: 15px; font-weight: 800; color: var(--color-text-dark); margin: 0;">
+                🔥 <span class="lang-vi">Sản phẩm bán chạy</span><span class="lang-en">Top Best Sellers</span>
+              </h3>
+              <a href="admin-products.html" style="font-size: 11px; font-weight: 700; color: var(--color-primary); text-decoration: none;"><span class="lang-vi">Xem tất cả</span><span class="lang-en">View All</span></a>
+            </div>
+            <div class="table-responsive">
+              <table class="widget-table" style="font-size: 12px;">
+                <thead>
+                  <tr>
+                    <th><span class="lang-vi">Sản phẩm</span><span class="lang-en">Product</span></th>
+                    <th style="text-align: right;"><span class="lang-vi">Đã bán</span><span class="lang-en">Sold</span></th>
+                  </tr>
+                </thead>
+                <tbody id="bestsellers-list-body"><!-- Loaded dynamically --></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer-contact">
+    <div class="footer-top container">
+      <div class="footer-block brand-block">
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo/logo_white.png" alt="Tứ Quý Garden Logo" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">“Fresh fruits seasonal, healthy seeds daily”</p>
+        <p class="footer-desc">
+          <span class="lang-vi">Tứ Quý Garden cam kết mang đến nông sản hữu cơ theo mùa tươi ngon, hạt dinh dưỡng chọn lọc và granola lành mạnh chăm sóc sức khỏe gia đình bạn mỗi ngày.</span>
+          <span class="lang-en">Tứ Quý Garden commits to bringing ripe seasonal organic produce, premium seeds, and clean healthy granola to nourish your family daily.</span>
+        </p>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Danh mục</span><span class="lang-en">Categories</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="products.html?category=Fruits"><span class="lang-vi">Trái cây theo mùa</span><span class="lang-en">Seasonal Fruits</span></a></li>
+          <li><a href="products.html?category=Nutritional Seeds"><span class="lang-vi">Hạt dinh dưỡng</span><span class="lang-en">Seeds</span></a></li>
+          <li><a href="products.html?category=Granola"><span class="lang-vi">Granola ngũ cốc</span><span class="lang-en">Granola</span></a></li>
+          <li><a href="products.html?category=Combo Healthy"><span class="lang-vi">Combo sống khỏe</span><span class="lang-en">Healthy Combos</span></a></li>
+          <li><a href="nutrition.html"><span class="lang-vi">Dinh dưỡng cá nhân</span><span class="lang-en">Nutrition Plan</span></a></li>
+          <li><a href="traceability.html"><span class="lang-vi">Tra cứu nguồn gốc</span><span class="lang-en">Traceability</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Hỗ trợ khách hàng</span><span class="lang-en">Customer Service</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="about.html"><span class="lang-vi">Giới thiệu cửa hàng</span><span class="lang-en">About Store</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách đổi trả</span><span class="lang-en">Exchange & Refund</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách giao hàng</span><span class="lang-en">Shipping Policies</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block contact-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Kết nối với chúng tôi</span><span class="lang-en">Contact Info</span>
+        </h3>
+        <ul class="contact-info-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>Hotline: <strong>1900 633 123</strong></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>Email: <a href="mailto:info@tuquygarden.vn">info@tuquygarden.vn</a></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Address: Cai Be, Tien Giang</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright-txt">&copy; 2026 Tứ Quý Garden. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="about.html"><span class="lang-vi">Điều khoản sử dụng</span><span class="lang-en">Terms of Use</span></a>
+          <span class="divider">|</span>
+          <a href="about.html"><span class="lang-vi">Chính sách bảo mật</span><span class="lang-en">Privacy Policy</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/data.js"></script>
+  <script src="services/cartService.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="services/orderService.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Về chúng tôi | Tứ Quý Garden</title>
+  <meta name="description" content="Tứ Quý Garden - Hành trình mang nông sản chất lượng cao từ nông trại Việt đến bàn ăn hiện đại.">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="lang-vi">
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-container container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <img src="images/logo/logo ngang.png" alt="Tứ Quý Garden Logo" class="logo-img">
+      </a>
+
+      <!-- Mobile toggle menu -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Navigation links -->
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <span class="lang-vi">Trang chủ</span>
+              <span class="lang-en">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="nav-link active">
+              <span class="lang-vi">Về chúng tôi</span>
+              <span class="lang-en">About Us</span>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="products.html" class="nav-link dropdown-toggle">
+              <span class="lang-vi">Sản phẩm</span>
+              <span class="lang-en">Products</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropdown-chevron">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="products.html?category=all">
+                  <span class="lang-vi">Tất cả sản phẩm</span>
+                  <span class="lang-en">All Products</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Fruits">
+                  <span class="lang-vi">Trái cây tươi</span>
+                  <span class="lang-en">Fresh Fruits</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Nutritional Seeds">
+                  <span class="lang-vi">Hạt dinh dưỡng</span>
+                  <span class="lang-en">Nutritional Seeds</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Granola">
+                  <span class="lang-vi">Granola ngũ cốc</span>
+                  <span class="lang-en">Granola</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Combo Healthy">
+                  <span class="lang-vi">Combo sống khỏe</span>
+                  <span class="lang-en">Combo Healthy</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="index.html#footer-contact" class="nav-link">
+              <span class="lang-vi">Liên hệ</span>
+              <span class="lang-en">Contact</span>
+            </a>
+          </li>
+          <li>
+            <a href="nutrition.html" class="nav-link">
+              <span class="lang-vi">Dinh dưỡng cá nhân</span>
+              <span class="lang-en">Nutrition Plan</span>
+            </a>
+          </li>
+          <li>
+            <a href="traceability.html" class="nav-link">
+              <span class="lang-vi">Truy xuất nguồn gốc</span>
+              <span class="lang-en">Traceability</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right actions -->
+      <div class="header-actions">
+        <!-- Search bar -->
+        <div class="search-bar">
+          <input type="text" placeholder="Search products..." id="header-search-input">
+          <button class="search-btn" id="header-search-btn" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Language toggle button -->
+        <button class="lang-switch-btn" id="lang-toggle-btn" title="Toggle Language">
+          <span class="lang-vi">EN</span>
+          <span class="lang-en">VI</span>
+        </button>
+
+        <!-- Account -->
+        <a href="login.html" class="action-icon-btn profile-btn" id="header-profile-btn" title="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="btn-text">
+            <span class="lang-vi" id="header-profile-txt-vi">Tài khoản</span>
+            <span class="lang-en" id="header-profile-txt-en">Account</span>
+          </span>
+        </a>
+
+        <!-- Cart -->
+        <a href="cart.html" class="action-icon-btn cart-btn" title="Cart">
+          <div class="cart-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-badge" id="header-cart-badge" style="display:none;">0</span>
+          </div>
+          <span class="btn-text">
+            <span class="lang-vi">Giỏ hàng</span>
+            <span class="lang-en">Cart</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="about-page-container">
+    <!-- Hero Section -->
+    <section class="about-hero" style="position: relative; background: url('images/image/coverpage_7.png') center/cover no-repeat; padding: 120px 0; color: white; text-align: center; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(31, 77, 43, 0.9) 0%, rgba(13, 56, 23, 0.8) 100%); z-index: 1;"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+        <span style="background-color: var(--color-yellow); color: var(--color-text-dark); padding: 6px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: inline-block; margin-bottom: 20px;">
+          <span class="lang-vi">Câu chuyện Tứ Quý</span>
+          <span class="lang-en">Our Story</span>
+        </span>
+        <h1 style="font-size: clamp(32px, 5vw, 48px); color: white; margin: 0 0 20px 0; font-weight: 800; line-height: 1.2;">
+          <span class="lang-vi">Về Tứ Quý Garden</span>
+          <span class="lang-en">About Tứ Quý Garden</span>
+        </h1>
+        <p style="max-width: 800px; margin: 0 auto; font-size: 18px; opacity: 0.95; line-height: 1.7; font-weight: 300;">
+          <span class="lang-vi">“Fresh fruits seasonal, healthy seeds daily” – Chúng tôi mang tinh túy từ các vườn trái cây trĩu quả của dải đất hình chữ S và nguồn hạt dinh dưỡng organic lành mạnh tới bữa ăn gia đình Việt.</span>
+          <span class="lang-en">“Fresh seasonal fruits, healthy seeds daily” – We deliver the pure essence of Vietnamese orchards and organic seeds to every Vietnamese family.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="section container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px; align-items: center;">
+        <div style="text-align: left;">
+          <span class="section-tag" style="font-size: 12px; letter-spacing: 1.5px; font-weight: 700; text-transform: uppercase; color: var(--color-primary); margin-bottom: 12px; display: inline-block;">
+            <span class="lang-vi">Khởi nguồn từ vườn xanh</span>
+            <span class="lang-en">Born from Green Orchards</span>
+          </span>
+          <h2 class="section-title" style="margin-bottom: 24px; font-size: clamp(26px, 4vw, 36px); line-height: 1.25; font-weight: 800; color: var(--color-text-dark);">
+            <span class="lang-vi">Hành trình mang nông sản chất lượng cao đến bàn ăn hiện đại</span>
+            <span class="lang-en">Bringing Premium Produce to Modern Dining Tables</span>
+          </h2>
+          <p style="line-height: 1.75; color: #555; margin-bottom: 18px; font-size: 15px;">
+            <span class="lang-vi">Tứ Quý Garden được thành lập bởi một nhóm bạn trẻ có tình yêu sâu sắc với nông sản Việt Nam và mong muốn tìm kiếm một giải pháp ăn sạch, sống khỏe tự nhiên cho nhịp sống hiện đại bận rộn. Chúng tôi nhận thấy nước mình có nguồn trái cây nhiệt đới phong phú bậc nhất, nhưng quy trình trung gian vận chuyển phức tạp khiến chất lượng bị hao hụt và nguồn gốc canh tác bị mập mờ.</span>
+            <span class="lang-en">Tứ Quý Garden was founded by young pioneers with a deep passion for Vietnamese agriculture and a desire to create a clean, healthy eating solution for busy modern lives. We realized that Vietnam has some of the richest tropical fruits, but complex logistics make the quality decrease and farm origins unclear.</span>
+          </p>
+          <p style="line-height: 1.75; color: #555; font-size: 15px; margin-bottom: 0;">
+            <span class="lang-vi">Từ đó, Tứ Quý Garden ra đời với mô hình <strong>Farm-to-Table số hóa</strong>. Chúng tôi trực tiếp hợp tác với các nhà vườn đạt tiêu chuẩn VietGAP tại địa phương, thiết lập quy trình kiểm định chất lượng chặt chẽ, đóng gói hữu cơ, số hóa mã lô truy xuất để mang lại những khay trái cây chín mọng, những hũ hạt sấy thơm lành đầy tin cậy nhất.</span>
+            <span class="lang-en">Hence, Tứ Quý Garden introduces a digitized <strong>Farm-to-Table model</strong>. We directly collaborate with local VietGAP-standard orchards, implement strict quality inspections, package organically, and digitize batch codes to deliver the freshest ripe fruits and healthy baked seeds.</span>
+          </p>
+        </div>
+        <div style="position: relative; display: flex; justify-content: center; align-items: center;">
+          <div style="width: 100%; max-width: 440px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 4px solid white;">
+            <img src="images/image/image1.png" alt="Tứ Quý Garden Brand Story" style="width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3;">
+          </div>
+          <div style="position: absolute; bottom: -20px; right: 0; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 15px; border-left: 5px solid var(--color-primary);">
+            <div style="font-size: 32px; font-weight: 800; color: var(--color-primary); line-height: 1;">100%</div>
+            <div style="font-size: 12px; font-weight: 700; color: var(--color-text-dark); text-transform: uppercase; letter-spacing: 0.5px;">
+              <span class="lang-vi">Tự nhiên &<br>Minh bạch</span>
+              <span class="lang-en">Natural &<br>Transparent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="section bg-cream-light" style="padding: 80px 0;">
+      <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
+        <!-- Sứ mệnh -->
+        <div style="background-color: white; padding: 45px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; border-top: 4px solid var(--color-primary);">
+          <div style="width: 60px; height: 60px; background: rgba(72,128,48,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <h3 style="color: var(--color-primary); font-size: 22px; margin-bottom: 12px; font-weight: 700;">
+              <span class="lang-vi">Sứ mệnh của chúng tôi</span>
+              <span class="lang-en">Our Mission</span>
+            </h3>
+            <p style="line-height: 1.7; color: #555; font-size: 14.5px; margin: 0;">
+              <span class="lang-vi">Kiến tạo lối sống khỏe mạnh và bền vững cho người tiêu dùng thông qua việc cung cấp các sản phẩm trái cây tươi theo mùa, hạt dinh dưỡng và granola organic chất lượng cao. Đồng thời, bảo vệ quyền lợi của người nông dân bằng cách nâng tầm giá trị nông sản Việt.</span>
+              <span class="lang-en">Creating healthy, sustainable lifestyles by delivering seasonal fruits, nutritional seeds, and organic granolas. Simultaneously protecting local farmers' rights by enhancing Vietnamese agricultural values.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Tầm nhìn -->
+        <div style="background-color: white; padding: 45px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; border-top: 4px solid var(--color-yellow);">
+          <div style="width: 60px; height: 60px; background: rgba(245,197,66,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4a017;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div>
+            <h3 style="color: var(--color-text-dark); font-size: 22px; margin-bottom: 12px; font-weight: 700;">
+              <span class="lang-vi">Tầm nhìn dài hạn</span>
+              <span class="lang-en">Our Vision</span>
+            </h3>
+            <p style="line-height: 1.7; color: #555; font-size: 14.5px; margin: 0;">
+              <span class="lang-vi">Trở thành biểu tượng thương hiệu uy tín hàng đầu Việt Nam về nông sản hữu cơ cao cấp, kết hợp công nghệ truy xuất nguồn gốc số hóa minh bạch 100%. Là cầu nối tin cậy đưa trái cây đặc sản vùng miền vươn xa và đồng hành cùng lối sống xanh sạch.</span>
+              <span class="lang-en">Becoming Vietnam's leading trusted brand symbol for premium organic produce, integrated with 100% digitized traceable technology. Serving as a reliable bridge connecting regional specialties to tables and promoting green living.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner & Farms Section -->
+    <section class="section container" style="padding: 80px 0;">
+      <div class="text-center" style="max-width: 600px; margin: 0 auto 50px auto;">
+        <span class="section-tag" style="font-size: 12px; letter-spacing: 1.5px; font-weight: 700; text-transform: uppercase; color: var(--color-primary); margin-bottom: 12px; display: inline-block;">
+          <span class="lang-vi">Vùng trồng liên kết</span>
+          <span class="lang-en">Partner Orchards</span>
+        </span>
+        <h2 class="section-title" style="font-size: clamp(26px, 4vw, 36px); font-weight: 800; color: var(--color-text-dark); line-height: 1.2;">
+          <span class="lang-vi">Bản đồ nông trại & Hợp tác xã đối tác</span>
+          <span class="lang-en">Farm Map & Cooperative Partners</span>
+        </h2>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+        <!-- Card 1 -->
+        <div class="farm-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid var(--color-gray-border); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <div style="height: 220px; overflow: hidden; position: relative;">
+            <img src="images/fruits/Xoài cát Hòa Lộc.png" alt="Cái Bè" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+            <div style="position: absolute; top: 15px; left: 15px; background: rgba(72,128,48,0.95); color: white; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase;">VietGAP</div>
+          </div>
+          <div style="padding: 30px; text-align: left;">
+            <h4 style="color: var(--color-primary); font-size: 18px; margin-bottom: 10px; font-weight: 700; line-height: 1.35;">
+              <span class="lang-vi">HTX Xoài cát Cái Bè, Tiền Giang</span>
+              <span class="lang-en">Cái Bè Mango Cooperative, Tiền Giang</span>
+            </h4>
+            <p style="font-size: 13.5px; color: var(--color-text-light); line-height: 1.6; margin: 0;">
+              <span class="lang-vi">Hơn 50 hộ nông dân liên kết trồng xoài cát Hòa Lộc và vú sữa lò rèn Song Thuận theo tiêu chuẩn xuất khẩu.</span>
+              <span class="lang-en">Over 50 farming households cultivating premium Hoa Loc mangoes and Song Thuan star apples under strict export standards.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="farm-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid var(--color-gray-border); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <div style="height: 220px; overflow: hidden; position: relative;">
+            <img src="images/image/about_farm_story.png" alt="Mộc Châu" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+            <div style="position: absolute; top: 15px; left: 15px; background: rgba(72,128,48,0.95); color: white; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase;">Organic</div>
+          </div>
+          <div style="padding: 30px; text-align: left;">
+            <h4 style="color: var(--color-primary); font-size: 18px; margin-bottom: 10px; font-weight: 700; line-height: 1.35;">
+              <span class="lang-vi">HTX Mận Hậu sạch Bản Ôn, Sơn La</span>
+              <span class="lang-en">Ban On Clean Plum Cooperative, Sơn La</span>
+            </h4>
+            <p style="font-size: 13.5px; color: var(--color-text-light); line-height: 1.6; margin: 0;">
+              <span class="lang-vi">Vùng trồng mận hậu và mác cọp chất lượng cao của đồng bào H'mông trên cao nguyên Mộc Châu sương mù.</span>
+              <span class="lang-en">High-quality plum and pear orchards cultivated by the H'mong ethnic community on the misty Moc Chau plateau.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="farm-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid var(--color-gray-border); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <div style="height: 220px; overflow: hidden; position: relative;">
+            <img src="images/combo/Combo.png" alt="Tây Nguyên" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+            <div style="position: absolute; top: 15px; left: 15px; background: rgba(72,128,48,0.95); color: white; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; text-transform: uppercase;">VietGAP</div>
+          </div>
+          <div style="padding: 30px; text-align: left;">
+            <h4 style="color: var(--color-primary); font-size: 18px; margin-bottom: 10px; font-weight: 700; line-height: 1.35;">
+              <span class="lang-vi">Nông trường Sầu riêng Krông Pắc, Đắk Lắk</span>
+              <span class="lang-en">Krông Pắc Durian Farm, Đắk Lắk</span>
+            </h4>
+            <p style="font-size: 13.5px; color: var(--color-text-light); line-height: 1.6; margin: 0;">
+              <span class="lang-vi">Cung cấp bơ sáp và sầu riêng hữu cơ chất lượng cao với thổ nhưỡng đất đỏ bazan trù phú Tây Nguyên.</span>
+              <span class="lang-en">Supplying premium organic avocados and rich durians grown on fertile red basaltic soils of Central Highlands.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ĐỘI NGŨ SÁNG LẬP -->
+    <section class="section bg-cream-light" style="padding: 80px 0; border-top: 1px solid rgba(47, 107, 47, 0.08);">
+      <div class="container text-center">
+        <span class="section-tag" style="font-size: 12px; letter-spacing: 1.5px; font-weight: 700; text-transform: uppercase; color: var(--color-primary); margin-bottom: 12px; display: inline-block;">
+          <span class="lang-vi">Đội ngũ sáng lập</span>
+          <span class="lang-en">Our Founders</span>
+        </span>
+        <h2 class="section-title" style="margin-bottom: 45px; font-size: clamp(32px, 5vw, 44px); line-height: 1.25; font-weight: 800; color: var(--color-text-dark); text-align: center;">
+          <span class="lang-vi">Những người gieo mầm xanh tại Tứ Quý Garden</span>
+          <span class="lang-en">The People Behind Tứ Quý Garden</span>
+        </h2>
+
+        <div class="team-grid">
+          <!-- Member 1 -->
+          <div class="team-card">
+            <div class="team-bg-shape"></div>
+            <div class="team-bg-text">Founder</div>
+            <div class="team-portrait-wrapper">
+              <img src="images/image/HuynhBao.png" alt="Huỳnh Bảo">
+            </div>
+            <div class="team-info-overlay">
+              <h4 class="team-name">Huỳnh Bảo</h4>
+              <p class="team-role">CEO</p>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="team-card">
+            <div class="team-bg-shape"></div>
+            <div class="team-bg-text">CTO</div>
+            <div class="team-portrait-wrapper">
+              <img src="images/image/NhatKhoa.png" alt="Nhật Khoa">
+            </div>
+            <div class="team-info-overlay">
+              <h4 class="team-name">Nhật Khoa</h4>
+              <p class="team-role">CTO</p>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="team-card">
+            <div class="team-bg-shape"></div>
+            <div class="team-bg-text">CMO</div>
+            <div class="team-portrait-wrapper">
+              <img src="images/image/HoThiPhuongThao.png" alt="Hồ Thị Phương Thảo">
+            </div>
+            <div class="team-info-overlay">
+              <h4 class="team-name">Hồ Thị Phương Thảo</h4>
+              <p class="team-role">CMO</p>
+            </div>
+          </div>
+
+          <!-- Member 4 -->
+          <div class="team-card">
+            <div class="team-bg-shape"></div>
+            <div class="team-bg-text">Director</div>
+            <div class="team-portrait-wrapper">
+              <img src="images/image/LeHuynhBaoTran.png" alt="Lê Huỳnh Bảo Trân">
+            </div>
+            <div class="team-info-overlay">
+              <h4 class="team-name">Lê Huỳnh Bảo Trân</h4>
+              <p class="team-role">Director</p>
+            </div>
+          </div>
+
+          <!-- Member 5 -->
+          <div class="team-card">
+            <div class="team-bg-shape"></div>
+            <div class="team-bg-text">COO</div>
+            <div class="team-portrait-wrapper">
+              <img src="images/image/TranHieuKieuDuyen.png" alt="Trần Hiếu Kiều Duyên">
+            </div>
+            <div class="team-info-overlay">
+              <h4 class="team-name">Trần Hiếu Kiều Duyên</h4>
+              <p class="team-role">COO</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer-contact">
+    <div class="footer-top container">
+      <div class="footer-block brand-block">
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo/logo_white.png" alt="Tứ Quý Garden Logo" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">“Fresh fruits seasonal, healthy seeds daily”</p>
+        <p class="footer-desc">
+          <span class="lang-vi">Tứ Quý Garden cam kết mang đến nông sản hữu cơ theo mùa tươi ngon, hạt dinh dưỡng chọn lọc và granola lành mạnh chăm sóc sức khỏe gia đình bạn mỗi ngày.</span>
+          <span class="lang-en">Tứ Quý Garden commits to bringing ripe seasonal organic produce, premium seeds, and clean healthy granola to nourish your family daily.</span>
+        </p>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Danh mục</span><span class="lang-en">Categories</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="products.html?category=Fruits"><span class="lang-vi">Trái cây theo mùa</span><span class="lang-en">Seasonal Fruits</span></a></li>
+          <li><a href="products.html?category=Nutritional Seeds"><span class="lang-vi">Hạt dinh dưỡng</span><span class="lang-en">Seeds</span></a></li>
+          <li><a href="products.html?category=Granola"><span class="lang-vi">Granola ngũ cốc</span><span class="lang-en">Granola</span></a></li>
+          <li><a href="products.html?category=Combo Healthy"><span class="lang-vi">Combo sống khỏe</span><span class="lang-en">Healthy Combos</span></a></li>
+          <li><a href="nutrition.html"><span class="lang-vi">Dinh dưỡng cá nhân</span><span class="lang-en">Nutrition Plan</span></a></li>
+          <li><a href="traceability.html"><span class="lang-vi">Tra cứu nguồn gốc</span><span class="lang-en">Traceability</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Hỗ trợ khách hàng</span><span class="lang-en">Customer Service</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="about.html"><span class="lang-vi">Giới thiệu cửa hàng</span><span class="lang-en">About Store</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách đổi trả</span><span class="lang-en">Exchange & Refund</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách giao hàng</span><span class="lang-en">Shipping Policies</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block contact-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Kết nối với chúng tôi</span><span class="lang-en">Contact Info</span>
+        </h3>
+        <ul class="contact-info-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>Hotline: <strong>1900 633 123</strong></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>Email: <a href="mailto:info@tuquygarden.vn">info@tuquygarden.vn</a></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Address: Cai Be, Tien Giang</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright-txt">&copy; 2026 Tứ Quý Garden. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="about.html"><span class="lang-vi">Điều khoản sử dụng</span><span class="lang-en">Terms of Use</span></a>
+          <span class="divider">|</span>
+          <a href="about.html"><span class="lang-vi">Chính sách bảo mật</span><span class="lang-en">Privacy Policy</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/data.js"></script>
+  <script src="services/cartService.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="js/common.js"></script>
+</body>
+</html>

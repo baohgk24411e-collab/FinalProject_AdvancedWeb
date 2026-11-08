@@ -1,0 +1,233 @@
+<!-- CONTENT -->
+  <div class="container" style="margin-bottom: 80px;">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb" style="display:flex; list-style:none; gap:10px; font-size:14px; margin-top: 20px; padding:0;">
+      <li><a routerLink="/" style="color:var(--color-text-light);"><span class="lang-vi">Trang chủ</span><span class="lang-en">Home</span></a></li>
+      <li><span style="color:var(--color-text-light);">/</span></li>
+      <li style="color:var(--color-primary); font-weight:600;"><span class="lang-vi">Truy xuất nguồn gốc</span><span class="lang-en">Traceability</span></li>
+    </ul>
+
+    <!-- Hero / Title -->
+    <div class="trace-hero-section">
+      <div class="container">
+        <h1>
+          <span class="lang-vi">Hệ Thống Truy Xuất Nguồn Gốc Số Hóa</span>
+          <span class="lang-en">Digitized Food Traceability System</span>
+        </h1>
+        <p>
+          <span class="lang-vi">Tất cả sản phẩm tại Tứ Quý Garden đều có một câu chuyện riêng. Vui lòng nhập mã lô sản phẩm in trên nhãn bao bì hoặc chọn một mã lô mẫu bên dưới để theo dõi hành trình từ nông trại đến bàn ăn của bạn.</span>
+          <span class="lang-en">Every product at Tứ Quý Garden has a unique story. Enter the batch number printed on the product label or choose a sample batch code to trace its farm-to-table journey.</span>
+        </p>
+
+        <div class="trace-search-box">
+          <select id="trace-sample-select" onchange="handleSampleSelect(this.value)">
+            <option value=""><span class="lang-vi">-- Chọn mã mẫu --</span><span class="lang-en">-- Choose sample --</span></option>
+            <option value="TQG-XOAI-001">#TQG-XOAI-001 (Hoa Loc Mango)</option>
+            <option value="TQG-MAN-002">#TQG-MAN-002 (Ban On Plum)</option>
+            <option value="TQG-BUOI-003">#TQG-BUOI-003 (Green Skin Pomelo)</option>
+            <option value="TQG-HAT-004">#TQG-HAT-004 (Nutritional Seeds Mix)</option>
+            <option value="TQG-CHIA-005">#TQG-CHIA-005 (Organic Chia Seeds)</option>
+            <option value="TQG-ROI-006">#TQG-ROI-006 (Cai Be Bell Fruit)</option>
+          </select>
+          <input type="text" id="trace-search-input" placeholder="e.g., TQG-XOAI-001 or order ID...">
+          <button class="btn btn-secondary" onclick="handleTraceSearchSubmit()" style="color: var(--color-text-dark); border-radius: 40px; padding: 10px 24px; min-width: 120px; font-weight: 600;">
+            <span class="lang-vi">Tra cứu</span><span class="lang-en">Trace</span>
+          </button>
+        </div>
+
+        <div style="margin-top: 20px; display: flex; justify-content: center;">
+          <button class="btn btn-primary" onclick="openQrScanner()" style="border-radius: 40px; padding: 12px 28px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-md); cursor: pointer; color: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+              <line x1="17" y1="7" x2="17.01" y2="7"></line>
+              <line x1="7" y1="17" x2="7.01" y2="17"></line>
+              <line x1="17" y1="17" x2="17.01" y2="17"></line>
+              <rect x="7" y="7" width="10" height="10" rx="1"></rect>
+            </svg>
+            <span class="lang-vi">Quét Mã QR Truy Xuất</span>
+            <span class="lang-en">Scan QR Code</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR Scanner Modal -->
+    <div class="qr-modal" id="qr-modal-container">
+      <div class="qr-modal-card">
+        <button class="qr-modal-close" onclick="closeQrScanner()">&times;</button>
+        <h3 class="qr-modal-title">
+          <span class="lang-vi">Quét Mã QR Nông Sản</span>
+          <span class="lang-en">Scan Produce QR</span>
+        </h3>
+        <p style="font-size: 13px; color: var(--color-text-light); margin-bottom: 15px;">
+          <span class="lang-vi">Cấp quyền camera để quét thật, hoặc sử dụng menu giả lập bên dưới để chạy mô phỏng.</span>
+          <span class="lang-en">Allow camera access to scan, or use the simulation dropdown below.</span>
+        </p>
+        
+        <!-- Scanner Split Container -->
+        <div class="qr-modal-split-container">
+          <!-- Left side: Virtual QR product label -->
+          <div style="background: var(--color-cream-light); border: 2px solid var(--color-gray-border); border-radius: 12px; padding: 20px; height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+            <div id="virtual-qr-code" style="width: 160px; height: 160px; background: white; border: 1px solid var(--color-gray-border); border-radius: 8px; padding: 8px; box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center;">
+              <!-- Initially clean QR SVG mock -->
+              <svg viewBox="0 0 100 100" style="width: 100%; height: 100%; display: block; opacity: 0.5;">
+                <rect width="100" height="100" fill="#f8f8f8" rx="6" />
+                <rect x="15" y="15" width="25" height="25" fill="#aaa" />
+                <rect x="60" y="15" width="25" height="25" fill="#aaa" />
+                <rect x="15" y="60" width="25" height="25" fill="#aaa" />
+                <rect x="50" y="50" width="10" height="10" fill="#aaa" />
+                <text x="50" y="80" text-anchor="middle" font-size="7" fill="#666">Waiting for product selection</text>
+              </svg>
+            </div>
+            <div id="virtual-qr-label" style="margin-top: 15px; font-weight: 700; font-size: 13px; color: var(--color-text-dark); text-transform: uppercase;">
+              <span class="lang-vi">Chưa có sản phẩm</span>
+              <span class="lang-en">No product selected</span>
+            </div>
+          </div>
+
+          <!-- Right side: Scanner Viewfinder -->
+          <div class="qr-scanner-box" style="margin: 0; position: relative;">
+            <div id="qr-webcam-reader" style="width: 100%; height: 100%;"></div>
+            <div class="qr-laser-line"></div>
+            <div class="qr-target-box"><span></span></div>
+          </div>
+        </div>
+        
+        <div class="qr-selector-row">
+          <label style="font-size: 12px; font-weight: 600; color: var(--color-text-dark); align-self: flex-start; margin-bottom: 2px;">
+            <span class="lang-vi">Chế độ giả lập (Chọn sản phẩm để quét nhanh):</span>
+            <span class="lang-en">Simulated scan (Select product to quick scan):</span>
+          </label>
+          <select class="qr-select" id="qr-sim-select" onchange="runSimulatedScan(this.value)">
+            <option value="">-- Choose Demo Product --</option>
+            <option value="TQG-XOAI-001">Hoa Loc Mango (Cai Be, Tien Giang)</option>
+            <option value="TQG-MAN-002">Ban On Plum (Moc Chau, Son La)</option>
+            <option value="TQG-BUOI-003">Green Skin Pomelo (Mo Cay Bac, Ben Tre)</option>
+            <option value="TQG-HAT-004">Nutritional Seeds Mix (Krong Nang, Dak Lak)</option>
+            <option value="TQG-CHIA-005">Organic Chia Seeds (Imported from Australia)</option>
+            <option value="TQG-ROI-006">Sweet An Phuoc Bell Fruit (Cai Be, Tien Giang)</option>
+          </select>
+          <div class="qr-status-msg" id="qr-scanner-status" style="font-weight: 600; color: var(--color-primary); margin-top: 8px;">
+            <span class="lang-vi">Trạng thái: Sẵn sàng</span>
+            <span class="lang-en">Status: Ready</span>
+          </div>
+          <div style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
+            <button type="button" onclick="toggleCameraMirror()" class="btn" style="font-size: 12px; padding: 6px 12px; border-radius: 4px; border: 1px solid var(--color-gray-border); background: #FAF5EA; cursor: pointer; font-weight: 600; color: var(--color-text-dark); display: flex; align-items: center; gap: 4px;">
+              <span>🔄</span>
+              <span class="lang-vi">Lật ngược Camera</span>
+              <span class="lang-en">Mirror Video Feed</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Traceability Output results -->
+    <div class="trace-results-container" id="trace-results-root">
+      <!-- General Batch Info -->
+      <div class="trace-info-card">
+        <img id="result-product-img" src="images/Product_Images/03. Hình ảnh/Trái cây/17-Xoài cát Hòa Lộc/17-1.png" alt="" class="trace-product-img">
+        <div>
+          <h2 id="result-product-name" style="font-size: 26px; color: var(--color-text-dark); margin-bottom: 8px;">Cai Be Organic Hoa Loc Mango</h2>
+          <p id="result-batch-code" style="color: var(--color-primary); font-weight:700; font-size:16px; margin-bottom: 15px;">Batch Code: #TQG-XOAI-001</p>
+          <p id="result-product-desc" style="font-size: 14px; line-height: 1.6; color: var(--color-text-light);">Fully tree-ripened mango, harvested directly at Song Thuan Cooperative, Cai Be district, Tien Giang province. Certified VietGAP for export.</p>
+          
+          <div class="trace-meta-grid">
+            <div class="trace-meta-item">
+              <label><span class="lang-vi">Nhà vườn/Hợp tác xã</span><span class="lang-en">Cooperative / Farm</span></label>
+              <span id="result-coop">Cai Be Mango Cooperative, Tien Giang</span>
+            </div>
+            <div class="trace-meta-item">
+              <label><span class="lang-vi">Nông dân đại diện</span><span class="lang-en">Lead Farmer</span></label>
+              <span id="result-farmer">Mr. Hai Chan (Farmer)</span>
+            </div>
+            <div class="trace-meta-item">
+              <label><span class="lang-vi">Ngày thu hoạch</span><span class="lang-en">Harvest Date</span></label>
+              <span id="result-date">24/06/2026</span>
+            </div>
+            <div class="trace-meta-item">
+              <label><span class="lang-vi">Chứng nhận</span><span class="lang-en">Certifications</span></label>
+              <div class="cert-badge-row" id="result-certs">
+                <span class="cert-badge-item">VietGAP</span>
+                <span class="cert-badge-item">Geographical Indication</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map & Storage Container -->
+      <div class="trace-map-grid">
+        <!-- Leaflet map card -->
+        <div style="background: white; border: 1px solid var(--color-gray-border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;">
+          <h3 style="font-size: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--color-text-dark);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="lang-vi">Bản Đồ Định Vị Vùng Trồng</span>
+            <span class="lang-en">Farm Location Map</span>
+          </h3>
+          <div id="trace-map" style="width: 100%; height: 280px; border-radius: 8px; border: 1px solid var(--color-gray-border); z-index: 1;"></div>
+        </div>
+        
+        <!-- Storage & Preservation card -->
+        <div style="background: var(--color-cream-light); border: 1px solid var(--color-gray-border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;">
+          <h3 style="font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; color: var(--color-text-dark);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-secondary);">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span class="lang-vi">Hướng Dẫn Bảo Quản & An Toàn</span>
+            <span class="lang-en">Storage & Safety Guidelines</span>
+          </h3>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 15px; justify-content: center;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <div style="background: white; border-radius: 50%; padding: 8px; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-sm); color: var(--color-primary); flex-shrink: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 style="font-size: 14px; color: var(--color-text-dark); margin-bottom: 4px; font-weight: 700;"><span class="lang-vi">Điều kiện bảo quản</span><span class="lang-en">Storage Condition</span></h4>
+                <p id="result-storage" style="font-size: 13.5px; color: var(--color-text-light); line-height: 1.5;"></p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <div style="background: white; border-radius: 50%; padding: 8px; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-sm); color: var(--color-yellow); flex-shrink: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <div>
+                <h4 style="font-size: 14px; color: var(--color-text-dark); margin-bottom: 4px; font-weight: 700;"><span class="lang-vi">Lưu ý sử dụng an toàn</span><span class="lang-en">Safety Warning</span></h4>
+                <p style="font-size: 13.5px; color: var(--color-text-light); line-height: 1.5;">
+                  <span class="lang-vi">Nông sản đã được khử trùng ngoài vỏ bằng hệ thống Ozon và tia cực tím UV tại HTX đóng gói. Khuyến nghị rửa nhẹ nhàng dưới vòi nước chảy trước khi ăn hoặc chế biến.</span>
+                  <span class="lang-en">Produce has been sterilized using ozone and UV technology. It is recommended to wash gently under running tap water before eating or preparing.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Journey Stepper (Farm-to-Table) -->
+      <div class="journey-stepper-section">
+        <h3 style="font-size: 20px; text-align: center; margin-bottom: 36px; color: var(--color-text-dark); font-weight: 800;">
+          <span style="display:inline-flex; align-items:center; gap:10px;">
+            <span>🌿</span>
+            <span class="lang-vi">Hành Trình Nông Sản Từ Vườn Đến Bàn Ăn</span>
+            <span class="lang-en">The Farm-to-Table Journey</span>
+          </span>
+        </h3>
+        <div class="journey-stepper" id="trace-timeline-root">
+          <!-- Rendered dynamically by traceability.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->

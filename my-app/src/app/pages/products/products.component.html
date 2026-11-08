@@ -1,0 +1,361 @@
+<section class="shop-hero-section" style="position: relative; padding: 60px 0; color: white; text-align: center; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 300px; background-image: url('images/image/coverpage_5.png'); background-size: cover; background-position: center;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13,56,23,0.82) 0%, rgba(31,77,43,0.68) 100%); z-index: 1;"></div>
+    <div class="container" style="position: relative; z-index: 2; width: 100%;">
+      <ul class="breadcrumb-hero" style="display: flex; justify-content: center; gap: 8px; list-style: none; padding: 0; margin-bottom: 15px; font-size: 13px; opacity: 0.9;">
+        <li><a routerLink="/" style="color: white; text-decoration: none;"><span class="lang-vi">Trang chủ</span><span class="lang-en">Home</span></a></li>
+        <li style="color: rgba(255,255,255,0.6);">/</li>
+        <li style="color: rgba(255,255,255,0.6);"><span class="lang-vi">Cửa hàng</span><span class="lang-en">Shop</span></li>
+      </ul>
+
+      <h1 class="shop-hero-title font-serif" style="font-size: clamp(28px, 4vw, 42px); color: white; margin-bottom: 12px; font-weight: 800; text-align: center; line-height: 1.2;">
+        <span class="lang-vi">Danh sách sản phẩm</span>
+        <span class="lang-en">Product Catalog</span>
+      </h1>
+      <p class="shop-hero-tagline" style="font-size: 16px; color: rgba(255,255,255,0.9); margin-bottom: 25px; font-style: italic; text-align: center;">
+        <span class="lang-vi">“Fresh fruits seasonal, healthy seeds daily”</span>
+        <span class="lang-en">"Fresh fruits four seasons, healthy seeds every day"</span>
+      </p>
+
+      <div class="shop-hero-badges" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; background: none; border: none; box-shadow: none; padding: 0;">
+        <span class="hero-badge" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; box-shadow: none;">
+          <span>🌿</span>
+          <span class="lang-vi">100% tự nhiên</span>
+          <span class="lang-en">100% Natural</span>
+        </span>
+        <span class="hero-badge" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; box-shadow: none;">
+          <span>🔎</span>
+          <span class="lang-vi">Nguồn gốc rõ ràng</span>
+          <span class="lang-en">Clear Origin</span>
+        </span>
+        <span class="hero-badge" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; box-shadow: none;">
+          <span>🚚</span>
+          <span class="lang-vi">Giao hàng nhanh</span>
+          <span class="lang-en">Fast Delivery</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <main class="products-page-container container">
+    <div class="shop-layout">
+      <aside class="shop-sidebar" id="shop-sidebar">
+        <div class="sidebar-header">
+          <h3>Product Filters</h3>
+          <button type="button" class="clear-filters-link" id="sidebar-clear-filters">Clear filters</button>
+          <button class="close-sidebar-btn" id="close-sidebar-btn">&times;</button>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Seasonality</h4>
+          <ul class="filter-list" id="season-filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="all" checked>
+                <span>All Seasons</span>
+                <span class="filter-count" data-filter="season-all"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="seasonal">
+                <span>Seasonal Specialties</span>
+                <span class="filter-count" data-filter="season-seasonal"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="Mùa hè">
+                <span>Summer</span>
+                <span class="filter-count" data-filter="season-Mùa hè"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="Mùa đông">
+                <span>Winter</span>
+                <span class="filter-count" data-filter="season-Mùa đông"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="season" value="Quanh năm">
+                <span>Year-round</span>
+                <span class="filter-count" data-filter="season-Quanh năm"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Lifestyle Goals</h4>
+          <ul class="filter-list" id="health-goal-filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Eat Clean">
+                <span>Eat Clean</span>
+                <span class="filter-count" data-filter="goal-Eat Clean"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Tăng cơ">
+                <span>Gym / Muscle Gain</span>
+                <span class="filter-count" data-filter="goal-Tăng cơ"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Giảm cân">
+                <span>Weight Loss</span>
+                <span class="filter-count" data-filter="goal-Giảm cân"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Bổ sung năng lượng">
+                <span>Energy Boost</span>
+                <span class="filter-count" data-filter="goal-Bổ sung năng lượng"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Gia đình">
+                <span>Family Nutrition</span>
+                <span class="filter-count" data-filter="goal-Gia đình"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="healthGoal" value="Snack lành mạnh">
+                <span>Healthy Snacking</span>
+                <span class="filter-count" data-filter="goal-Snack lành mạnh"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Price Range</h4>
+          <ul class="filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="all" checked>
+                <span>All Prices</span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="under-50">
+                <span>Under 50,000đ</span>
+                <span class="filter-count" data-filter="price-under-50"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="50-100">
+                <span>50,000đ - 100,000đ</span>
+                <span class="filter-count" data-filter="price-50-100"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="100-200">
+                <span>100,000đ - 200,000đ</span>
+                <span class="filter-count" data-filter="price-100-200"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="radio" name="priceRange" value="over-200">
+                <span>Over 200,000đ</span>
+                <span class="filter-count" data-filter="price-over-200"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Product Categories</h4>
+          <ul class="filter-list" id="category-filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="productCategory" value="Fruits">
+                <span>Seasonal Fruits</span>
+                <span class="filter-count" data-filter="cat-Fruits"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="productCategory" value="Nutritional Seeds">
+                <span>Nutritional Seeds</span>
+                <span class="filter-count" data-filter="cat-Nutritional Seeds"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="productCategory" value="Granola">
+                <span>Granola &amp; Healthy snacks</span>
+                <span class="filter-count" data-filter="cat-Granola"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="productCategory" value="Combo Healthy">
+                <span>Eat Clean Box &amp; Combo</span>
+                <span class="filter-count" data-filter="cat-Combo Healthy"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4 class="filter-title">Offers</h4>
+          <ul class="filter-list">
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="promo" value="bestseller">
+                <span>Bestsellers</span>
+                <span class="filter-count" data-filter="promo-bestseller"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="promo" value="sale">
+                <span>On Sale</span>
+                <span class="filter-count" data-filter="promo-sale"></span>
+              </label>
+            </li>
+            <li>
+              <label class="filter-label">
+                <input type="checkbox" name="promo" value="seasonal">
+                <span>Seasonal Products</span>
+                <span class="filter-count" data-filter="promo-seasonal"></span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <button id="reset-filters-btn" class="btn btn-outline btn-block btn-sm">
+          Reset Filters
+        </button>
+      </aside>
+
+      <section class="shop-main-content">
+        <div class="shop-toolbar">
+          <div class="toolbar-left">
+            <button id="mobile-filter-btn" class="btn btn-outline btn-sm mobile-filter-trigger">
+              Filter & Search
+            </button>
+
+            <span class="results-count">
+              Showing <strong id="product-count">0</strong> products
+              <strong id="product-count-en" style="display:none;">0</strong>
+            </span>
+          </div>
+
+          <div class="toolbar-right">
+            <div class="view-toggle-group" id="view-toggle-group">
+              <button type="button" class="view-toggle-btn active" data-view="grid" title="Dạng lưới" aria-label="Grid view">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              </button>
+              <button type="button" class="view-toggle-btn" data-view="list" title="Dạng danh sách" aria-label="List view">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </button>
+            </div>
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+              <option value="newest">Newest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="bestseller">Best Sellers</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="active-filters-bar" class="active-filters-bar"></div>
+
+        <div id="search-badge" class="active-search-indicator">
+          <span>Search results for: "<strong><span id="search-keyword-vi"></span><span id="search-keyword-en"></span></strong>"</span>
+          <button id="clear-search-btn">&times;</button>
+        </div>
+
+        <div class="products-listing-grid" id="products-catalog-grid">
+        </div>
+
+        <div id="empty-state" class="empty-state-container text-center">
+          <div class="empty-icon-circle">🔎</div>
+          <h3>No products found</h3>
+          <p>We could not find any products matching your filters. Please try again or reset filters.</p>
+          <button id="reset-empty-btn" class="btn btn-primary">Show all products</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="trust-badges-bar trust-badges-bottom container">
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">🌿</span>
+      <div>
+        <strong>
+          <span class="lang-vi">100% tự nhiên</span>
+          <span class="lang-en">100% Natural</span>
+        </strong>
+        <span>
+          <span class="lang-vi">Không chất bảo quản</span>
+          <span class="lang-en">No Preservatives</span>
+        </span>
+      </div>
+    </div>
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">🔎</span>
+      <div>
+        <strong>
+          <span class="lang-vi">Nguồn gốc rõ ràng</span>
+          <span class="lang-en">Clear Origin</span>
+        </strong>
+        <span>
+          <span class="lang-vi">Truy xuất minh bạch</span>
+          <span class="lang-en">Fully Traceable</span>
+        </span>
+      </div>
+    </div>
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">🚚</span>
+      <div>
+        <strong>
+          <span class="lang-vi">Giao hàng nhanh</span>
+          <span class="lang-en">Fast Delivery</span>
+        </strong>
+        <span>
+          <span class="lang-vi">Toàn quốc</span>
+          <span class="lang-en">Nationwide</span>
+        </span>
+      </div>
+    </div>
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">🎁</span>
+      <div>
+        <strong>
+          <span class="lang-vi">Đóng gói cẩn thận</span>
+          <span class="lang-en">Careful Packaging</span>
+        </strong>
+        <span>
+          <span class="lang-vi">Tươi ngon trọn vẹn</span>
+          <span class="lang-en">Freshly Preserved</span>
+        </span>
+      </div>
+    </div>
+    <div class="trust-badge-item">
+      <span style="font-size: 24px;">💬</span>
+      <div>
+        <strong>
+          <span class="lang-vi">Hỗ trợ tận tâm</span>
+          <span class="lang-en">Dedicated Support</span>
+        </strong>
+        <span>
+          <span class="lang-vi">7 ngày / tuần</span>
+          <span class="lang-en">24/7 Support</span>
+        </span>
+      </div>
+    </div>
+  </div>

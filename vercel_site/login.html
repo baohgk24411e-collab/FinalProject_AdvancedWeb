@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập & Đăng ký | Tứ Quý Garden</title>
+  <meta name="description" content="Đăng nhập hoặc đăng ký tài khoản Tứ Quý Garden để quản lý đơn hàng và tích lũy ưu đãi.">
+  <link rel="icon" type="image/png" href="images/logo/logo.png">
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #fffdf6 0%, #f7fbef 100%);
+    }
+
+    .auth-page-wrapper {
+      padding: 34px 20px 76px;
+    }
+
+    .auth-breadcrumb {
+      display: flex;
+      list-style: none;
+      gap: 10px;
+      font-size: 14px;
+      margin: 0 auto 22px;
+      padding: 0;
+      max-width: 1200px;
+    }
+
+    .auth-breadcrumb a,
+    .auth-breadcrumb-separator {
+      color: var(--color-text-light);
+    }
+
+    .auth-breadcrumb-current {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    .auth-page-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #fffefb;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(31, 77, 43, 0.14);
+      border: 1px solid rgba(226, 221, 213, 0.72);
+      display: grid;
+      grid-template-columns: 52% 48%;
+      min-height: 680px;
+      animation: authCardEnter 0.7s ease both;
+    }
+
+    .auth-banner {
+      position: relative;
+      isolation: isolate;
+      min-height: 680px;
+      padding: 58px 54px 48px;
+      color: #163d24;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      background: #fbfdf2;
+    }
+
+    .auth-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('images/image/trái cây.png');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      transform: scale(1.02);
+      transform-origin: center bottom;
+      animation: bannerBreath 16s ease-in-out infinite alternate;
+      z-index: -3;
+    }
+
+    .auth-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 254, 247, 0.88) 0%, rgba(255, 254, 247, 0.58) 43%, rgba(255, 254, 247, 0.08) 100%),
+        radial-gradient(circle at 50% 26%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.42) 32%, rgba(255, 255, 255, 0) 62%);
+      z-index: -2;
+    }
+
+    .auth-banner-top {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .auth-banner-top .banner-logo,
+    .auth-brand-logo {
+      width: clamp(198px, 19vw, 238px);
+      height: auto;
+      filter: drop-shadow(0 14px 24px rgba(31, 77, 43, 0.14));
+    }
+
+    .auth-banner-middle {
+      position: relative;
+      z-index: 2;
+      max-width: 440px;
+      margin: 30px auto 0;
+    }
+
+    .auth-banner-copy {
+      display: none;
+    }
+
+    .auth-page-container[data-auth-mode='login'] .auth-banner-copy.login-copy,
+    .auth-page-container[data-auth-mode='register'] .auth-banner-copy.register-copy {
+      display: block;
+      animation: formSlideFade 0.45s ease both;
+    }
+
+    .auth-brand-title {
+      color: #143b24;
+      font-size: clamp(34px, 4vw, 48px);
+      line-height: 1.08;
+      font-weight: 800;
+      margin: 0 0 18px;
+      letter-spacing: 0;
+    }
+
+    .auth-brand-desc {
+      color: #365f3d;
+      font-size: 15px;
+      line-height: 1.75;
+      margin: 0;
+      max-width: 410px;
+    }
+
+    .auth-banner-bottom {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .auth-feature-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(47, 107, 63, 0.12);
+      color: #2f6b3f;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(31, 77, 43, 0.08);
+      backdrop-filter: blur(8px);
+      animation: floatLeaf 6s ease-in-out infinite;
+    }
+
+    .auth-feature-pill:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+
+    .auth-feature-pill:nth-child(3) {
+      animation-delay: 1.4s;
+    }
+
+    .auth-form-side {
+      background: #fffefb;
+      padding: 64px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .auth-tabs {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      border-bottom: 1px solid #ebe6dc;
+      margin-bottom: 28px;
+    }
+
+    .auth-tab {
+      position: relative;
+      text-align: center;
+      padding: 0 0 14px;
+      font-weight: 700;
+      font-size: 15px;
+      color: #7b8d78;
+      cursor: pointer;
+      transition: color 0.25s ease;
+    }
+
+    .auth-tab::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 3px;
+      border-radius: 999px 999px 0 0;
+      background: #2f6b3f;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.28s ease;
+    }
+
+    .auth-tab.active {
+      color: #2f6b3f;
+    }
+
+    .auth-tab.active::after {
+      transform: scaleX(1);
+    }
+
+    .auth-form-panel {
+      display: none;
+    }
+
+    .auth-form-panel.active {
+      display: block;
+      animation: formSlideFade 0.42s ease both;
+    }
+
+    .auth-form-title {
+      color: #143b24;
+      font-size: 30px;
+      line-height: 1.2;
+      margin: 0 0 8px;
+      font-weight: 800;
+    }
+
+    .auth-form-subtitle {
+      color: #6b7d68;
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0 0 28px;
+    }
+
+    .auth-form-group {
+      margin-bottom: 17px;
+    }
+
+    .auth-form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #143b24;
+    }
+
+    .auth-input-wrapper {
+      position: relative;
+    }
+
+    .auth-input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6fa35e;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .auth-input,
+    .auth-select {
+      width: 100%;
+      height: 52px;
+      padding: 0 16px 0 46px;
+      border-radius: 14px;
+      border: 1px solid #e3dfd6;
+      outline: none;
+      font-size: 14px;
+      color: #143b24;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+      background-color: #ffffff;
+      font-family: var(--font-sans);
+      box-sizing: border-box;
+    }
+
+    .auth-select {
+      appearance: none;
+      cursor: pointer;
+      padding-right: 42px;
+      background-image: linear-gradient(45deg, transparent 50%, #2f6b3f 50%), linear-gradient(135deg, #2f6b3f 50%, transparent 50%);
+      background-position: calc(100% - 20px) 22px, calc(100% - 15px) 22px;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    .auth-input:focus,
+    .auth-select:focus {
+      border-color: #2f6b3f;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(47, 107, 63, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      color: #7b8d78;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .password-toggle-btn:hover {
+      background: #edf5ea;
+      color: #2f6b3f;
+    }
+
+    .auth-input.has-toggle {
+      padding-right: 48px;
+    }
+
+    .auth-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .auth-grid-password {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .auth-flex-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      font-size: 13px;
+      gap: 14px;
+    }
+
+    .auth-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      color: #647460;
+      line-height: 1.35;
+    }
+
+    .auth-checkbox-label input {
+      accent-color: #2f6b3f;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .auth-forgot-link,
+    .auth-inline-link {
+      color: #2f6b3f;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      font-size: inherit;
+      font-family: inherit;
+    }
+
+    .auth-forgot-link:hover,
+    .auth-inline-link:hover {
+      color: #1f5a2f;
+      text-decoration: underline;
+    }
+
+    .auth-submit-btn {
+      width: 100%;
+      height: 54px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #3f7f37, #1f5a2f);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(47, 107, 63, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .auth-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(47, 107, 63, 0.28);
+      filter: saturate(1.04);
+    }
+
+    .auth-submit-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 10px 18px rgba(47, 107, 63, 0.2);
+    }
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 22px 0 16px;
+      color: #8a9686;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      height: 1px;
+      flex: 1;
+      background: #ebe6dc;
+    }
+
+    .social-login-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .social-login-btn {
+      height: 46px;
+      border-radius: 13px;
+      border: 1px solid #e3dfd6;
+      background: #ffffff;
+      color: #253c2a;
+      font-weight: 750;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .social-login-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(47, 107, 63, 0.28);
+      box-shadow: 0 10px 20px rgba(31, 77, 43, 0.08);
+    }
+
+    .auth-bottom-prompt {
+      margin: 22px 0 0;
+      color: #6b7d68;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .auth-terms-row {
+      margin: 4px 0 20px;
+      font-size: 13px;
+    }
+
+    @keyframes authCardEnter {
+      from { opacity: 0; transform: translateY(24px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes formSlideFade {
+      from { opacity: 0; transform: translateX(12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes bannerBreath {
+      from { transform: scale(1.02); }
+      to { transform: scale(1.08); }
+    }
+
+    @keyframes floatLeaf {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+
+    @media (max-width: 992px) {
+      .auth-page-wrapper {
+        padding: 26px 18px 60px;
+      }
+
+      .auth-page-container {
+        max-width: 92vw;
+        grid-template-columns: 48% 52%;
+      }
+
+      .auth-banner {
+        padding: 44px 34px 38px;
+      }
+
+      .auth-form-side {
+        padding: 48px 42px;
+      }
+
+      .auth-brand-title {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .auth-page-wrapper {
+        padding: 20px 14px 46px;
+      }
+
+      .auth-breadcrumb {
+        padding: 0 4px;
+      }
+
+      .auth-page-container {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        border-radius: 22px;
+      }
+
+      .auth-banner {
+        min-height: 320px;
+        padding: 26px 24px 30px;
+      }
+
+      .auth-banner::before {
+        background-position: center bottom;
+      }
+
+      .auth-banner-top .banner-logo,
+      .auth-brand-logo {
+        width: 152px;
+      }
+
+      .auth-banner-middle {
+        margin: 18px 0 0;
+      }
+
+      .auth-brand-title {
+        font-size: 30px;
+        max-width: 330px;
+      }
+
+      .auth-brand-desc {
+        font-size: 13.5px;
+        max-width: 360px;
+      }
+
+      .auth-banner-bottom {
+        display: none;
+      }
+
+      .auth-form-side {
+        padding: 34px 22px 38px;
+      }
+
+      .auth-grid-2,
+      .auth-grid-password,
+      .social-login-row {
+        grid-template-columns: 1fr;
+      }
+
+      .auth-flex-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="lang-vi">
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-container container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <img src="images/logo/logo.png" alt="Tứ Quý Garden Logo" class="logo-img">
+      </a>
+
+      <!-- Mobile toggle menu -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Navigation links -->
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li>
+            <a href="index.html" class="nav-link">
+              <span class="lang-vi">Trang chủ</span>
+              <span class="lang-en">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="nav-link">
+              <span class="lang-vi">Về chúng tôi</span>
+              <span class="lang-en">About Us</span>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="products.html" class="nav-link dropdown-toggle">
+              <span class="lang-vi">Sản phẩm</span>
+              <span class="lang-en">Products</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropdown-chevron">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="products.html?category=all">
+                  <span class="lang-vi">Tất cả sản phẩm</span>
+                  <span class="lang-en">All Products</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Fruits">
+                  <span class="lang-vi">Trái cây tươi</span>
+                  <span class="lang-en">Fresh Fruits</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Nutritional Seeds">
+                  <span class="lang-vi">Hạt dinh dưỡng</span>
+                  <span class="lang-en">Nutritional Seeds</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Granola">
+                  <span class="lang-vi">Granola ngũ cốc</span>
+                  <span class="lang-en">Granola</span>
+                </a>
+              </li>
+              <li>
+                <a href="products.html?category=Combo Healthy">
+                  <span class="lang-vi">Combo sống khỏe</span>
+                  <span class="lang-en">Combo Healthy</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="index.html#footer-contact" class="nav-link">
+              <span class="lang-vi">Liên hệ</span>
+              <span class="lang-en">Contact</span>
+            </a>
+          </li>
+          <li>
+            <a href="nutrition.html" class="nav-link">
+              <span class="lang-vi">Dinh dưỡng cá nhân</span>
+              <span class="lang-en">Nutrition Plan</span>
+            </a>
+          </li>
+          <li>
+            <a href="traceability.html" class="nav-link">
+              <span class="lang-vi">Truy xuất nguồn gốc</span>
+              <span class="lang-en">Traceability</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right actions -->
+      <div class="header-actions">
+        <!-- Search bar -->
+        <div class="search-bar">
+          <input type="text" placeholder="Search products..." id="header-search-input">
+          <button class="search-btn" id="header-search-btn" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Language toggle button -->
+        <button class="lang-switch-btn" id="lang-toggle-btn" title="Toggle Language">
+          <span class="lang-vi">EN</span>
+          <span class="lang-en">VI</span>
+        </button>
+
+        <!-- Account -->
+        <a href="login.html" class="action-icon-btn profile-btn active" id="header-profile-btn" title="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="btn-text">
+            <span class="lang-vi" id="header-profile-txt-vi">Tài khoản</span>
+            <span class="lang-en" id="header-profile-txt-en">Account</span>
+          </span>
+        </a>
+
+        <!-- Cart -->
+        <a href="cart.html" class="action-icon-btn cart-btn" title="Cart">
+          <div class="cart-icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-badge" id="header-cart-badge" style="display:none;">0</span>
+          </div>
+          <span class="btn-text">
+            <span class="lang-vi">Giỏ hàng</span>
+            <span class="lang-en">Cart</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="auth-page-wrapper">
+    <!-- Breadcrumbs -->
+    <ul class="auth-breadcrumb">
+      <li><a href="index.html"><span class="lang-vi">Trang chủ</span><span class="lang-en">Home</span></a></li>
+      <li><span class="auth-breadcrumb-separator">/</span></li>
+      <li class="auth-breadcrumb-current"><span class="lang-vi">Tài khoản</span><span class="lang-en">Account</span></li>
+    </ul>
+
+    <div class="auth-page-container auth-card" id="auth-page-container" data-auth-mode="login">
+      <!-- Left side banner -->
+      <div class="auth-banner auth-brand-panel">
+        <div class="auth-banner-top">
+          <img src="images/logo/logo.png" alt="Tứ Quý Garden Logo" class="banner-logo auth-brand-logo">
+        </div>
+        <div class="auth-banner-middle">
+          <div class="auth-banner-copy login-copy">
+            <h2 class="auth-brand-title">
+              <span class="lang-vi">Fresh fruits seasonal<br>healthy seeds daily</span>
+              <span class="lang-en">Seasonal fruits<br>healthy daily seeds</span>
+            </h2>
+            <p class="auth-brand-desc">
+              <span class="lang-vi">Tứ Quý Garden mang đến nông sản theo mùa tươi ngon, hạt dinh dưỡng và sản phẩm lành mạnh - chăm sóc sức khỏe cho bạn và gia đình mỗi ngày.</span>
+              <span class="lang-en">Tứ Quý Garden offers fresh seasonal produce, nutritious seeds, and healthy options to care for your family's health daily.</span>
+            </p>
+          </div>
+          <div class="auth-banner-copy register-copy">
+            <h2 class="auth-brand-title">
+              <span class="lang-vi">Chào mừng bạn đến<br>với Tứ Quý Garden</span>
+              <span class="lang-en">Welcome to<br>Tứ Quý Garden</span>
+            </h2>
+            <p class="auth-brand-desc">
+              <span class="lang-vi">Tạo tài khoản để khám phá nông sản tươi theo mùa, lưu sản phẩm yêu thích và nhận ưu đãi dành riêng cho thành viên.</span>
+              <span class="lang-en">Create an account to discover fresh seasonal produce, save your favorites, and get exclusive member rewards.</span>
+            </p>
+          </div>
+        </div>
+        <div class="auth-banner-bottom">
+          <span class="auth-feature-pill">
+            <span class="lang-vi">Theo mùa</span>
+            <span class="lang-en">Seasonal</span>
+          </span>
+          <span class="auth-feature-pill">
+            <span class="lang-vi">Hữu cơ</span>
+            <span class="lang-en">Organic</span>
+          </span>
+          <span class="auth-feature-pill">
+            <span class="lang-vi">Lành mạnh</span>
+            <span class="lang-en">Healthy</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Right side forms -->
+      <div class="auth-form-side">
+        <div class="auth-tabs">
+          <div class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">
+            <span class="lang-vi">Đăng nhập</span>
+            <span class="lang-en">Log In</span>
+          </div>
+          <div class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">
+            <span class="lang-vi">Đăng ký</span>
+            <span class="lang-en">Register</span>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="auth-form-panel active" id="panel-login">
+          <h1 class="auth-form-title">
+            <span class="lang-vi">Đăng nhập</span>
+            <span class="lang-en">Log In</span>
+          </h1>
+          <p class="auth-form-subtitle">
+            <span class="lang-vi">Chào mừng bạn quay lại Tứ Quý Garden</span>
+            <span class="lang-en">Welcome back to Tứ Quý Garden</span>
+          </p>
+          <form id="auth-login-form">
+            <div class="auth-form-group">
+              <label for="login-email"><span class="lang-vi">Email</span><span class="lang-en">Email</span></label>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <input type="email" id="login-email" class="auth-input" required placeholder="example@tuquygarden.vn">
+              </div>
+            </div>
+            <div class="auth-form-group">
+              <label for="login-password"><span class="lang-vi">Mật khẩu</span><span class="lang-en">Password</span></label>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <input type="password" id="login-password" class="auth-input has-toggle" required placeholder="••••••••">
+                <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('login-password', this)" aria-label="Hiện hoặc ẩn mật khẩu">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="auth-flex-row">
+              <label class="auth-checkbox-label">
+                <input type="checkbox" id="login-remember">
+                <span class="lang-vi">Ghi nhớ đăng nhập</span>
+                <span class="lang-en">Remember me</span>
+              </label>
+              <a href="#" class="auth-forgot-link" onclick="handleForgotPassword(event)">
+                <span class="lang-vi">Quên mật khẩu?</span>
+                <span class="lang-en">Forgot password?</span>
+              </a>
+            </div>
+
+            <button type="submit" class="auth-submit-btn">
+              <span class="lang-vi">Đăng nhập</span>
+              <span class="lang-en">Log In</span>
+            </button>
+
+            <div class="auth-divider">
+              <span>
+                <span class="lang-vi">Hoặc đăng nhập với</span>
+                <span class="lang-en">Or sign in with</span>
+              </span>
+            </div>
+            <div class="social-login-row">
+              <button type="button" class="social-login-btn google-btn" onclick="window.handleGoogleLogin()">Google</button>
+              <button type="button" class="social-login-btn" onclick="showToast('Tính năng đăng nhập Facebook đang được mô phỏng.', 'info')">Facebook</button>
+            </div>
+
+            <p class="auth-bottom-prompt">
+              <span class="lang-vi">Chưa có tài khoản? <button type="button" class="auth-inline-link" onclick="switchAuthTab('register')">Đăng ký ngay</button></span>
+              <span class="lang-en">Don't have an account? <button type="button" class="auth-inline-link" onclick="switchAuthTab('register')">Register now</button></span>
+            </p>
+          </form>
+        </div>
+
+        <!-- Register Form -->
+        <div class="auth-form-panel" id="panel-register">
+          <h1 class="auth-form-title">
+            <span class="lang-vi">Đăng ký</span>
+            <span class="lang-en">Register</span>
+          </h1>
+          <p class="auth-form-subtitle">
+            <span class="lang-vi">Tạo tài khoản để nhận ưu đãi và gợi ý dinh dưỡng cá nhân</span>
+            <span class="lang-en">Create an account for exclusive deals and personalized nutrition plans</span>
+          </p>
+          <form id="auth-register-form">
+            <div class="auth-form-group">
+              <label for="register-name"><span class="lang-vi">Họ và tên</span><span class="lang-en">Full Name</span></label>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <input type="text" id="register-name" class="auth-input" required placeholder="Nguyễn Văn A">
+              </div>
+            </div>
+
+            <div class="auth-grid-2">
+              <div class="auth-form-group">
+                <label for="register-email"><span class="lang-vi">Email</span><span class="lang-en">Email</span></label>
+                <div class="auth-input-wrapper">
+                  <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  <input type="email" id="register-email" class="auth-input" required placeholder="name@domain.com">
+                </div>
+              </div>
+              <div class="auth-form-group">
+                <label for="register-phone"><span class="lang-vi">Số điện thoại</span><span class="lang-en">Phone</span></label>
+                <div class="auth-input-wrapper">
+                  <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.33 4.11 2 2 0 0 1 4.31 2h3a2 2 0 0 1 2 1.72c.13.98.35 1.95.66 2.86a2 2 0 0 1-.45 2.11L8.25 9.96a16 16 0 0 0 5.79 5.79l1.27-1.27a2 2 0 0 1 2.11-.45c.91.31 1.88.53 2.86.66A2 2 0 0 1 22 16.92z"></path></svg>
+                  <input type="tel" id="register-phone" class="auth-input" required placeholder="0912345678">
+                </div>
+              </div>
+            </div>
+
+            <div class="auth-grid-password">
+              <div class="auth-form-group">
+                <label for="register-password"><span class="lang-vi">Mật khẩu</span><span class="lang-en">Password</span></label>
+                <div class="auth-input-wrapper">
+                  <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <input type="password" id="register-password" class="auth-input has-toggle" required placeholder="••••••••">
+                  <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('register-password', this)" aria-label="Hiện hoặc ẩn mật khẩu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="auth-form-group">
+                <label for="register-goal">
+                  <span class="lang-vi">Mục tiêu sức khỏe</span>
+                  <span class="lang-en">Health Goal</span>
+                </label>
+                <div class="auth-input-wrapper">
+                  <svg class="auth-input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <select id="register-goal" class="auth-select">
+                    <option value="Eat Clean">Eat Clean</option>
+                    <option value="Tăng cơ">Tăng cơ / Gym & Fitness</option>
+                    <option value="Giảm cân">Giảm cân / Weight Loss</option>
+                    <option value="Mẹ bầu">Mẹ bầu & Bé / Mother & Baby</option>
+                    <option value="Gia đình">Sức khỏe Gia đình / Family Health</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <label class="auth-checkbox-label auth-terms-row">
+              <input type="checkbox" required>
+              <span>
+                <span class="lang-vi">Tôi đồng ý với điều khoản sử dụng và chính sách bảo mật.</span>
+                <span class="lang-en">I agree to the terms of service and privacy policy.</span>
+              </span>
+            </label>
+
+            <button type="submit" class="auth-submit-btn">
+              <span class="lang-vi">Đăng ký tài khoản</span>
+              <span class="lang-en">Create Account</span>
+            </button>
+
+            <p class="auth-bottom-prompt">
+              <span class="lang-vi">Đã có tài khoản? <button type="button" class="auth-inline-link" onclick="switchAuthTab('login')">Đăng nhập</button></span>
+              <span class="lang-en">Already have an account? <button type="button" class="auth-inline-link" onclick="switchAuthTab('login')">Log In</button></span>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="footer-contact">
+    <div class="footer-top container">
+      <div class="footer-block brand-block">
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo/logo_white.png" alt="Tứ Quý Garden Logo" class="footer-logo-img">
+        </a>
+        <p class="footer-tagline">“Fresh fruits seasonal, healthy seeds daily”</p>
+        <p class="footer-desc">
+          <span class="lang-vi">Tứ Quý Garden cam kết mang đến nông sản hữu cơ theo mùa tươi ngon, hạt dinh dưỡng chọn lọc và granola lành mạnh chăm sóc sức khỏe gia đình bạn mỗi ngày.</span>
+          <span class="lang-en">Tứ Quý Garden commits to bringing ripe seasonal organic produce, premium seeds, and clean healthy granola to nourish your family daily.</span>
+        </p>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Danh mục</span><span class="lang-en">Categories</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="products.html?category=Fruits"><span class="lang-vi">Trái cây theo mùa</span><span class="lang-en">Seasonal Fruits</span></a></li>
+          <li><a href="products.html?category=Nutritional Seeds"><span class="lang-vi">Hạt dinh dưỡng</span><span class="lang-en">Seeds</span></a></li>
+          <li><a href="products.html?category=Granola"><span class="lang-vi">Granola ngũ cốc</span><span class="lang-en">Granola</span></a></li>
+          <li><a href="products.html?category=Combo Healthy"><span class="lang-vi">Combo sống khỏe</span><span class="lang-en">Healthy Combos</span></a></li>
+          <li><a href="nutrition.html"><span class="lang-vi">Dinh dưỡng cá nhân</span><span class="lang-en">Nutrition Plan</span></a></li>
+          <li><a href="traceability.html"><span class="lang-vi">Tra cứu nguồn gốc</span><span class="lang-en">Traceability</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Hỗ trợ khách hàng</span><span class="lang-en">Customer Service</span>
+        </h3>
+        <ul class="footer-links">
+          <li><a href="about.html"><span class="lang-vi">Giới thiệu cửa hàng</span><span class="lang-en">About Store</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách đổi trả</span><span class="lang-en">Exchange & Refund</span></a></li>
+          <li><a href="about.html"><span class="lang-vi">Chính sách giao hàng</span><span class="lang-en">Shipping Policies</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-block contact-block">
+        <h3 class="footer-title">
+          <span class="lang-vi">Kết nối với chúng tôi</span><span class="lang-en">Contact Info</span>
+        </h3>
+        <ul class="contact-info-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>Hotline: <strong>1900 633 123</strong></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>Email: <a href="mailto:info@tuquygarden.vn">info@tuquygarden.vn</a></span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Address: Cai Be, Tien Giang</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p class="copyright-txt">&copy; 2026 Tứ Quý Garden. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="about.html"><span class="lang-vi">Điều khoản sử dụng</span><span class="lang-en">Terms of Use</span></a>
+          <span class="divider">|</span>
+          <a href="about.html"><span class="lang-vi">Chính sách bảo mật</span><span class="lang-en">Privacy Policy</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="data/data.js"></script>
+  <script src="services/cartService.js"></script>
+  <script src="services/authService.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

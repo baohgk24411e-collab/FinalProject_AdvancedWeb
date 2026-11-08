@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Báo Cáo Dinh Dưỡng Lâm Sàng | Tứ Quý Garden Demo</title>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #2F3E35;
+      background-color: #F4F6F4;
+      margin: 0;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      line-height: 1.5;
+    }
+    
+    /* Paper Report Container */
+    .report-paper {
+      background: white;
+      border: 1px solid #D5DDD8;
+      border-radius: 4px;
+      padding: 50px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 8px 24px rgba(47, 62, 53, 0.05);
+      position: relative;
+    }
+
+    /* Medical Header Style */
+    .report-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px double #2F6B2F;
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+    }
+    .clinic-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .clinic-logo-text h1 {
+      font-size: 20px;
+      color: #2F6B2F;
+      margin: 0 0 3px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 800;
+    }
+    .clinic-logo-text p {
+      font-size: 10px;
+      color: #5A7E64;
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .report-meta {
+      text-align: right;
+      font-size: 11.5px;
+      color: #5A7E64;
+    }
+    .report-meta strong {
+      color: #1F4D2B;
+    }
+
+    /* Title Block */
+    .report-title-block {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .report-title-block h2 {
+      font-size: 22px;
+      color: #1F4D2B;
+      margin: 0 0 6px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .report-title-block p {
+      font-size: 12.5px;
+      color: #5A7E64;
+      margin: 0;
+      font-style: italic;
+    }
+
+    /* Patient Profile Card */
+    .section-title {
+      font-size: 14px;
+      color: #2F6B2F;
+      text-transform: uppercase;
+      border-bottom: 1px solid #D5DDD8;
+      padding-bottom: 5px;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 30px;
+      background: #F8FAF8;
+      border-radius: 8px;
+      padding: 15px 20px;
+      font-size: 13px;
+      border: 1px solid #E5EFEA;
+    }
+    .profile-item {
+      display: flex;
+      justify-content: space-between;
+    }
+    .profile-item span.label {
+      color: #5A7E64;
+    }
+    .profile-item span.value {
+      font-weight: 700;
+      color: #1F4D2B;
+    }
+
+    /* BMI & Energetic metrics */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .metric-card {
+      border: 1px solid #E5EFEA;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      background: #F8FAF8;
+    }
+    .metric-card.accent {
+      background: #FFFBF0;
+      border-color: #F5C542;
+    }
+    .metric-label {
+      font-size: 11px;
+      color: #5A7E64;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .metric-val {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1F4D2B;
+    }
+    .metric-sub {
+      font-size: 10px;
+      color: #7A9E84;
+      margin-top: 3px;
+    }
+
+    /* Allergy Alert Box */
+    .allergy-box {
+      background: #FFF2F0;
+      border: 1px solid #FADBD8;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 12.5px;
+      color: #C0392B;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    /* Recipe and Table details */
+    .recipe-info {
+      font-size: 13.5px;
+      color: #5A7E64;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .recipe-name {
+      font-size: 16px;
+      color: #1F4D2B;
+      font-weight: 700;
+      margin: 15px 0 8px 0;
+    }
+
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin: 15px 0 25px 0;
+    }
+    .report-table th {
+      background: #F0F4F1;
+      border-bottom: 2px solid #D5DDD8;
+      padding: 10px;
+      text-align: left;
+      font-weight: 700;
+      color: #1F4D2B;
+    }
+    .report-table td {
+      border-bottom: 1px solid #E5EFEA;
+      padding: 10px;
+    }
+
+    /* Macro distribution bar */
+    .macro-bar-container {
+      margin: 20px 0;
+    }
+    .macro-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .macro-bar {
+      height: 12px;
+      border-radius: 6px;
+      display: flex;
+      overflow: hidden;
+      background: #E5EFEA;
+    }
+    .macro-segment {
+      height: 100%;
+    }
+
+    /* Print & Signature Area */
+    .signature-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      font-size: 12.5px;
+    }
+    .signature-box {
+      width: 200px;
+      text-align: center;
+    }
+    .signature-title {
+      font-weight: 600;
+      margin-bottom: 60px;
+      color: #5A7E64;
+    }
+    .signature-name {
+      font-weight: 700;
+      color: #1F4D2B;
+      border-top: 1px solid #D5DDD8;
+      padding-top: 5px;
+    }
+
+    .action-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 40px;
+    }
+    .btn-action {
+      font-family: inherit;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 13.5px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: #2F6B2F;
+      color: white;
+      border: none;
+      box-shadow: 0 4px 12px rgba(47, 107, 47, 0.15);
+    }
+    .btn-primary:hover {
+      background: #6FAF3A;
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #2F6B2F;
+      border: 2px solid #2F6B2F;
+    }
+    .btn-outline:hover {
+      background: #F0F4F1;
+      transform: translateY(-1px);
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .report-paper {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .action-row {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="report-paper">
+    <!-- Medical Header -->
+    <div class="report-header">
+      <div class="clinic-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2F6B2F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2c1.658 0 3 1.342 3 3 0 .762-.285 1.458-.755 1.99l3.51 3.51c.532-.47 1.228-.75 1.99-.75 1.658 0 3 1.342 3 3s-1.342 3-3 3c-.762 0-1.458-.285-1.99-.755l-3.51 3.51c.47.532.75 1.228.75 1.99 0 1.658-1.342 3-3 3s-3-1.342-3-3c0-.762.285-1.458.755-1.99l-3.51-3.51c-.532.47-1.228.75-1.99.75-1.658 0-3-1.342-3-3s1.342-3 3-3c.762 0 1.458.285 1.99.755l3.51-3.51C8.285 6.458 8 5.762 8 5c0-1.658 1.342-3 3-3z"></path>
+        </svg>
+        <div class="clinic-logo-text">
+          <h1>Tứ Quý Garden</h1>
+          <p>Clinical Nutrition Studio & Wellness Lab</p>
+        </div>
+      </div>
+      <div class="report-meta">
+        Mã hồ sơ: <strong>#PLAN-9928</strong><br>
+        Ngày lập: <strong>29/06/2026</strong><br>
+        Bác sĩ phụ trách: <strong>ThS. BS. Nguyễn Minh Đức</strong>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="report-title-block">
+      <h2>Báo Cáo Phân Tích & Kế Hoạch Dinh Dưỡng Lâm Sàng</h2>
+      <p>Chương trình cá nhân hóa năng lượng và meal-prep cải thiện chỉ số cơ thể</p>
+    </div>
+
+    <!-- Patient Profile -->
+    <div class="section-title">Thông tin bệnh nhân</div>
+    <div class="profile-grid">
+      <div class="profile-item"><span class="label">Họ và tên:</span><span class="value">Nguyễn Văn A</span></div>
+      <div class="profile-item"><span class="label">Tuổi / Giới tính:</span><span class="value">24 tuổi / Nam</span></div>
+      <div class="profile-item"><span class="label">Chiều cao / Cân nặng:</span><span class="value">175 cm / 65.0 kg</span></div>
+      <div class="profile-item"><span class="label">Mục tiêu lâm sàng:</span><span class="value">Xây dựng cơ bắp & Tăng cân nách</span></div>
+      <div class="profile-item"><span class="label">Mức hoạt động:</span><span class="value">Vận động thể thao (TDEE active)</span></div>
+      <div class="profile-item"><span class="label">Mã voucher giảm giá:</span><span class="value">TUQUYGARDEN10</span></div>
+    </div>
+
+    <!-- Energetic Metrics -->
+    <div class="section-title">Chỉ số chuyển hóa & Chỉ tiêu Calo</div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">BMR (Chuyển hóa cơ bản)</div>
+        <div class="metric-val">1,620 kcal</div>
+        <div class="metric-sub">Năng lượng duy trì sự sống</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">TDEE (Tiêu thụ hằng ngày)</div>
+        <div class="metric-val">2,500 kcal</div>
+        <div class="metric-sub">Năng lượng tiêu hao vận động</div>
+      </div>
+      <div class="metric-card accent">
+        <div class="metric-label">Calo đề xuất hàng ngày</div>
+        <div class="metric-val">2,800 kcal</div>
+        <div class="metric-sub">Dư thừa 300 kcal để xây cơ</div>
+      </div>
+    </div>
+
+    <!-- Macro Bar -->
+    <div class="macro-bar-container">
+      <div class="macro-bar-label">
+        <span>Tỷ lệ phân phối đa lượng (Macro Distribution)</span>
+        <span>Protein (20%) - Carbs (50%) - Fat (30%)</span>
+      </div>
+      <div class="macro-bar">
+        <div class="macro-segment" style="width: 20%; background: #2980B9;" title="Protein"></div>
+        <div class="macro-segment" style="width: 50%; background: #F5C542;" title="Carbs"></div>
+        <div class="macro-segment" style="width: 30%; background: #E06A55;" title="Fats"></div>
+      </div>
+    </div>
+
+    <!-- Allergy Swap Warning -->
+    <div class="allergy-box">
+      <span>⚠️</span>
+      <div>
+        <strong>Phát hiện dị ứng:</strong> Đã kích hoạt bộ lọc loại trừ thành phần **Bơ Sáp**. Hệ thống tự động thay thế nguyên liệu này bằng **Hạt điều sấy rang củi mộc** nhằm đảm bảo giữ vững tỷ lệ chất béo tốt không bão hòa đơn và hàm lượng đạm cần thiết.
+      </div>
+    </div>
+
+    <!-- Meal Prep Formula -->
+    <div class="section-title">Công thức Meal Prep / Sinh tố đề xuất</div>
+    <div class="recipe-name">Sinh Tố Chuối Hạt Điều Protein Booster (Target: 650 kcal)</div>
+    <p class="recipe-info">
+      Một ly sinh tố đậm đặc được thiết kế để uống trước hoặc sau buổi tập luyện kháng lực. Yến mạch slow-carbs, chuối giàu kali ngăn ngừa co rút cơ, kết hợp chất béo thực vật dồi dào từ hạt điều Bình Phước giúp bổ sung năng lượng, hỗ trợ cơ bắp tái tạo nhanh và phòng ngừa stress oxy hóa.
+    </p>
+
+    <!-- Ingredients Table -->
+    <h4>Danh sách giỏ nguyên liệu & Chi phí tối ưu</h4>
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th>Nguyên liệu sản phẩm (Tứ Quý)</th>
+          <th>Định lượng khuyên dùng</th>
+          <th>Giá thành</th>
+          <th>Tác dụng lâm sàng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Hạt điều Bình Phước rang củi mộc</strong></td>
+          <td>30g giã nhuyễn</td>
+          <td>129,000 đ / hộp</td>
+          <td>Chất béo lành mạnh, Magiê & Sắt hỗ trợ cơ bắp</td>
+        </tr>
+        <tr>
+          <td><strong>Chuối Laba Đà Lạt</strong></td>
+          <td>1 quả cắt khoanh</td>
+          <td>30,000 đ / kg</td>
+          <td>Carbs phức hợp giải phóng chậm, Kali phục hồi điện giải</td>
+        </tr>
+        <tr>
+          <td><strong>Mix Hạt Dinh Dưỡng 5 loại</strong></td>
+          <td>20g băm nhỏ</td>
+          <td>149,000 đ / hũ</td>
+          <td>Axit béo Omega-3 thực vật, kẽm nâng cao đề kháng</td>
+        </tr>
+        <tr style="background: #F9FDF9; font-weight:700;">
+          <td colspan="2">Cộng gộp giỏ hàng combo:</td>
+          <td>308,000 đ</td>
+          <td style="color:#5A7E64; font-weight:normal;">Tổng giá trị sản phẩm nguyên kiện</td>
+        </tr>
+        <tr style="background: #FFF8F6; font-weight:700; color: #E06A55;">
+          <td colspan="2">Áp dụng mã giảm giá TUQUYGARDEN10 (10%):</td>
+          <td>-30,800 đ</td>
+          <td style="font-weight:normal;">Ưu đãi chương trình dinh dưỡng lâm sàng</td>
+        </tr>
+        <tr style="background: #EAF7EA; font-weight:700; color: #2F6B2F; font-size: 13.5px;">
+          <td colspan="2">TỔNG CHI PHÍ COMBO:</td>
+          <td>277,200 đ</td>
+          <td>Đã thêm thành công vào giỏ hàng của bạn</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Preparation and Guidelines -->
+    <h4>Hướng dẫn chuẩn bị</h4>
+    <ol style="font-size: 13px; color: #5A7E64; line-height: 1.6; margin-bottom: 30px;">
+      <li>Cắt lát chuối laba, xếp vào khay và giữ mát ở ngăn đá trong 10-15 phút.</li>
+      <li>Cho 150ml sữa hạt không đường cùng chuối laba, 30g hạt điều rang củi vào cối xay.</li>
+      <li>Xay nhuyễn hỗn hợp ở tốc độ cao trong 45 giây cho tới khi thu được sinh tố sánh mịn.</li>
+      <li>Rót ra ly, rắc 20g hạt dinh dưỡng băm giòn lên trên bề mặt làm topping để nhai tăng cảm giác ngon miệng và tiết enzym tiêu hóa.</li>
+    </ol>
+
+    <!-- Signatures -->
+    <div class="signature-section">
+      <div class="signature-box">
+        <div class="signature-title">Bệnh nhân ký nhận</div>
+        <div style="font-style:italic; color:#aaa; margin-bottom:40px;">(Ký và ghi rõ họ tên)</div>
+        <div class="signature-name">Nguyễn Văn A</div>
+      </div>
+      
+      <div class="signature-box">
+        <div class="signature-title">Bác sĩ Dinh dưỡng duyệt</div>
+        <div style="margin-bottom: 25px;">
+          <svg width="100" height="35" viewBox="0 0 100 35" style="fill:none; stroke:#2980B9; stroke-width:2; stroke-linecap:round;">
+            <!-- Dummy signature vector path -->
+            <path d="M10 20c15-15 25 15 35-10s10 25 20-5 15-10 25 0"></path>
+          </svg>
+        </div>
+        <div class="signature-name">ThS. BS. Nguyễn Minh Đức</div>
+      </div>
+    </div>
+
+    <!-- Actions for Web Demo -->
+    <div class="action-row">
+      <a href="../nutrition.html" class="btn-action btn-outline">Quay lại Studio</a>
+      <button class="btn-action btn-primary" onclick="window.print()">In Báo Cáo / Lưu PDF</button>
+    </div>
+  </div>
+
+</body>
+</html>

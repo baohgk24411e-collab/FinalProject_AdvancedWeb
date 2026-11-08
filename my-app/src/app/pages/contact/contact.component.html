@@ -1,0 +1,158 @@
+<!-- Hero Banner -->
+  <section class="contact-hero">
+    <div class="container">
+      <span style="background-color: var(--color-yellow); color: var(--color-text-dark); padding: 6px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: inline-block; margin-bottom: 20px;">
+        <span class="lang-vi">Liên hệ với chúng tôi</span>
+        <span class="lang-en">Contact Us</span>
+      </span>
+      <h1 style="font-size: clamp(32px, 5vw, 48px); color: white; margin: 0; font-weight: 800; line-height: 1.2;">
+        <span class="lang-vi">Kết nối cùng Tứ Quý Garden</span>
+        <span class="lang-en">Connect with Tứ Quý Garden</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- Contact Layout -->
+  <div class="container">
+    <div class="contact-layout">
+      
+      <!-- Left side: Contact Info Cards -->
+      <div class="info-column">
+        <!-- Address card -->
+        <div class="contact-card-premium">
+          <div class="contact-info-item">
+            <div class="contact-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div class="contact-info-content">
+              <h4>
+                <span class="lang-vi">Địa chỉ cửa hàng</span>
+                <span class="lang-en">Store Address</span>
+              </h4>
+              <p>
+                <span class="lang-vi">Cái Bè, Tiền Giang, Việt Nam</span>
+                <span class="lang-en">Cai Be, Tien Giang, Vietnam</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone card -->
+        <div class="contact-card-premium">
+          <div class="contact-info-item">
+            <div class="contact-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            </div>
+            <div class="contact-info-content">
+              <h4>
+                <span class="lang-vi">Đường dây nóng</span>
+                <span class="lang-en">Hotline</span>
+              </h4>
+              <p>
+                <a href="tel:1900633123">1900 633 123</a><br>
+                <span style="font-size: 13px; color: #999;">
+                  <span class="lang-vi">Hỗ trợ từ 8:00 - 21:00 hàng ngày</span>
+                  <span class="lang-en">Support 8:00 AM - 9:00 PM daily</span>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email card -->
+        <div class="contact-card-premium">
+          <div class="contact-info-item">
+            <div class="contact-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div class="contact-info-content">
+              <h4>
+                <span class="lang-vi">Email liên hệ</span>
+                <span class="lang-en">Email Support</span>
+              </h4>
+              <p>
+                <a href="mailto:info@tuquygarden.vn">info@tuquygarden.vn</a><br>
+                <span style="font-size: 13px; color: #999;">
+                  <span class="lang-vi">Phản hồi trong vòng 24 giờ làm việc</span>
+                  <span class="lang-en">Response within 24 working hours</span>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: Contact Form -->
+      <div class="contact-form-card">
+        <div id="contact-form-container">
+          <h3 style="margin-top:0; margin-bottom:10px; font-size:22px; font-weight:800; color:var(--color-text-dark);">
+            <span class="lang-vi">Gửi tin nhắn cho chúng tôi</span>
+            <span class="lang-en">Send Us a Message</span>
+          </h3>
+          <p style="color:var(--color-text-light); font-size:14px; margin-bottom:30px;">
+            <span class="lang-vi">Bạn có thắc mắc hay đóng góp ý kiến? Hãy gửi thông tin và Tứ Quý Garden sẽ liên lạc lại ngay.</span>
+            <span class="lang-en">Any questions or feedback? Fill out the form below and we will get back to you shortly.</span>
+          </p>
+          
+          <form id="contact-form" onsubmit="handleContactSubmit(event)">
+            <div class="form-group-premium">
+              <label for="contact-name">
+                <span class="lang-vi">Họ và tên *</span>
+                <span class="lang-en">Full Name *</span>
+              </label>
+              <input type="text" id="contact-name" class="form-control-premium" required placeholder="Nguyen Van A">
+            </div>
+
+            <div class="form-group-premium">
+              <label for="contact-email">
+                <span class="lang-vi">Địa chỉ Email *</span>
+                <span class="lang-en">Email Address *</span>
+              </label>
+              <input type="email" id="contact-email" class="form-control-premium" required placeholder="email@example.com">
+            </div>
+
+            <div class="form-group-premium">
+              <label for="contact-phone">
+                <span class="lang-vi">Số điện thoại *</span>
+                <span class="lang-en">Phone Number *</span>
+              </label>
+              <input type="tel" id="contact-phone" class="form-control-premium" required placeholder="0901234567">
+            </div>
+
+            <div class="form-group-premium">
+              <label for="contact-message">
+                <span class="lang-vi">Nội dung tin nhắn *</span>
+                <span class="lang-en">Message *</span>
+              </label>
+              <textarea id="contact-message" class="form-control-premium" rows="5" required placeholder="..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn-premium">
+              <span class="lang-vi">Gửi thông tin liên hệ</span>
+              <span class="lang-en">Send Message</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Success Message -->
+        <div id="contact-success" class="success-overlay-premium">
+          <div class="success-icon-premium">✓</div>
+          <h3 style="margin-bottom:12px; font-weight:800; color:var(--color-text-dark);">
+            <span class="lang-vi">Gửi tin nhắn thành công!</span>
+            <span class="lang-en">Message Sent Successfully!</span>
+          </h3>
+          <p style="color:var(--color-text-light); line-height:1.6; font-size:15px; margin-bottom:25px;">
+            <span class="lang-vi">Cảm ơn bạn đã liên hệ. Đội ngũ chăm sóc khách hàng của Tứ Quý Garden sẽ phản hồi bạn trong thời gian sớm nhất.</span>
+            <span class="lang-en">Thank you for reaching out. The Tứ Quý Garden customer support team will contact you shortly.</span>
+          </p>
+          <button class="btn btn-primary" onclick="resetContactForm()" style="padding: 10px 24px;">
+            <span class="lang-vi">Gửi thêm tin nhắn</span>
+            <span class="lang-en">Send Another Message</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->

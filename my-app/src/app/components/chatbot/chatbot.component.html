@@ -1,0 +1,69 @@
+<!-- Floating Chatbot Launcher Button -->
+<div class="chatbot-floating-wrapper">
+  <button class="chatbot-toggle-btn" (click)="toggleChat()" aria-label="Hỗ trợ trực tuyến">
+    <span class="bot-badge-icon" *ngIf="!isOpen">🌱</span>
+    <span class="bot-close-icon" *ngIf="isOpen">&times;</span>
+  </button>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot-window" [class.active]="isOpen">
+    <div class="chatbot-header">
+      <div class="chatbot-brand">
+        <div class="chatbot-avatar">🍃</div>
+        <div class="chatbot-title-box">
+          <h4>Tứ Quý Garden AI</h4>
+          <span class="bot-status-text">
+            <span class="status-dot"></span>
+            <span class="lang-vi">Trực tuyến</span>
+            <span class="lang-en">Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="chatbot-header-actions">
+        <span class="weather-pill" *ngIf="weatherInfo" [title]="weatherInfo.desc">
+          {{ weatherInfo.icon }} {{ weatherInfo.temp }}°C
+        </span>
+        <button class="chatbot-minimize-btn" (click)="toggleChat()">&minus;</button>
+      </div>
+    </div>
+
+    <div class="chatbot-body">
+      <!-- Chat messages -->
+      <div class="chat-message-list">
+        <div *ngFor="let msg of messages" class="chat-message" [class.bot]="msg.sender === 'bot'" [class.user]="msg.sender === 'user'">
+          <div class="msg-bubble">
+            {{ msg.text }}
+          </div>
+          <span class="msg-time">{{ msg.time }}</span>
+        </div>
+      </div>
+
+      <!-- Quick reply chips -->
+      <div class="quick-chips-wrapper">
+        <ng-container *ngIf="langService.currentLang === 'vi'">
+          <button *ngFor="let chip of quickChipsVi" class="chip-btn" (click)="sendChip(chip)">
+            {{ chip }}
+          </button>
+        </ng-container>
+        <ng-container *ngIf="langService.currentLang === 'en'">
+          <button *ngFor="let chip of quickChipsEn" class="chip-btn" (click)="sendChip(chip)">
+            {{ chip }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="chatbot-footer">
+      <form (ngSubmit)="onSend()" class="chat-input-form">
+        <input type="text" [(ngModel)]="inputText" name="chatInput" placeholder="Nhập tin nhắn..." autocomplete="off">
+        <button type="submit" class="chat-send-btn" [disabled]="!inputText.trim()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+

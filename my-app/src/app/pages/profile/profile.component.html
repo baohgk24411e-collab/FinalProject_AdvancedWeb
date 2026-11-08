@@ -1,0 +1,347 @@
+<!-- CONTENT -->
+  <div class="container">
+    <!-- Breadcrumbs -->
+    <ul class="breadcrumb" style="display:flex; list-style:none; gap:10px; font-size:14px; margin-top: 20px; padding:0;">
+      <li><a routerLink="/" style="color:var(--color-text-light);"><span class="lang-vi">Trang chủ</span><span class="lang-en">Home</span></a></li>
+      <li><span style="color:var(--color-text-light);">/</span></li>
+      <li style="color:var(--color-primary); font-weight:600;"><span class="lang-vi">Trang cá nhân</span><span class="lang-en">My Profile</span></li>
+    </ul>
+
+    <div class="profile-layout-grid">
+      <!-- Sidebar -->
+      <div class="profile-sidebar">
+        <div class="profile-avatar-wrapper">
+          <div class="profile-avatar-circle" id="profile-avatar-char">L</div>
+          <div class="avatar-hover-overlay" aria-hidden="true"></div>
+          <button type="button" class="avatar-camera-btn avatar-upload-btn" id="btn-avatar-camera" title="Đổi ảnh đại diện" onclick="triggerAvatarUpload()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          </button>
+          <input type="file" id="avatar-upload-input" accept="image/*" hidden onchange="handleAvatarUpload(event)">
+          <button type="button" class="avatar-remove-btn" id="avatar-remove-btn" onclick="removeAvatar(event)" title="Xóa ảnh đại diện" aria-label="Remove Avatar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
+          </button>
+        </div>
+        <h3 class="profile-sidebar-name" id="profile-sidebar-name">Linh Ngô</h3>
+        <p class="profile-sidebar-email" id="profile-sidebar-email">ntthaolinhcv@gmail.com</p>
+
+        <div class="loyalty-badge-wrapper">
+          <span class="loyalty-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-gold); margin-right: 4px;">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            Loyal Customer
+          </span>
+        </div>
+
+        <!-- Thẻ điểm thưởng -->
+        <div class="reward-points-card" onclick="openRewardModal()" title="View reward points details">
+          <div class="reward-points-header">
+            <span>Current Reward Points</span>
+            <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+          <div class="reward-points-value">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="gold-crown-icon">
+              <path d="M2 4l3 6 7-7 7 7 3-6v16H2V4zm18 13H4v1H20v-1z"/>
+            </svg>
+            <span>1,250 points</span>
+          </div>
+          <div class="reward-points-progress">
+            <div class="progress-bar-container">
+              <div class="progress-bar-fill" style="width: 62.5%;"></div>
+            </div>
+            <p class="progress-text">Earn 750 points more to reach Gold status</p>
+          </div>
+        </div>
+
+        <ul class="profile-menu">
+          <li class="profile-menu-item active" id="menu-tab-info" onclick="switchProfileTab('info')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span class="lang-vi">Thông tin cá nhân</span><span class="lang-en">Profile Info</span>
+          </li>
+          <li class="profile-menu-item" id="menu-tab-orders" onclick="switchProfileTab('orders')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <span class="lang-vi">Lịch sử đơn hàng</span><span class="lang-en">Order History</span>
+          </li>
+          <li class="profile-menu-item" id="menu-tab-wishlist" onclick="switchProfileTab('wishlist')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span class="lang-vi">Sản phẩm yêu thích</span><span class="lang-en">My Wishlist</span>
+          </li>
+          <li class="profile-menu-item logout-item" onclick="handleLogoutClick()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            <span class="lang-vi">Đăng xuất</span><span class="lang-en">Log Out</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Panel content -->
+      <div class="profile-content-card">
+        
+        <!-- Panel 1: Profile Info -->
+        <div class="profile-tab-panel active" id="panel-info">
+          <div class="info-tab-layout">
+            
+            <!-- Card chính: Thông tin tài khoản -->
+            <div class="info-card main-info-card">
+              <div class="info-card-header">
+                <div>
+                  <h3 class="info-card-title">Account Information</h3>
+                  <p class="info-card-subtitle">Manage your personal details and wellness goals.</p>
+                </div>
+                <button type="button" class="btn-edit-profile" id="btn-edit-toggle" onclick="toggleEditMode()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                  <span>Edit</span>
+                </button>
+              </div>
+
+              <form id="profile-edit-form">
+                <div class="profile-form-grid">
+                  <!-- Họ và tên -->
+                  <div class="profile-field-group">
+                    <label class="field-label">Full Name</label>
+                    <div class="field-input-wrapper">
+                      <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                      <input type="text" id="profile-name" class="profile-input" required disabled value="Linh Ngô">
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="profile-field-group">
+                    <label class="field-label">Email</label>
+                    <div class="field-input-wrapper" id="email-field-wrapper">
+                      <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                      <input type="email" id="profile-email" class="profile-input" disabled value="ntthaolinhcv@gmail.com">
+                    </div>
+                    <span class="email-helper-text" id="email-helper-text">🔐 Changing email requires OTP verification</span>
+                  </div>
+
+                  <!-- Số điện thoại -->
+                  <div class="profile-field-group">
+                    <label class="field-label">Phone Number</label>
+                    <div class="field-input-wrapper">
+                      <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                      <input type="tel" id="profile-phone" class="profile-input" required disabled value="0911181438">
+                    </div>
+                  </div>
+
+                  <!-- Mục tiêu sức khỏe -->
+                  <div class="profile-field-group">
+                    <label class="field-label">Health Goal</label>
+                    <div class="field-input-wrapper">
+                      <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                      <input type="text" id="profile-goal-text" class="profile-input" disabled value="Eat Clean">
+                      <select id="profile-goal" class="profile-select-hidden" style="display:none;">
+                        <option value="Eat Clean">Eat Clean</option>
+                        <option value="Tăng cơ">Gym / Muscle Gain</option>
+                        <option value="Giảm cân">Weight Loss</option>
+                        <option value="Mẹ bầu">Mother & Baby</option>
+                        <option value="Gia đình">Family Health</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-actions-edit" id="form-edit-actions" style="display:none;">
+                  <button type="button" class="btn-cancel-edit" onclick="cancelEditMode()">Cancel</button>
+                  <button type="submit" class="btn-save-edit">Save Changes</button>
+                </div>
+              </form>
+
+              <div class="info-card-footer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary); margin-right: 8px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span>Your details are secure and only used to personalize your experience.</span>
+              </div>
+            </div>
+
+            <!-- Card phụ: Hồ sơ sức khỏe -->
+            <div class="info-card health-profile-card">
+              <div class="health-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary); margin-right: 8px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <h4 class="health-title">Wellness Profile</h4>
+              </div>
+              
+              <div class="health-section">
+                <h5 class="health-section-title">Current Goal</h5>
+                <div class="health-goal-badge-wrapper">
+                  <span class="health-goal-badge" id="health-goal-badge-display">Eat Clean</span>
+                </div>
+              </div>
+
+              <div class="health-divider"></div>
+
+              <div class="health-section">
+                <h5 class="health-section-title">Priorities</h5>
+                <p class="health-text">Low sugar, high fiber, organic fresh fruits</p>
+              </div>
+
+              <div class="health-divider"></div>
+
+              <div class="health-section">
+                <h5 class="health-section-title">Recommendations for You</h5>
+                <div class="health-suggestions">
+                  <span class="suggestion-tag">Combo Eat Clean</span>
+                  <span class="suggestion-tag">Seasonal Fruit Box</span>
+                </div>
+              </div>
+
+              <div class="health-divider"></div>
+
+              <a routerLink="/nutrition" class="health-update-link">
+                <span>Update Goals</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Panel 2: Order History -->
+        <div class="profile-tab-panel" id="panel-orders" style="display:none;">
+          <div class="orders-card">
+            <div class="orders-card-header">
+              <div>
+                <h3 class="info-card-title">
+                  <span class="lang-vi">Lịch sử đơn hàng</span>
+                  <span class="lang-en">Order History</span>
+                </h3>
+                <p class="info-card-subtitle">
+                  <span class="lang-vi">Theo dõi trạng thái và quản lý lịch sử đơn hàng của bạn.</span>
+                  <span class="lang-en">Track status and manage your order history.</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Filter chips + Search -->
+            <div class="order-filter-chips">
+              <button class="filter-chip active" id="chip-filter-All" onclick="filterOrdersByStatus('Tất cả')">
+                <span class="lang-vi">Tất cả</span><span class="lang-en">All</span>
+              </button>
+              <button class="filter-chip" id="chip-filter-Pending" onclick="filterOrdersByStatus('Chờ xác nhận')">
+                <span class="lang-vi">Chờ xác nhận</span><span class="lang-en">Pending</span>
+              </button>
+              <button class="filter-chip" id="chip-filter-Shipping" onclick="filterOrdersByStatus('Đang giao')">
+                <span class="lang-vi">Đang giao</span><span class="lang-en">Shipping</span>
+              </button>
+              <button class="filter-chip" id="chip-filter-Completed" onclick="filterOrdersByStatus('Hoàn thành')">
+                <span class="lang-vi">Hoàn thành</span><span class="lang-en">Completed</span>
+              </button>
+              <button class="filter-chip" id="chip-filter-Cancelled" onclick="filterOrdersByStatus('Đã hủy')">
+                <span class="lang-vi">Đã hủy</span><span class="lang-en">Cancelled</span>
+              </button>
+            </div>
+
+            <!-- Search bar -->
+            <div class="order-search-bar">
+              <div class="order-search-input-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input
+                  type="text"
+                  id="order-search-input"
+                  class="order-search-input"
+                  placeholder="Search by product name..."
+                  oninput="handleOrderSearch(this.value)"
+                  autocomplete="off"
+                />
+              </div>
+              <button class="btn-clear-search" id="btn-clear-search" onclick="clearOrderSearch()" title="Clear Search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+
+            <!-- Summary cards -->
+            <div class="order-summary-cards">
+              <div class="summary-card">
+                <div class="summary-icon-wrapper blue-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                </div>
+                <div class="summary-info">
+                  <span class="summary-label">
+                    <span class="lang-vi">Tổng đơn hàng</span>
+                    <span class="lang-en">Total Orders</span>
+                  </span>
+                  <span class="summary-value" id="summary-total-count">0</span>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-icon-wrapper orange-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div class="summary-info">
+                  <span class="summary-label">
+                    <span class="lang-vi">Chờ xác nhận</span>
+                    <span class="lang-en">Pending</span>
+                  </span>
+                  <span class="summary-value" id="summary-pending-count">0</span>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-icon-wrapper purple-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+                <div class="summary-info">
+                  <span class="summary-label">
+                    <span class="lang-vi">Đang giao</span>
+                    <span class="lang-en">Shipping</span>
+                  </span>
+                  <span class="summary-value" id="summary-shipping-count">0</span>
+                </div>
+              </div>
+
+              <div class="summary-card">
+                <div class="summary-icon-wrapper green-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div class="summary-info">
+                  <span class="summary-label">
+                    <span class="lang-vi">Hoàn thành</span>
+                    <span class="lang-en">Completed</span>
+                  </span>
+                  <span class="summary-value" id="summary-completed-count">0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic list container -->
+            <div class="order-history-list" id="order-history-container">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Wishlist -->
+        <div class="profile-tab-panel" id="panel-wishlist" style="display:none;">
+          <div class="wishlist-card">
+            <div class="wishlist-card-header">
+              <div>
+                <h3 class="info-card-title">Wishlist</h3>
+                <p class="info-card-subtitle">Save products you love for easy shopping later.</p>
+              </div>
+              
+              <div class="wishlist-actions-bar">
+                <span class="wishlist-count-badge" id="wishlist-count-badge">0 products in wishlist</span>
+                
+                <div class="wishlist-sort-wrapper">
+                  <select id="wishlist-sort-select" class="wishlist-sort-select" onchange="sortWishlistItems()">
+                    <option value="newest">Sort: Recently Added</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wishlist items container -->
+            <div class="profile-wishlist-grid" id="wishlist-items-container">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
