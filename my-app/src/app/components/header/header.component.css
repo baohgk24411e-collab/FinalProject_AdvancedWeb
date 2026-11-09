@@ -115,3 +115,24 @@ body.lang-vi .lang-en {
   background-color: #f7fbf0;
   color: var(--color-primary, #075f2a) !important;
 }
+
+/* Give desktop links and actions more room without widening the mobile menu. */
+@media (min-width: 1280px) {
+  .header-container {
+    min-height: 96px;
+    gap: 28px;
+  }
+
+  .nav-list {
+    gap: clamp(20px, 2vw, 32px) !important;
+  }
+
+  .header-actions {
+    gap: 20px !important;
+  }
+
+  .search-bar input,
+  .search-bar input:focus {
+    width: 150px !important;
+  }
+}

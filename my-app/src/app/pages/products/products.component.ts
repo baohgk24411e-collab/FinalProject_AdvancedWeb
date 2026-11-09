@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   async load() {
     this.loading = true; this.error = '';
     try { this.products = await firstValueFrom(this.service.getProducts()); (window as any).MOCK_PRODUCTS = this.products; this.filter(); }
-    catch(e: any) { this.error = e.message; }
+    catch { this.error = 'Unable to load products. Please try again.'; }
     finally { this.loading = false; this.cdr?.markForCheck(); }
   }
   change(name: string, value: string, checked = true) {
@@ -34,7 +34,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     else this.state[name] = value;
     this.filter(); this.syncUrl();
   }
-  reset() { this.state = { search: '', season: 'all', priceRange: 'all', sort: 'newest', healthGoal: [], productCategory: [], promo: [] }; this.filter(); this.syncUrl(); }
+  get hasActiveFilters(): boolean {
+    return !!this.state.search.trim() || this.state.season !== 'all' || this.state.priceRange !== 'all'
+      || ['healthGoal', 'productCategory', 'promo'].some(key => this.state[key].length > 0);
+  }
+  reset() { this.state = { search: '', season: 'all', priceRange: 'all', sort: this.state.sort, healthGoal: [], productCategory: [], promo: [] }; this.filter(); this.syncUrl(); }
   syncUrl() {
     this.router.navigate([], { relativeTo: this.route, queryParams: {
       search: this.state.search || null, season: this.state.season === 'all' ? null : this.state.season,

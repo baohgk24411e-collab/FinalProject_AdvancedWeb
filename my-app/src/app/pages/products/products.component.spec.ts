@@ -29,11 +29,20 @@ describe('Angular catalog', () => {
     const fixture = TestBed.createComponent(ProductsComponent);
     fixture.detectChanges(); await fixture.whenStable(); fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('app-product-card').length).toBe(3);
+    expect(fixture.nativeElement.querySelector('input[value="all"]').checked).toBe(true);
+    expect(fixture.nativeElement.querySelector('#active-filters-bar')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#sidebar-clear-filters')).toBeNull();
     const radio = fixture.nativeElement.querySelector('input[name="season"][value="Mùa hè"]');
     radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true }));
     await fixture.whenStable(); fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('app-product-card').length).toBe(1);
     expect(fixture.nativeElement.querySelector('#product-count').textContent.trim()).toBe('1');
+    const clear = fixture.nativeElement.querySelector('#active-filters-bar button');
+    expect(clear.textContent.trim()).toBe('Clear filters');
+    clear.click(); await fixture.whenStable(); fixture.detectChanges();
+    expect(fixture.nativeElement.querySelectorAll('app-product-card').length).toBe(3);
+    expect(fixture.nativeElement.querySelector('#active-filters-bar')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#reset-filters-btn')).toBeNull();
     fixture.destroy(); TestBed.resetTestingModule();
   });
   it('combines season/category/price, sorts and resets', async () => {
@@ -51,8 +60,22 @@ describe('Angular catalog', () => {
     params.next(convertToParamMap({ search: 'Hạt' })); expect(c.result.map(p => p.id)).toEqual([3]);
     c.ngOnDestroy();
   });
+  it('counts every filter but excludes sorting and clears filters while preserving sort', () => {
+    const { component: c, params } = setup(); c.ngOnInit();
+    params.next(convertToParamMap({ sort: 'price-asc' }));
+    expect(c.hasActiveFilters).toBe(false);
+    for (const [key, value] of Object.entries({ search: 'mango', season: 'Mùa hè', priceRange: 'under-50', healthGoal: 'Eat Clean', productCategory: 'Fruits', promo: 'sale' })) {
+      c.change(key, value); expect(c.hasActiveFilters).toBe(true);
+      c.reset(); expect(c.hasActiveFilters).toBe(false);
+      expect(c.state.sort).toBe('price-asc');
+    }
+    params.next(convertToParamMap({ season: 'Mùa hè' }));
+    expect(c.hasActiveFilters).toBe(true);
+    params.next(convertToParamMap({})); expect(c.hasActiveFilters).toBe(false);
+    c.ngOnDestroy();
+  });
   it('shows API failure instead of silently replacing it with mock success', async () => {
     const { component: c } = setup({ getProducts: () => throwError(() => new Error('offline')) });
-    await c.load(); expect(c.error).toBe('offline'); expect(c.loading).toBe(false); expect(c.result).toEqual([]);
+    await c.load(); expect(c.error).toBe('Unable to load products. Please try again.'); expect(c.loading).toBe(false); expect(c.result).toEqual([]);
   });
 });

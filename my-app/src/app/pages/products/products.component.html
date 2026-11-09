@@ -41,7 +41,7 @@
       <aside class="shop-sidebar" id="shop-sidebar" [class.open]="sidebarOpen">
         <div class="sidebar-header">
           <h3>Product Filters</h3>
-          <button type="button" class="clear-filters-link" id="sidebar-clear-filters" (click)="reset()">Clear filters</button>
+          <button type="button" *ngIf="hasActiveFilters" class="clear-filters-link" id="sidebar-clear-filters" (click)="reset()">Clear filters</button>
           <button class="close-sidebar-btn" id="close-sidebar-btn" (click)="sidebarOpen=false">&times;</button>
         </div>
 
@@ -235,8 +235,8 @@
           </ul>
         </div>
 
-        <button id="reset-filters-btn" (click)="reset()" class="btn btn-outline btn-block btn-sm">
-          Reset Filters
+        <button *ngIf="hasActiveFilters" id="reset-filters-btn" (click)="reset()" class="btn btn-outline btn-block btn-sm">
+          Clear filters
         </button>
       </aside>
 
@@ -255,10 +255,10 @@
 
           <div class="toolbar-right">
             <div class="view-toggle-group" id="view-toggle-group">
-              <button type="button" class="view-toggle-btn active" data-view="grid" (click)="view='grid'" [class.active]="view === 'grid'" title="Dạng lưới" aria-label="Grid view">
+              <button type="button" class="view-toggle-btn active" data-view="grid" (click)="view='grid'" [class.active]="view === 'grid'" title="Grid view" aria-label="Grid view">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
               </button>
-              <button type="button" class="view-toggle-btn" data-view="list" (click)="view='list'" [class.active]="view === 'list'" title="Dạng danh sách" aria-label="List view">
+              <button type="button" class="view-toggle-btn" data-view="list" (click)="view='list'" [class.active]="view === 'list'" title="List view" aria-label="List view">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
               </button>
             </div>
@@ -272,11 +272,11 @@
           </div>
         </div>
 
-        <div id="active-filters-bar" class="active-filters-bar"><button class="btn btn-outline btn-sm" (click)="reset()">Xóa bộ lọc / Clear filters</button></div>
-<p *ngIf="loading" role="status">Đang tải sản phẩm…</p><p *ngIf="error" role="alert">{{ error }} <button class="btn btn-outline" (click)="load()">Thử lại</button></p>
+        <div *ngIf="hasActiveFilters" id="active-filters-bar" class="active-filters-bar"><button class="btn btn-outline btn-sm" (click)="reset()">Clear filters</button></div>
+<p *ngIf="loading" role="status">Loading products…</p><p *ngIf="error" role="alert">{{ error }} <button class="btn btn-outline" (click)="load()">Try again</button></p>
 
         <div id="search-badge" [style.display]="state.search ? 'flex' : 'none'" class="active-search-indicator">
-          <span>Search results for: "<strong><span id="search-keyword-vi">{{ state.search }}</span><span id="search-keyword-en">{{ state.search }}</span></strong>"</span>
+          <span>Search results for: "<strong>{{ state.search }}</strong>"</span>
           <button id="clear-search-btn" (click)="change('search', '')">&times;</button>
         </div>
 
@@ -288,7 +288,7 @@
           <div class="empty-icon-circle">🔎</div>
           <h3>No products found</h3>
           <p>We could not find any products matching your filters. Please try again or reset filters.</p>
-          <button id="reset-empty-btn" (click)="reset()" class="btn btn-primary">Show all products</button>
+          <button *ngIf="hasActiveFilters" id="reset-empty-btn" (click)="reset()" class="btn btn-primary">Show all products</button>
         </div>
       </section>
     </div>
