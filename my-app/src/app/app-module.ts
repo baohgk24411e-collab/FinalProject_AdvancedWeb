@@ -35,11 +35,9 @@ import { AdminOrdersComponent } from './pages/admin/admin-orders/admin-orders.co
     App,
     HeaderComponent,
     FooterComponent,
-    ProductCardComponent,
     ChatbotComponent,
     HomeComponent,
     AboutComponent,
-    ProductsComponent,
     ProductDetailComponent,
     CartComponent,
     CheckoutComponent,
@@ -49,10 +47,10 @@ import { AdminOrdersComponent } from './pages/admin/admin-orders/admin-orders.co
     TraceabilityComponent,
     ContactComponent,
     AdminDashboardComponent,
-    AdminProductsComponent,
     AdminOrdersComponent
   ],
   imports: [
+    ProductsComponent, AdminProductsComponent, ProductCardComponent,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

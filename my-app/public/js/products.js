@@ -11,20 +11,8 @@ window.getUrlParam = getUrlParam;
 
 window.initProductsCatalogPage = async function() {
   const grid = document.getElementById("products-catalog-grid");
-  if (!grid) return;
-  if (window.showProductSkeleton) window.showProductSkeleton(grid, 12);
-
-  try {
-    const res = await fetch('/api/products');
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) {
-        window.MOCK_PRODUCTS = data;
-      }
-    }
-  } catch (e) {
-    console.warn("Could not fetch products from API:", e);
-  }
+  if (!grid || grid.dataset.catalogInitialized) return;
+  grid.dataset.catalogInitialized = 'true';
 
   const healthGoalParam = getUrlParam("healthGoal") || "";
   const promoParam = getUrlParam("promo") || "";
@@ -49,17 +37,38 @@ window.initProductsCatalogPage = async function() {
   updateFilterCounts();
   applyViewMode(state);
 
-  window.setTimeout(() => {
+  filterAndRender(state);
+  renderActiveFilterChips(state);
+  bindFilterEvents(state);
+
+  // Keep filters usable during a slow connection; refresh using the current
+  // selection once the server responds. An empty array is valid server data.
+  const status = document.createElement('p');
+  status.setAttribute('role', 'status');
+  status.textContent = 'Đang tải dữ liệu / Loading products…';
+  grid.before(status);
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch('/api/products', { signal: controller.signal });
+    if (!res.ok) throw new Error(`Products API: ${res.status}`);
+    const data = await res.json();
+    if (!Array.isArray(data)) throw new Error('Invalid products response');
+    if (!grid.isConnected) return;
+    window.MOCK_PRODUCTS = data;
+    updateFilterCounts();
     filterAndRender(state);
     renderActiveFilterChips(state);
-  }, 100);
-
-  bindFilterEvents(state);
+    status.remove();
+  } catch (e) {
+    console.warn('Could not fetch products from API:', e);
+    status.textContent = 'Không tải được dữ liệu mới. Đang hiển thị bản có sẵn / Offline catalog — data may be outdated.';
+  } finally {
+    window.clearTimeout(timeout);
+  }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  window.initProductsCatalogPage();
-});
+
 
 function applyViewMode(state) {
   const grid = document.getElementById("products-catalog-grid");
@@ -219,15 +228,13 @@ function updateFilterCounts() {
 }
 
 function filterAndRender(state) {
-  let result = [...window.MOCK_PRODUCTS];
+  let result = [...(window.MOCK_PRODUCTS || [])];
 
   if (state.search) {
     const q = state.search.toLowerCase().trim();
     result = result.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      p.category.toLowerCase().includes(q) ||
-      p.region.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q)
+      [p.name, p.nameEn, p.category, p.region, p.description]
+        .some(value => String(value ?? '').toLowerCase().includes(q))
     );
   }
 

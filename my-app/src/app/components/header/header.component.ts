@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CartService } from '../../services/cart.service';
@@ -23,16 +23,19 @@ export class HeaderComponent implements OnInit {
     public authService: AuthService,
     public cartService: CartService,
     public langService: LanguageService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
+      this.cdr.markForCheck();
     });
 
     this.cartService.cartItems$.subscribe(() => {
       this.cartCount = this.cartService.getCartCount();
+      this.cdr.markForCheck();
     });
   }
 
@@ -64,8 +67,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  logout(): void {
-    this.authService.logout();
+  async logout(): Promise<void> {
+    const result = await this.authService.logout();
+    if (!result.success) { alert(result.message); return; }
     this.userMenuOpen = false;
     this.router.navigate(['/']);
   }

@@ -1,6 +1,7 @@
 // js/login.js
 
-window.initLoginPage = function() {
+window.initLoginPage = async function() {
+  await window.authReady;
   // Check if user is already logged in, redirect them
   if (window.AuthService) {
     const currentUser = window.AuthService.getCurrentUser();
@@ -71,7 +72,7 @@ window.togglePasswordVisibility = function(inputId, button) {
 };
 
 // Handle Login submit
-function handleLoginSubmit(e) {
+async function handleLoginSubmit(e) {
   e.preventDefault();
 
   const email = document.getElementById("login-email").value.trim();
@@ -80,7 +81,7 @@ function handleLoginSubmit(e) {
 
   if (!window.AuthService) return;
 
-  const result = window.AuthService.login(email, password, remember);
+  const result = await window.AuthService.login(email, password, remember);
 
   if (result.success) {
     window.showToast(result.message, "success");
@@ -104,7 +105,7 @@ function handleLoginSubmit(e) {
 }
 
 // Handle Register submit
-function handleRegisterSubmit(e) {
+async function handleRegisterSubmit(e) {
   e.preventDefault();
 
   const name = document.getElementById("register-name").value.trim();
@@ -115,7 +116,7 @@ function handleRegisterSubmit(e) {
 
   if (!window.AuthService) return;
 
-  const result = window.AuthService.register(name, email, phone, password, goal);
+  const result = await window.AuthService.register(name, email, phone, password, goal);
 
   if (result.success) {
     window.showToast(result.message, "success");
@@ -136,65 +137,8 @@ function handleRegisterSubmit(e) {
 // Forgot Password Helper
 window.handleForgotPassword = function(e) {
   e.preventDefault();
-  
-  const isEn = document.body.classList.contains("lang-en");
-  const msgVi = "Hệ thống đã gửi liên kết khôi phục mật khẩu vào Email của bạn (Mô phỏng). Vui lòng kiểm tra hộp thư.";
-  const msgEn = "We have sent a password reset link to your email (Mockup). Please check your inbox.";
-  
-  window.showToast(isEn ? msgEn : msgVi, "success");
+  window.showToast('Khôi phục qua email chưa được cấu hình. Vui lòng liên hệ quản trị viên.', 'info');
 };
-
 window.handleGoogleLogin = function() {
-  try {
-    if (typeof google === "undefined" || !google.accounts || !google.accounts.oauth2) {
-      window.showToast("Google Login SDK is loading, please wait...", "info");
-      return;
-    }
-    
-    // Use user's real Google Client ID as default, allow localStorage override if needed
-    const clientId = localStorage.getItem("tqg_google_client_id") || "1011167322512-od2uphf25qg5bcbd909qekukrkb80veb.apps.googleusercontent.com";
-    
-    const client = google.accounts.oauth2.initTokenClient({
-      client_id: clientId,
-      scope: "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
-      callback: (tokenResponse) => {
-        if (tokenResponse && tokenResponse.access_token) {
-          window.showToast("Google account authorized! Retrieving profile...", "info");
-          
-          fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
-            headers: { Authorization: `Bearer ${tokenResponse.access_token}` }
-          })
-          .then(res => {
-            if (!res.ok) throw new Error("Failed to fetch profile");
-            return res.json();
-          })
-          .then(userInfo => {
-            if (!window.AuthService) return;
-            const result = window.AuthService.loginOrRegisterGoogle(userInfo.name, userInfo.email);
-            if (result.success) {
-              window.showToast(result.message, "success");
-              setTimeout(() => {
-                window.location.href = "index.html";
-              }, 1000);
-            } else {
-              window.showToast(result.message || "Registration failed", "error");
-            }
-          })
-          .catch(err => {
-            window.showToast("Failed to fetch Google profile info", "error");
-            console.error(err);
-          });
-        }
-      },
-      error_callback: (err) => {
-        window.showToast("Google authorization failed", "error");
-        console.error(err);
-      }
-    });
-    
-    client.requestAccessToken();
-  } catch (e) {
-    console.error("Failed to initialize Google login client: ", e);
-    window.showToast("Could not start Google Sign-In. Please check console logs.", "error");
-  }
+  window.showToast('Vui lòng đăng nhập bằng email và mật khẩu. Google Sign-In chưa được cấu hình phía server.', 'info');
 };

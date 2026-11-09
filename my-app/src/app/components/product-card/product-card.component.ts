@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  standalone: false,
+  standalone: true, imports: [CommonModule, RouterModule],
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css']
@@ -16,7 +18,8 @@ export class ProductCardComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -29,31 +32,33 @@ export class ProductCardComponent implements OnInit {
   }
 
   get discountPercent(): number {
-    if (this.product && this.product.originalPrice && this.product.originalPrice > this.product.price) {
-      return Math.round(((this.product.originalPrice - this.product.price) / this.product.originalPrice) * 100);
+    if (this.product && (this.product.originalPrice || this.product['oldPrice']) && (this.product.originalPrice || this.product['oldPrice']) > this.product.price) {
+      return Math.round((((this.product.originalPrice || this.product['oldPrice']) - this.product.price) / (this.product.originalPrice || this.product['oldPrice'])) * 100);
     }
     return 0;
   }
 
-  toggleWishlist(event: Event): void {
+  async toggleWishlist(event: Event): Promise<void> {
     event.stopPropagation();
     event.preventDefault();
     if (!this.product) return;
-    this.isWishlisted = !this.isWishlisted;
-    if (this.authService.getCurrentUser()) {
-      this.authService.toggleWishlist(this.product.id);
-    }
+    const result = await this.authService.toggleWishlist(this.product.id);
+    if (result.success) this.isWishlisted = result.isAdded;
+    else alert(result.message);
+    this.cdr.markForCheck();
   }
 
-  addToCart(event: Event): void {
+  async addToCart(event: Event): Promise<void> {
     event.stopPropagation();
     event.preventDefault();
     if (!this.product) return;
-    const res = this.cartService.addToCart(this.product.id, 1);
+    const res = await this.cartService.addToCart(this.product.id, 1);
     if (res.success) {
       this.addedAlert = true;
+      this.cdr.markForCheck();
       setTimeout(() => {
         this.addedAlert = false;
+        this.cdr.markForCheck();
       }, 1500);
     } else {
       alert(res.message);

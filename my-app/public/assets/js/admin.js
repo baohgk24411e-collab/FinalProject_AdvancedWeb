@@ -13,19 +13,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. Dispatch to specific page controllers
   const pathname = window.location.pathname;
 
-  if (pathname.includes("admin-dashboard.html")) {
+  if (pathname.includes("admin-dashboard") || pathname.includes("/admin/dashboard") || document.getElementById("admin-total-orders")) {
     initAdminDashboard();
-  } else if (pathname.includes("admin-products.html")) {
+  } else if (pathname.includes("admin-products") || pathname.includes("/admin/products") || document.getElementById("admin-products-table-body")) {
     initAdminProducts();
-  } else if (pathname.includes("admin-orders.html")) {
+  } else if (pathname.includes("admin-orders") || pathname.includes("/admin/orders") || document.getElementById("admin-orders-table-body")) {
     initAdminOrders();
   }
 });
 
+window.initAdminDashboardPage = window.initAdminDashboard = initAdminDashboard;
+window.initAdminProductsPage = window.initAdminProducts = initAdminProducts;
+window.initAdminOrdersPage = window.initAdminOrders = initAdminOrders;
+
 // Logout handler
-window.handleAdminLogout = function() {
+window.handleAdminLogout = async function() {
   if (window.AuthService) {
-    window.AuthService.logout();
+    const result = await window.AuthService.logout();
+    if (!result.success) { window.showToast(result.message, "error"); return; }
     window.showToast("Logged out successfully.", "success");
     setTimeout(() => {
       window.location.href = "index.html";
@@ -35,20 +40,16 @@ window.handleAdminLogout = function() {
 
 // Reset mockup data
 window.resetAdminDataMockup = function() {
-  window.showConfirmModal("Are you sure you want to restore all original product and order mockup data?", () => {
-    localStorage.removeItem("tqg_products");
-    localStorage.removeItem("tqg_orders");
-    window.showToast("Restored original data successfully!", "success");
-    setTimeout(() => {
-      window.location.reload();
-    }, 1200);
-  });
+  window.showToast('Dữ liệu được lưu trên MongoDB. Không có chức năng reset database từ giao diện.', 'info');
 };
 
 /* ==========================================================================
    ADMIN DASHBOARD SECTION
    ========================================================================== */
-function initAdminDashboard() {
+async function initAdminDashboard() {
+  await window.authReady;
+  if (!window.AuthService.getCurrentUser()?.isAdmin) return;
+  try { window.MOCK_PRODUCTS = await window.apiRequest('/api/products'); await window.OrderService.refresh(); await window.AuthService.refreshUsers(); } catch (error) { window.showToast(error.message, "error"); return; }
   if (!window.OrderService) return;
 
   const kpis = window.OrderService.getAdminKPIs();
@@ -711,10 +712,9 @@ let productStockFilter = "all";
 
 function initAdminProducts() {
   if (typeof fetch === 'function') {
-    fetch('/api/products')
-      .then(res => res.json())
+    window.apiRequest('/api/products')
       .then(data => {
-        if (Array.isArray(data) && data.length > 0) {
+        if (Array.isArray(data)) {
           window.MOCK_PRODUCTS = data;
           localStorage.setItem("tqg_products", JSON.stringify(data));
         }
@@ -930,6 +930,8 @@ window.openAddProductModal = function() {
         </div>
       </div>
 
+      <div class="admin-form-group"><label>Mùa sản phẩm</label><select id="add-p-season" class="admin-form-select"><option value="Quanh năm" >Quanh năm</option><option value="Mùa hè" >Mùa hè</option><option value="Mùa đông" >Mùa đông</option></select></div>
+      <fieldset><legend>Mục tiêu sức khỏe</legend><label><input type="checkbox" name="add-healthGoal" value="Eat Clean" >Eat Clean</label> <label><input type="checkbox" name="add-healthGoal" value="Tăng cơ" >Tăng cơ</label> <label><input type="checkbox" name="add-healthGoal" value="Giảm cân" >Giảm cân</label> <label><input type="checkbox" name="add-healthGoal" value="Bổ sung năng lượng" >Bổ sung năng lượng</label> <label><input type="checkbox" name="add-healthGoal" value="Gia đình" >Gia đình</label> <label><input type="checkbox" name="add-healthGoal" value="Snack lành mạnh" >Snack lành mạnh</label> </fieldset>
       <div class="admin-checkbox-row">
         <label class="admin-checkbox-label">
           <input type="checkbox" id="add-p-seasonal">
@@ -957,7 +959,7 @@ window.openAddProductModal = function() {
 
 
 // SAVE NEW PRODUCT
-window.saveNewProduct = function(e) {
+window.saveNewProduct = async function(e) {
   e.preventDefault();
 
   const nameVi = document.getElementById("add-p-name-vi").value.trim();
@@ -977,7 +979,8 @@ window.saveNewProduct = function(e) {
   const nextId = window.MOCK_PRODUCTS.reduce((max, p) => p.id > max ? p.id : max, 0) + 1;
 
   const newProd = {
-    id: nextId,
+    season: document.getElementById("add-p-season").value,
+    healthGoals: Array.from(document.querySelectorAll('input[name="add-healthGoal"]:checked')).map(el => el.value),
     name: nameVi,
     nameEn: nameEn,
     category,
@@ -1000,15 +1003,10 @@ window.saveNewProduct = function(e) {
     }
   };
 
-  window.MOCK_PRODUCTS.push(newProd);
-  localStorage.setItem("tqg_products", JSON.stringify(window.MOCK_PRODUCTS));
-  if (typeof fetch === 'function') {
-    fetch('/api/products', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newProd)
-    }).then(r => r.json()).catch(err => console.warn('[Admin] Sync product to MongoDB notice:', err));
-  }
+  try {
+    const saved = await window.apiRequest('/api/products', 'POST', newProd);
+    window.MOCK_PRODUCTS.push(saved);
+  } catch (error) { window.showToast(error.message, 'error'); return; }
   window.closeCustomModal();
   window.showToast("Product added successfully!", "success");
   renderProductsList();
@@ -1074,6 +1072,8 @@ window.openEditProductModal = function(id) {
         </div>
       </div>
 
+      <div class="admin-form-group"><label>Mùa sản phẩm</label><select id="edit-p-season" class="admin-form-select"><option value="Quanh năm" ${p.season === "Quanh năm" ? "selected" : ""}>Quanh năm</option><option value="Mùa hè" ${p.season === "Mùa hè" ? "selected" : ""}>Mùa hè</option><option value="Mùa đông" ${p.season === "Mùa đông" ? "selected" : ""}>Mùa đông</option></select></div>
+      <fieldset><legend>Mục tiêu sức khỏe</legend><label><input type="checkbox" name="edit-healthGoal" value="Eat Clean" ${(p.healthGoals || []).includes("Eat Clean") ? "checked" : ""}>Eat Clean</label> <label><input type="checkbox" name="edit-healthGoal" value="Tăng cơ" ${(p.healthGoals || []).includes("Tăng cơ") ? "checked" : ""}>Tăng cơ</label> <label><input type="checkbox" name="edit-healthGoal" value="Giảm cân" ${(p.healthGoals || []).includes("Giảm cân") ? "checked" : ""}>Giảm cân</label> <label><input type="checkbox" name="edit-healthGoal" value="Bổ sung năng lượng" ${(p.healthGoals || []).includes("Bổ sung năng lượng") ? "checked" : ""}>Bổ sung năng lượng</label> <label><input type="checkbox" name="edit-healthGoal" value="Gia đình" ${(p.healthGoals || []).includes("Gia đình") ? "checked" : ""}>Gia đình</label> <label><input type="checkbox" name="edit-healthGoal" value="Snack lành mạnh" ${(p.healthGoals || []).includes("Snack lành mạnh") ? "checked" : ""}>Snack lành mạnh</label> </fieldset>
       <div class="admin-checkbox-row">
         <label class="admin-checkbox-label">
           <input type="checkbox" id="edit-p-seasonal" ${p.isSeasonal ? "checked" : ""}>
@@ -1101,7 +1101,7 @@ window.openEditProductModal = function(id) {
 
 
 // SAVE EDITED PRODUCT
-window.saveEditedProduct = function(e, id) {
+window.saveEditedProduct = async function(e, id) {
   e.preventDefault();
 
   const idx = window.MOCK_PRODUCTS.findIndex(prod => prod.id === id);
@@ -1120,27 +1120,24 @@ window.saveEditedProduct = function(e, id) {
   const isBestSeller = document.getElementById("edit-p-bestseller").checked;
   const descriptionVi = document.getElementById("edit-p-description").value.trim();
 
-  // Update object
-  window.MOCK_PRODUCTS[idx].name = nameVi;
-  window.MOCK_PRODUCTS[idx].nameEn = nameEn;
-  window.MOCK_PRODUCTS[idx].category = category;
-  window.MOCK_PRODUCTS[idx].region = region;
-  window.MOCK_PRODUCTS[idx].price = price;
-  window.MOCK_PRODUCTS[idx].oldPrice = oldPrice;
-  window.MOCK_PRODUCTS[idx].stock = stock;
-  window.MOCK_PRODUCTS[idx].image = image;
-  window.MOCK_PRODUCTS[idx].isSeasonal = isSeasonal;
-  window.MOCK_PRODUCTS[idx].isBestSeller = isBestSeller;
-  window.MOCK_PRODUCTS[idx].description = descriptionVi;
+  const updatedProduct = { ...window.MOCK_PRODUCTS[idx] };
+  updatedProduct.name = nameVi;
+  updatedProduct.nameEn = nameEn;
+  updatedProduct.category = category;
+  updatedProduct.region = region;
+  updatedProduct.price = price;
+  updatedProduct.oldPrice = oldPrice;
+  updatedProduct.stock = stock;
+  updatedProduct.image = image;
+  updatedProduct.isSeasonal = isSeasonal;
+  updatedProduct.isBestSeller = isBestSeller;
+  updatedProduct.description = descriptionVi;
 
-  localStorage.setItem("tqg_products", JSON.stringify(window.MOCK_PRODUCTS));
-  if (typeof fetch === 'function') {
-    fetch('/api/products/' + id, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(window.MOCK_PRODUCTS[idx])
-    }).then(r => r.json()).catch(err => console.warn('[Admin] Update product on MongoDB notice:', err));
-  }
+  updatedProduct.season = document.getElementById('edit-p-season').value;
+  updatedProduct.healthGoals = Array.from(document.querySelectorAll('input[name="edit-healthGoal"]:checked')).map(el => el.value);
+  try {
+    window.MOCK_PRODUCTS[idx] = await window.apiRequest('/api/products/' + id, 'PUT', updatedProduct);
+  } catch (error) { window.showToast(error.message, 'error'); return; }
   window.closeCustomModal();
   window.showToast("Product updated successfully!", "success");
   renderProductsList();
@@ -1151,14 +1148,10 @@ window.deleteProduct = function(id) {
   const p = window.MOCK_PRODUCTS.find(prod => prod.id === id);
   if (!p) return;
 
-  window.showConfirmModal(`Are you sure you want to delete product "${p.name}"? This action cannot be undone.`, () => {
+  window.showConfirmModal(`Are you sure you want to delete product "${p.name}"? This action cannot be undone.`, async () => {
+    try { await window.apiRequest('/api/products/' + id, 'DELETE'); }
+    catch (error) { window.showToast(error.message, 'error'); return; }
     window.MOCK_PRODUCTS = window.MOCK_PRODUCTS.filter(prod => prod.id !== id);
-    localStorage.setItem("tqg_products", JSON.stringify(window.MOCK_PRODUCTS));
-    if (typeof fetch === 'function') {
-      fetch('/api/products/' + id, {
-        method: 'DELETE'
-      }).then(r => r.json()).catch(err => console.warn('[Admin] Delete product from MongoDB notice:', err));
-    }
     window.showToast("Product removed from catalog.", "success");
     renderProductsList();
   });
@@ -1171,7 +1164,10 @@ window.deleteProduct = function(id) {
 let orderSearchQuery = "";
 let orderStatusFilter = "all";
 
-function initAdminOrders() {
+async function initAdminOrders() {
+  await window.authReady;
+  if (!window.AuthService.getCurrentUser()?.isAdmin) return;
+  try { window.MOCK_PRODUCTS = await window.apiRequest('/api/products'); await window.OrderService.refresh(); await window.AuthService.refreshUsers(); } catch (error) { window.showToast(error.message, "error"); return; }
   const filterParam = window.getUrlParam ? window.getUrlParam("filter") : null;
   if (filterParam) {
     orderStatusFilter = filterParam;
@@ -1323,10 +1319,10 @@ window.filterOrdersByStatus = function(val) {
 };
 
 // CHANGE ORDER STATUS IN SELECT
-window.changeOrderStatus = function(id, newStatus) {
+window.changeOrderStatus = async function(id, newStatus) {
   if (!window.OrderService) return;
 
-  const result = window.OrderService.updateOrderStatus(id, newStatus);
+  const result = await window.OrderService.updateOrderStatus(id, newStatus);
   if (result.success) {
     window.showToast(result.message, "success");
     renderOrdersList();
@@ -1474,7 +1470,7 @@ window.openOrderDetailsModal = function(id) {
 };
 
 // Global handler for refund decisions (approved / rejected)
-window.handleRefundDecision = function(orderId, decision) {
+window.handleRefundDecision = async function(orderId, decision) {
   if (!window.OrderService) return;
   const orders = window.OrderService.getOrders();
   const idx = orders.findIndex(o => o.id === orderId);
@@ -1489,7 +1485,7 @@ window.handleRefundDecision = function(orderId, decision) {
     orders[idx].status = "Hoàn thành";
   }
 
-  window.OrderService.saveOrders(orders);
+  try { await window.OrderService.saveOrders(orders); } catch (error) { window.showToast(error.message, "error"); return; }
   window.closeCustomModal();
   
   const msg = decision === "approved"
@@ -1659,7 +1655,8 @@ window.showAdminCustomersModal = function(e) {
   renderCustomersModal();
 };
 
-function renderCustomersModal() {
+async function renderCustomersModal() {
+  try { await window.AuthService.refreshUsers(); } catch (error) { window.showToast(error.message, "error"); return; }
   const users = window.AuthService ? (window.AuthService.getUsers() || []) : [];
   const rowsHTML = users.map(u => `
     <tr style="border-bottom: 1px solid var(--color-gray-border);">
@@ -1735,7 +1732,7 @@ function renderCustomersModal() {
   if (panel) panel.innerHTML = content;
 }
 
-window.submitNewCustomer = function(e) {
+window.submitNewCustomer = async function(e) {
   e.preventDefault();
   const name = document.getElementById("cust-name").value;
   const email = document.getElementById("cust-email").value;
@@ -1744,7 +1741,7 @@ window.submitNewCustomer = function(e) {
   const goal = document.getElementById("cust-goal").value;
 
   if (window.AuthService) {
-    const res = window.AuthService.register(name, email, phone, pass, goal);
+    const res = await window.AuthService.register(name, email, phone, pass, goal);
     if (res.success) {
       window.showToast("New customer created successfully!", "success");
       renderCustomersModal();
@@ -1755,11 +1752,9 @@ window.submitNewCustomer = function(e) {
 };
 
 window.deleteAdminCustomer = function(userId) {
-  window.showConfirmModal("Are you sure you want to delete this customer account?", () => {
+  window.showConfirmModal("Are you sure you want to delete this customer account?", async () => {
     if (window.AuthService) {
-      let users = window.AuthService.getUsers();
-      users = users.filter(u => u.id !== userId);
-      window.AuthService.saveUsers(users);
+      try { await window.AuthService.deleteUser(userId); } catch (error) { window.showToast(error.message, "error"); return; }
       window.showToast("Customer account deleted successfully!", "success");
       renderCustomersModal();
     }
@@ -1773,28 +1768,26 @@ window.showAdminCategoriesModal = function(e) {
   renderCategoriesModal();
 };
 
-function renderCategoriesModal() {
+async function renderCategoriesModal() {
+  let categories;
+  try { categories = await window.apiRequest('/api/categories'); } catch (error) { window.showToast(error.message, 'error'); return; }
   const products = window.MOCK_PRODUCTS || [];
   
   // Base categories product counts
-  const counts = { "Fruits": 0, "Nuts": 0, "Granola": 0 };
+  const counts = Object.fromEntries(categories.map(c => [c.id, 0]));
   products.forEach(p => {
     if (p.category in counts) counts[p.category]++;
     else counts[p.category] = (counts[p.category] || 0) + 1;
   });
 
-  const custom = JSON.parse(localStorage.getItem("tqg_custom_categories") || "[]");
-  custom.forEach(cat => {
-    if (!(cat in counts)) counts[cat] = 0;
-  });
-
   const rowsHTML = Object.entries(counts).map(([cat, count]) => {
-    const isCustom = !["Fruits", "Nuts", "Granola"].includes(cat);
+    const isCustom = count === 0;
     return `
       <tr style="border-bottom: 1px solid var(--color-gray-border);">
-        <td style="padding:14px 16px; font-weight:700;">📂 ${cat}</td>
+        <td style="padding:14px 16px; font-weight:700;">📂 ${categories.find(c => c.id === cat)?.name || cat}</td>
         <td style="padding:14px 16px; text-align:center; font-weight:700; color:var(--color-primary);">${count} sản phẩm</td>
         <td style="padding:14px 16px; text-align:center;">
+          <button class="action-btn" onclick="renameCategory('${cat}')">Sửa tên</button>
           ${isCustom ? `<button class="action-btn" onclick="deleteCustomCategory('${cat}')" style="background:#fee2e2; color:#ef4444; border:none; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer; font-weight:bold;">Xóa</button>` : '<span style="color:var(--color-text-light); font-size:12px; font-weight:600;">Mặc định</span>'}
         </td>
       </tr>
@@ -1838,30 +1831,25 @@ function renderCategoriesModal() {
   if (panel) panel.innerHTML = content;
 }
 
-window.submitNewCategory = function(e) {
-  e.preventDefault();
-  const name = document.getElementById("cat-name-input").value.trim();
+window.renameCategory = async function(id) {
+  const name = prompt('Tên hiển thị mới cho danh mục ' + id);
   if (!name) return;
-
-  const custom = JSON.parse(localStorage.getItem("tqg_custom_categories") || "[]");
-  if (["Fruits", "Nuts", "Granola"].includes(name) || custom.includes(name)) {
-    window.showToast("Category already exists!", "warning");
-    return;
-  }
-
-  custom.push(name);
-  localStorage.setItem("tqg_custom_categories", JSON.stringify(custom));
-  window.showToast(`Category "${name}" created successfully!`, "success");
-  renderCategoriesModal();
+  try { await window.apiRequest('/api/categories/' + encodeURIComponent(id), 'PUT', { name }); }
+  catch (error) { window.showToast(error.message, 'error'); return; }
+  window.showToast('Đã cập nhật danh mục', 'success'); renderCategoriesModal();
 };
-
-window.deleteCustomCategory = function(catName) {
-  window.showConfirmModal(`Are you sure you want to delete category "${catName}"?`, () => {
-    let custom = JSON.parse(localStorage.getItem("tqg_custom_categories") || "[]");
-    custom = custom.filter(c => c !== catName);
-    localStorage.setItem("tqg_custom_categories", JSON.stringify(custom));
-    window.showToast(`Category "${catName}" deleted!`, "success");
-    renderCategoriesModal();
+window.submitNewCategory = async function(e) {
+  e.preventDefault();
+  const name = document.getElementById('cat-name-input').value.trim();
+  try { await window.apiRequest('/api/categories', 'POST', { name }); }
+  catch (error) { window.showToast(error.message, 'error'); return; }
+  window.showToast('Đã lưu danh mục', 'success'); renderCategoriesModal();
+};
+window.deleteCustomCategory = function(id) {
+  window.showConfirmModal('Xóa danh mục ' + id + '?', async () => {
+    try { await window.apiRequest('/api/categories/' + encodeURIComponent(id), 'DELETE'); }
+    catch (error) { window.showToast(error.message, 'error'); return; }
+    window.showToast('Đã xóa danh mục', 'success'); renderCategoriesModal();
   });
 };
 
@@ -1872,15 +1860,11 @@ window.showAdminPromotionsModal = function(e) {
   renderPromotionsModal();
 };
 
-function renderPromotionsModal() {
-  const defaults = {
-    "FREESHIP50": { type: "freeship", discountVal: 30000, minOrder: 500000, description: "Miễn phí vận chuyển (tối đa 30K) cho đơn từ 500K" },
-    "TUQUYGARDEN10": { type: "percentage", discountVal: 10, minOrder: 0, description: "Giảm 10% tổng giá trị đơn hàng" },
-    "HEALTYLIFESTYLE": { type: "fixed", discountVal: 50000, minOrder: 300000, description: "Giảm 50K cho đơn từ 300K" }
-  };
-  const custom = JSON.parse(localStorage.getItem("tqg_custom_vouchers") || "{}");
-  const vouchers = { ...defaults, ...custom };
-
+async function renderPromotionsModal() {
+  let list;
+  try { list = await window.apiRequest('/api/vouchers'); } catch (error) { window.showToast(error.message, 'error'); return; }
+  const vouchers = Object.fromEntries(list.map(v => [v.code, v]));
+  const custom = Object.fromEntries(list.filter(v => !v.system).map(v => [v.code, v]));
   const rowsHTML = Object.entries(vouchers).map(([code, v]) => {
     const isCustom = code in custom;
     const typeLabel = v.type === "percentage" ? "Phần trăm (%)" : (v.type === "fixed" ? "Số tiền cố định (đ)" : "Freeship vận chuyển");
@@ -1959,40 +1943,18 @@ function renderPromotionsModal() {
   if (panel) panel.innerHTML = content;
 }
 
-window.submitNewVoucher = function(e) {
+window.submitNewVoucher = async function(e) {
   e.preventDefault();
-  const code = document.getElementById("v-code").value.trim().toUpperCase();
-  const type = document.getElementById("v-type").value;
-  const val = parseInt(document.getElementById("v-val").value);
-  const min = parseInt(document.getElementById("v-min").value);
-  const desc = document.getElementById("v-desc").value;
-
-  const defaults = ["FREESHIP50", "TUQUYGARDEN10", "HEALTYLIFESTYLE"];
-  if (defaults.includes(code)) {
-    window.showToast("This is a system default voucher code, cannot be overwritten!", "warning");
-    return;
-  }
-
-  const custom = JSON.parse(localStorage.getItem("tqg_custom_vouchers") || "{}");
-  custom[code] = {
-    type,
-    discountVal: val,
-    minOrder: min,
-    description: desc
-  };
-
-  localStorage.setItem("tqg_custom_vouchers", JSON.stringify(custom));
-  window.showToast(`Voucher code "${code}" saved successfully!`, "success");
-  renderPromotionsModal();
+  const body = { code: document.getElementById('v-code').value.trim().toUpperCase(), type: document.getElementById('v-type').value, discountVal: Number(document.getElementById('v-val').value), minOrder: Number(document.getElementById('v-min').value), description: document.getElementById('v-desc').value };
+  try { await window.apiRequest('/api/vouchers', 'POST', body); }
+  catch (error) { window.showToast(error.message, 'error'); return; }
+  window.showToast('Đã lưu mã giảm giá', 'success'); renderPromotionsModal();
 };
-
 window.deleteCustomVoucher = function(code) {
-  window.showConfirmModal(`Are you sure you want to delete voucher code "${code}"?`, () => {
-    const custom = JSON.parse(localStorage.getItem("tqg_custom_vouchers") || "{}");
-    delete custom[code];
-    localStorage.setItem("tqg_custom_vouchers", JSON.stringify(custom));
-    window.showToast(`Voucher code "${code}" deleted!`, "success");
-    renderPromotionsModal();
+  window.showConfirmModal('Xóa mã ' + code + '?', async () => {
+    try { await window.apiRequest('/api/vouchers/' + encodeURIComponent(code), 'DELETE'); }
+    catch (error) { window.showToast(error.message, 'error'); return; }
+    window.showToast('Đã xóa mã giảm giá', 'success'); renderPromotionsModal();
   });
 };
 
@@ -2562,7 +2524,7 @@ window.showAdminChangePasswordModal = function(e) {
   }
 };
 
-window.handleAdminChangePassword = function(e) {
+window.handleAdminChangePassword = async function(e) {
   if (e) e.preventDefault();
   
   const oldPass = document.getElementById("admin-old-password").value;
@@ -2580,7 +2542,7 @@ window.handleAdminChangePassword = function(e) {
   }
   
   if (window.AuthService) {
-    const result = window.AuthService.changePassword(oldPass, newPass);
+    const result = await window.AuthService.changePassword(oldPass, newPass);
     if (result.success) {
       window.showToast(result.message, "success");
       document.getElementById("admin-change-password-form").reset();

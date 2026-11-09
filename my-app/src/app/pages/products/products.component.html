@@ -38,11 +38,11 @@
 
   <main class="products-page-container container">
     <div class="shop-layout">
-      <aside class="shop-sidebar" id="shop-sidebar">
+      <aside class="shop-sidebar" id="shop-sidebar" [class.open]="sidebarOpen">
         <div class="sidebar-header">
           <h3>Product Filters</h3>
-          <button type="button" class="clear-filters-link" id="sidebar-clear-filters">Clear filters</button>
-          <button class="close-sidebar-btn" id="close-sidebar-btn">&times;</button>
+          <button type="button" class="clear-filters-link" id="sidebar-clear-filters" (click)="reset()">Clear filters</button>
+          <button class="close-sidebar-btn" id="close-sidebar-btn" (click)="sidebarOpen=false">&times;</button>
         </div>
 
         <div class="filter-group">
@@ -50,37 +50,37 @@
           <ul class="filter-list" id="season-filter-list">
             <li>
               <label class="filter-label">
-                <input type="radio" name="season" value="all" checked>
+                <input type="radio" name="season" value="all" [checked]="state.season === 'all'" (change)="change('season', 'all', $any($event.target).checked)">
                 <span>All Seasons</span>
-                <span class="filter-count" data-filter="season-all"></span>
+                <span class="filter-count">({{ count('season', 'all') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="radio" name="season" value="seasonal">
+                <input type="radio" name="season" value="seasonal" [checked]="state.season === 'seasonal'" (change)="change('season', 'seasonal', $any($event.target).checked)">
                 <span>Seasonal Specialties</span>
-                <span class="filter-count" data-filter="season-seasonal"></span>
+                <span class="filter-count">({{ count('season', 'seasonal') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="radio" name="season" value="Mùa hè">
+                <input type="radio" name="season" value="Mùa hè" [checked]="state.season === 'Mùa hè'" (change)="change('season', 'Mùa hè', $any($event.target).checked)">
                 <span>Summer</span>
-                <span class="filter-count" data-filter="season-Mùa hè"></span>
+                <span class="filter-count">({{ count('season', 'Mùa hè') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="radio" name="season" value="Mùa đông">
+                <input type="radio" name="season" value="Mùa đông" [checked]="state.season === 'Mùa đông'" (change)="change('season', 'Mùa đông', $any($event.target).checked)">
                 <span>Winter</span>
-                <span class="filter-count" data-filter="season-Mùa đông"></span>
+                <span class="filter-count">({{ count('season', 'Mùa đông') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="radio" name="season" value="Quanh năm">
+                <input type="radio" name="season" value="Quanh năm" [checked]="state.season === 'Quanh năm'" (change)="change('season', 'Quanh năm', $any($event.target).checked)">
                 <span>Year-round</span>
-                <span class="filter-count" data-filter="season-Quanh năm"></span>
+                <span class="filter-count">({{ count('season', 'Quanh năm') }})</span>
               </label>
             </li>
           </ul>
@@ -91,44 +91,44 @@
           <ul class="filter-list" id="health-goal-filter-list">
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="healthGoal" value="Eat Clean">
+                <input type="checkbox" name="healthGoal" value="Eat Clean" [checked]="state.healthGoal.includes('Eat Clean')" (change)="change('healthGoal', 'Eat Clean', $any($event.target).checked)">
                 <span>Eat Clean</span>
-                <span class="filter-count" data-filter="goal-Eat Clean"></span>
+                <span class="filter-count">({{ count('healthGoal', 'Eat Clean') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="healthGoal" value="Tăng cơ">
+                <input type="checkbox" name="healthGoal" value="Tăng cơ" [checked]="state.healthGoal.includes('Tăng cơ')" (change)="change('healthGoal', 'Tăng cơ', $any($event.target).checked)">
                 <span>Gym / Muscle Gain</span>
-                <span class="filter-count" data-filter="goal-Tăng cơ"></span>
+                <span class="filter-count">({{ count('healthGoal', 'Tăng cơ') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="healthGoal" value="Giảm cân">
+                <input type="checkbox" name="healthGoal" value="Giảm cân" [checked]="state.healthGoal.includes('Giảm cân')" (change)="change('healthGoal', 'Giảm cân', $any($event.target).checked)">
                 <span>Weight Loss</span>
-                <span class="filter-count" data-filter="goal-Giảm cân"></span>
+                <span class="filter-count">({{ count('healthGoal', 'Giảm cân') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="healthGoal" value="Bổ sung năng lượng">
+                <input type="checkbox" name="healthGoal" value="Bổ sung năng lượng" [checked]="state.healthGoal.includes('Bổ sung năng lượng')" (change)="change('healthGoal', 'Bổ sung năng lượng', $any($event.target).checked)">
                 <span>Energy Boost</span>
-                <span class="filter-count" data-filter="goal-Bổ sung năng lượng"></span>
+                <span class="filter-count">({{ count('healthGoal', 'Bổ sung năng lượng') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="healthGoal" value="Gia đình">
+                <input type="checkbox" name="healthGoal" value="Gia đình" [checked]="state.healthGoal.includes('Gia đình')" (change)="change('healthGoal', 'Gia đình', $any($event.target).checked)">
                 <span>Family Nutrition</span>
-                <span class="filter-count" data-filter="goal-Gia đình"></span>
+                <span class="filter-count">({{ count('healthGoal', 'Gia đình') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="healthGoal" value="Snack lành mạnh">
+                <input type="checkbox" name="healthGoal" value="Snack lành mạnh" [checked]="state.healthGoal.includes('Snack lành mạnh')" (change)="change('healthGoal', 'Snack lành mạnh', $any($event.target).checked)">
                 <span>Healthy Snacking</span>
-                <span class="filter-count" data-filter="goal-Snack lành mạnh"></span>
+                <span class="filter-count">({{ count('healthGoal', 'Snack lành mạnh') }})</span>
               </label>
             </li>
           </ul>
@@ -139,36 +139,36 @@
           <ul class="filter-list">
             <li>
               <label class="filter-label">
-                <input type="radio" name="priceRange" value="all" checked>
+                <input type="radio" name="priceRange" value="all" [checked]="state.priceRange === 'all'" (change)="change('priceRange', 'all', $any($event.target).checked)">
                 <span>All Prices</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="radio" name="priceRange" value="under-50">
+                <input type="radio" name="priceRange" value="under-50" [checked]="state.priceRange === 'under-50'" (change)="change('priceRange', 'under-50', $any($event.target).checked)">
                 <span>Under 50,000đ</span>
-                <span class="filter-count" data-filter="price-under-50"></span>
+                <span class="filter-count">({{ count('priceRange', 'under-50') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="radio" name="priceRange" value="50-100">
+                <input type="radio" name="priceRange" value="50-100" [checked]="state.priceRange === '50-100'" (change)="change('priceRange', '50-100', $any($event.target).checked)">
                 <span>50,000đ - 100,000đ</span>
-                <span class="filter-count" data-filter="price-50-100"></span>
+                <span class="filter-count">({{ count('priceRange', '50-100') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="radio" name="priceRange" value="100-200">
+                <input type="radio" name="priceRange" value="100-200" [checked]="state.priceRange === '100-200'" (change)="change('priceRange', '100-200', $any($event.target).checked)">
                 <span>100,000đ - 200,000đ</span>
-                <span class="filter-count" data-filter="price-100-200"></span>
+                <span class="filter-count">({{ count('priceRange', '100-200') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="radio" name="priceRange" value="over-200">
+                <input type="radio" name="priceRange" value="over-200" [checked]="state.priceRange === 'over-200'" (change)="change('priceRange', 'over-200', $any($event.target).checked)">
                 <span>Over 200,000đ</span>
-                <span class="filter-count" data-filter="price-over-200"></span>
+                <span class="filter-count">({{ count('priceRange', 'over-200') }})</span>
               </label>
             </li>
           </ul>
@@ -179,30 +179,30 @@
           <ul class="filter-list" id="category-filter-list">
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="productCategory" value="Fruits">
+                <input type="checkbox" name="productCategory" value="Fruits" [checked]="state.productCategory.includes('Fruits')" (change)="change('productCategory', 'Fruits', $any($event.target).checked)">
                 <span>Seasonal Fruits</span>
-                <span class="filter-count" data-filter="cat-Fruits"></span>
+                <span class="filter-count">({{ count('productCategory', 'Fruits') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="productCategory" value="Nutritional Seeds">
+                <input type="checkbox" name="productCategory" value="Nutritional Seeds" [checked]="state.productCategory.includes('Nutritional Seeds')" (change)="change('productCategory', 'Nutritional Seeds', $any($event.target).checked)">
                 <span>Nutritional Seeds</span>
-                <span class="filter-count" data-filter="cat-Nutritional Seeds"></span>
+                <span class="filter-count">({{ count('productCategory', 'Nutritional Seeds') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="productCategory" value="Granola">
+                <input type="checkbox" name="productCategory" value="Granola" [checked]="state.productCategory.includes('Granola')" (change)="change('productCategory', 'Granola', $any($event.target).checked)">
                 <span>Granola &amp; Healthy snacks</span>
-                <span class="filter-count" data-filter="cat-Granola"></span>
+                <span class="filter-count">({{ count('productCategory', 'Granola') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="productCategory" value="Combo Healthy">
+                <input type="checkbox" name="productCategory" value="Combo Healthy" [checked]="state.productCategory.includes('Combo Healthy')" (change)="change('productCategory', 'Combo Healthy', $any($event.target).checked)">
                 <span>Eat Clean Box &amp; Combo</span>
-                <span class="filter-count" data-filter="cat-Combo Healthy"></span>
+                <span class="filter-count">({{ count('productCategory', 'Combo Healthy') }})</span>
               </label>
             </li>
           </ul>
@@ -213,29 +213,29 @@
           <ul class="filter-list">
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="promo" value="bestseller">
+                <input type="checkbox" name="promo" value="bestseller" [checked]="state.promo.includes('bestseller')" (change)="change('promo', 'bestseller', $any($event.target).checked)">
                 <span>Bestsellers</span>
-                <span class="filter-count" data-filter="promo-bestseller"></span>
+                <span class="filter-count">({{ count('promo', 'bestseller') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="promo" value="sale">
+                <input type="checkbox" name="promo" value="sale" [checked]="state.promo.includes('sale')" (change)="change('promo', 'sale', $any($event.target).checked)">
                 <span>On Sale</span>
-                <span class="filter-count" data-filter="promo-sale"></span>
+                <span class="filter-count">({{ count('promo', 'sale') }})</span>
               </label>
             </li>
             <li>
               <label class="filter-label">
-                <input type="checkbox" name="promo" value="seasonal">
+                <input type="checkbox" name="promo" value="seasonal" [checked]="state.promo.includes('seasonal')" (change)="change('promo', 'seasonal', $any($event.target).checked)">
                 <span>Seasonal Products</span>
-                <span class="filter-count" data-filter="promo-seasonal"></span>
+                <span class="filter-count">({{ count('promo', 'seasonal') }})</span>
               </label>
             </li>
           </ul>
         </div>
 
-        <button id="reset-filters-btn" class="btn btn-outline btn-block btn-sm">
+        <button id="reset-filters-btn" (click)="reset()" class="btn btn-outline btn-block btn-sm">
           Reset Filters
         </button>
       </aside>
@@ -243,27 +243,27 @@
       <section class="shop-main-content">
         <div class="shop-toolbar">
           <div class="toolbar-left">
-            <button id="mobile-filter-btn" class="btn btn-outline btn-sm mobile-filter-trigger">
+            <button id="mobile-filter-btn" (click)="sidebarOpen=true" class="btn btn-outline btn-sm mobile-filter-trigger">
               Filter & Search
             </button>
 
             <span class="results-count">
-              Showing <strong id="product-count">0</strong> products
-              <strong id="product-count-en" style="display:none;">0</strong>
+              Showing <strong id="product-count">{{ result.length }}</strong> products
+              <strong id="product-count-en" style="display:none;">{{ result.length }}</strong>
             </span>
           </div>
 
           <div class="toolbar-right">
             <div class="view-toggle-group" id="view-toggle-group">
-              <button type="button" class="view-toggle-btn active" data-view="grid" title="Dạng lưới" aria-label="Grid view">
+              <button type="button" class="view-toggle-btn active" data-view="grid" (click)="view='grid'" [class.active]="view === 'grid'" title="Dạng lưới" aria-label="Grid view">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
               </button>
-              <button type="button" class="view-toggle-btn" data-view="list" title="Dạng danh sách" aria-label="List view">
+              <button type="button" class="view-toggle-btn" data-view="list" (click)="view='list'" [class.active]="view === 'list'" title="Dạng danh sách" aria-label="List view">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
               </button>
             </div>
             <label for="sort-select">Sort by:</label>
-            <select id="sort-select">
+            <select id="sort-select" [ngModel]="state.sort" (ngModelChange)="change('sort', $event)">
               <option value="newest">Newest</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
@@ -272,21 +272,23 @@
           </div>
         </div>
 
-        <div id="active-filters-bar" class="active-filters-bar"></div>
+        <div id="active-filters-bar" class="active-filters-bar"><button class="btn btn-outline btn-sm" (click)="reset()">Xóa bộ lọc / Clear filters</button></div>
+<p *ngIf="loading" role="status">Đang tải sản phẩm…</p><p *ngIf="error" role="alert">{{ error }} <button class="btn btn-outline" (click)="load()">Thử lại</button></p>
 
-        <div id="search-badge" class="active-search-indicator">
-          <span>Search results for: "<strong><span id="search-keyword-vi"></span><span id="search-keyword-en"></span></strong>"</span>
-          <button id="clear-search-btn">&times;</button>
+        <div id="search-badge" [style.display]="state.search ? 'flex' : 'none'" class="active-search-indicator">
+          <span>Search results for: "<strong><span id="search-keyword-vi">{{ state.search }}</span><span id="search-keyword-en">{{ state.search }}</span></strong>"</span>
+          <button id="clear-search-btn" (click)="change('search', '')">&times;</button>
         </div>
 
-        <div class="products-listing-grid" id="products-catalog-grid">
-        </div>
+        <div class="products-listing-grid" id="products-catalog-grid" [class.is-list-view]="view === 'list'">
+<app-product-card *ngFor="let p of result" [product]="p"></app-product-card>
+</div>
 
-        <div id="empty-state" class="empty-state-container text-center">
+        <div id="empty-state" class="empty-state-container text-center" [style.display]="!loading && !error && result.length === 0 ? 'block' : 'none'">
           <div class="empty-icon-circle">🔎</div>
           <h3>No products found</h3>
           <p>We could not find any products matching your filters. Please try again or reset filters.</p>
-          <button id="reset-empty-btn" class="btn btn-primary">Show all products</button>
+          <button id="reset-empty-btn" (click)="reset()" class="btn btn-primary">Show all products</button>
         </div>
       </section>
     </div>

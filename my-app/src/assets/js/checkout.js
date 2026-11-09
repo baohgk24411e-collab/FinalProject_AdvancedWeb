@@ -67,7 +67,11 @@ let draftAddressModal = null;
 let addressMap = null;
 let addressMarker = null;
 
-window.initCheckoutPage = function() {
+window.initCheckoutPage = async function() {
+  await window.authReady;
+  try { const vouchers = await window.apiRequest('/api/vouchers'); CHECKOUT_VOUCHERS.splice(0, CHECKOUT_VOUCHERS.length, ...vouchers.map(v => ({ ...v, title: v.code, condition: 'Tối thiểu ' + v.minOrder + 'đ' }))); } catch {}
+
+  try { window.MOCK_PRODUCTS = await window.apiRequest('/api/products'); } catch (error) { showCheckoutToast(error.message, 'error'); return; }
   const currentUser = window.AuthService ? window.AuthService.getCurrentUser() : null;
   if (!currentUser) {
     window.location.replace("login?redirect=cart");
@@ -310,7 +314,7 @@ function getCheckoutTotals() {
 
   const giftBox = checkoutState.extras.giftBox ? 25000 : 0;
   const greetingCard = checkoutState.extras.greetingCard ? 10000 : 0;
-  const rewardDiscount = checkoutState.rewardApplied ? 50000 : 0;
+  const rewardDiscount = 0; // Reward redemption requires a server-backed points ledger.
   const shipping = Math.max(0, shippingBeforeDiscount - shippingDiscount);
   const total = Math.max(0, subtotal + shipping + giftBox + greetingCard - voucherDiscount - rewardDiscount);
   const saved = shippingDiscount + voucherDiscount + rewardDiscount;
@@ -609,7 +613,7 @@ function renderRewardInvoiceCard() {
     <div class="reward-invoice-grid">
       <div class="reward-mini-card">
         <p>You currently have: <strong>1,250 points</strong></p>
-        <label class="modern-checkbox-row"><input type="checkbox" ${checkoutState.rewardApplied ? "checked" : ""} onchange="toggleReward(this.checked)"><span></span><b>Use 500 points for a 50,000đ discount</b></label>
+        <label class="modern-checkbox-row"><input type="checkbox" disabled><span></span><b>Đổi điểm chưa được mở</b></label>
         <small>After using, you will have 750 points left</small>
       </div>
       <div class="reward-mini-card">
@@ -660,7 +664,7 @@ function renderOrderSummary(items, totals) {
         ${totals.greetingCard ? moneyLine("Greeting Card", totals.greetingCard) : ""}
       </div>
       <div class="modern-summary-total"><span>Total cost</span><strong>${formatCurrency(totals.total)}</strong></div>
-      <div class="modern-summary-badges"><div>${icon("shield")} You save: <strong>${formatCurrency(totals.saved)}</strong></div><div>${icon("star")} You will earn: <strong>+${totals.rewardEarned} điểm</strong></div></div>
+      <div class="modern-summary-badges"><div>${icon("shield")} You save: <strong>${formatCurrency(totals.saved)}</strong></div><div>${icon("star")} Thanh toán khi nhận hàng hoặc theo hướng dẫn của cửa hàng</div></div>
       <div class="modern-summary-trust">
         <span>${icon("shield")} Secure Checkout</span>
         <span>${icon("headset")} 24/7 Support<br><strong>1900 633 123</strong></span>
@@ -1461,7 +1465,7 @@ window.openConfirmOrderModal = function() {
   `);
 };
 
-window.confirmPlaceOrder = function() {
+window.confirmPlaceOrder = async function() {
   if (!window.CartService || !window.OrderService) return;
   const errors = validateCheckoutState();
   if (errors.length) {
@@ -1484,12 +1488,12 @@ window.confirmPlaceOrder = function() {
   }
 
   const orderTotals = {
-    subtotal: totals.subtotal,
-    shipping: totals.shipping,
-    discount: totals.voucherDiscount + totals.rewardDiscount + totals.shippingDiscount,
-    total: totals.total
+    shippingMethod: checkoutState.shipping.method,
+    voucherCode: totals.voucher?.code || "",
+    giftBox: checkoutState.extras.giftBox,
+    greetingCard: checkoutState.extras.greetingCard
   };
-  const result = window.OrderService.createOrder(
+  const result = await window.OrderService.createOrder(
     { fullName: selectedAddress.fullName, phone: selectedAddress.phone, email: selectedAddress.email },
     {
       province: selectedAddress.provinceName || selectedAddress.province,
@@ -1504,7 +1508,7 @@ window.confirmPlaceOrder = function() {
 
   if (result.success) {
     placedOrderId = result.orderId;
-    placedOrderTotal = totals.total;
+    placedOrderTotal = result.total;
     placedDeliveryText = (SHIPPING_METHODS[checkoutState.shipping.method] || SHIPPING_METHODS.standard).desc;
     closeCheckoutModal();
     showCheckoutToast("Order Placed Successfully", "success");

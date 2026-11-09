@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private cartService: CartService,
     private authService: AuthService,
     private orderService: OrderService,
-    public langService: LanguageService
+    public langService: LanguageService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.personalizedProducts = matched.length > 0 ? matched.slice(0, 4) : products.filter(p => prefCats.includes(p.category)).slice(0, 4);
         this.hasPersonalized = this.personalizedProducts.length > 0;
       }
+      this.cdr.markForCheck();
     });
   }
 

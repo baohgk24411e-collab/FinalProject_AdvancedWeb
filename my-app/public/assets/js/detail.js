@@ -5,13 +5,13 @@ let activeImage = "";
 let quantity = 1;
 let activeTab = "description";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const productId = parseInt(getUrlParam("id"));
-  activeProduct = window.MOCK_PRODUCTS.find(p => p.id === productId);
-
+window.initProductDetailPage = async function() {
   const root = document.getElementById("product-detail-root");
   if (!root) return;
 
+  const idParam = getUrlParam('id') || window.location.pathname.match(/\/detail\/(\d+)/)?.[1];
+  try { activeProduct = await window.apiRequest('/api/products/' + encodeURIComponent(idParam)); }
+  catch (error) { root.textContent = error.message; return; }
   if (!activeProduct) {
     renderNotFound(root);
     return;
@@ -36,6 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
       window.closeLightbox();
     }
   });
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  window.initProductDetailPage();
 });
 
 function translateCategory(cat) {
@@ -705,10 +709,10 @@ window.buyNow = function () {
   }
 };
 
-window.toggleWishlist = function () {
+window.toggleWishlist = async function () {
   if (!window.AuthService) return;
 
-  const result = window.AuthService.toggleWishlist(activeProduct.id);
+  const result = await window.AuthService.toggleWishlist(activeProduct.id);
 
   if (result.success) {
     window.showToast(result.message, "success");

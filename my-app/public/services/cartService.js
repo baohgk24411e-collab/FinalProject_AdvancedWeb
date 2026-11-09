@@ -104,13 +104,11 @@ window.CartService = {
     return voucher ? JSON.parse(voucher) : null;
   },
 
-  applyVoucher(code) {
+  async applyVoucher(code) {
     const isEn = (localStorage.getItem("tqg_lang") || "en") === "en";
-    const vouchers = {
-      "FREESHIP": { type: "freeship", discountVal: 30000, minOrder: 0, description: "Miễn phí vận chuyển" },
-      "TUQUYGARDEN10": { type: "percentage", discountVal: 10, maxDiscount: 50000, minOrder: 0, description: "Giảm 10% tối đa 50.000đ" },
-      "HEALTHY50": { type: "fixed", discountVal: 50000, minOrder: 500000, description: "Giảm 50.000đ cho đơn từ 500.000đ" }
-    };
+    let vouchers;
+    try { vouchers = Object.fromEntries((await window.apiRequest('/api/vouchers')).map(v => [v.code, v])); }
+    catch (error) { return { success: false, message: error.message }; }
 
     const formattedCode = code.trim().toUpperCase();
     const voucher = vouchers[formattedCode];

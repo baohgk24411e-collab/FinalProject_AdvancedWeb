@@ -172,10 +172,10 @@ window.handleCardAddToCart = function (productId) {
   }
 };
 
-window.handleCardWishlistToggle = function (productId) {
+window.handleCardWishlistToggle = async function (productId) {
   if (!window.AuthService) return;
 
-  const result = window.AuthService.toggleWishlist(productId);
+  const result = await window.AuthService.toggleWishlist(productId);
   const isEn = (localStorage.getItem("tqg_lang") || "en") === "en";
 
   if (result.success) {

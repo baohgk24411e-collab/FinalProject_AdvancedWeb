@@ -9,27 +9,9 @@ window.initProductDetailPage = async function() {
   const root = document.getElementById("product-detail-root");
   if (!root) return;
 
-  const idParam = getUrlParam("id");
-  const productId = parseInt(idParam);
-
-  if (!window.MOCK_PRODUCTS || window.MOCK_PRODUCTS.length === 0) {
-    try {
-      const res = await fetch('/api/products');
-      if (res.ok) window.MOCK_PRODUCTS = await res.json();
-    } catch(e) {}
-  }
-
-  activeProduct = (window.MOCK_PRODUCTS || []).find(p => p.id === productId || p.id == idParam || p._id == idParam);
-
-  if (!activeProduct && idParam) {
-    try {
-      const res = await fetch(`/api/products/${idParam}`);
-      if (res.ok) {
-        activeProduct = await res.json();
-      }
-    } catch(e) {}
-  }
-
+  const idParam = getUrlParam('id') || window.location.pathname.match(/\/detail\/(\d+)/)?.[1];
+  try { activeProduct = await window.apiRequest('/api/products/' + encodeURIComponent(idParam)); }
+  catch (error) { root.textContent = error.message; return; }
   if (!activeProduct) {
     renderNotFound(root);
     return;
@@ -727,10 +709,10 @@ window.buyNow = function () {
   }
 };
 
-window.toggleWishlist = function () {
+window.toggleWishlist = async function () {
   if (!window.AuthService) return;
 
-  const result = window.AuthService.toggleWishlist(activeProduct.id);
+  const result = await window.AuthService.toggleWishlist(activeProduct.id);
 
   if (result.success) {
     window.showToast(result.message, "success");

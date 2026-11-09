@@ -1,3 +1,4 @@
+import { authGuard, adminGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -24,17 +25,17 @@ const routes: Routes = [
   { path: 'detail', component: ProductDetailComponent },
   { path: 'detail/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'nutrition', component: NutritionComponent },
   { path: 'traceability', component: TraceabilityComponent },
   { path: 'contact', component: ContactComponent },
   
   // Admin Routes
-  { path: 'admin/dashboard', component: AdminDashboardComponent },
-  { path: 'admin/products', component: AdminProductsComponent },
-  { path: 'admin/orders', component: AdminOrdersComponent },
+  { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [adminGuard] },
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [adminGuard] },
+  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [adminGuard] },
   { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
 
   // .html Aliases

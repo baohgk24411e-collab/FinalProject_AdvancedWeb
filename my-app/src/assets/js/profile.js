@@ -1,10 +1,11 @@
 // js/profile.js
 
-window.initProfilePage = function() {
+window.initProfilePage = async function() {
   if (!window.AuthService) return;
 
-  // 1. Seed Linh Ngô user and her 12 orders if not already done
-  seedLinhNgoData();
+  // Load the authenticated user and their persisted orders.
+  await window.authReady;
+  try { window.MOCK_PRODUCTS = await window.apiRequest('/api/products'); await window.OrderService.refresh(); } catch (error) { window.showToast(error.message, "error"); return; }
 
   const currentUser = window.AuthService.getCurrentUser();
   if (!currentUser) {
@@ -42,278 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Seeding Default User and Orders
-function seedLinhNgoData() {
-  const users = window.AuthService.getUsers();
-  let linhUser = users.find(u => u.id === "u_linh" || u.email === "ntthaolinhcv@gmail.com");
-
-  if (!linhUser) {
-    linhUser = {
-      id: "u_linh",
-      name: "Linh Ngô",
-      email: "ntthaolinhcv@gmail.com",
-      phone: "0911181438",
-      healthGoal: "Eat Clean",
-      password: "linh",
-      isAdmin: false,
-      wishlist: [49, 50] // Combo Gymmer Tăng Cơ Đốt Mỡ (49) & Combo Quà Tặng Gia Đình Tứ Quý (50)
-    };
-    users.push(linhUser);
-    window.AuthService.saveUsers(users);
-  }
-
-  // Automatically log in Linh Ngô if no session exists
-  const currentUser = window.AuthService.getCurrentUser();
-  if (!currentUser) {
-    localStorage.setItem("tqg_current_user", JSON.stringify(linhUser));
-    window.dispatchEvent(new Event("authChanged"));
-  }
-
-  // Seed 12 orders for Linh Ngô
-  if (window.OrderService) {
-    const orders = window.OrderService.getOrders();
-    const linhOrders = orders.filter(o => o.userId === "u_linh" || o.customerEmail === "ntthaolinhcv@gmail.com");
-
-    if (linhOrders.length === 0) {
-      const mockLinhOrders = [
-        // 3 Chờ xác nhận
-        {
-          id: "TQG1024",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 49, name: "Combo Gymmer Tăng Cơ Đốt Mỡ", price: 289000, quantity: 1, image: "images/Product_Images/03. Hình ảnh/combo/Gym Starter Box.png" }
-          ],
-          subtotal: 289000,
-          shipping: 30000,
-          discount: 0,
-          total: 319000,
-          status: "Chờ xác nhận",
-          date: "2026-07-01T23:21:48.000Z",
-          note: ""
-        },
-        {
-          id: "TQG1023",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 1, name: "Xoài cát Hòa Lộc", price: 95000, quantity: 2, image: "images/fruits/Xoài cát Hòa Lộc.png" }
-          ],
-          subtotal: 190000,
-          shipping: 30000,
-          discount: 0,
-          total: 220000,
-          status: "Chờ xác nhận",
-          date: "2026-07-01T15:10:00.000Z",
-          note: ""
-        },
-        {
-          id: "TQG1022",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 10, name: "Bưởi da xanh Bến Tre", price: 85000, quantity: 1, image: "images/fruits/Bưởi da xanh.png" }
-          ],
-          subtotal: 85000,
-          shipping: 30000,
-          discount: 0,
-          total: 115000,
-          status: "Chờ xác nhận",
-          date: "2026-06-30T10:05:00.000Z",
-          note: ""
-        },
-        // 4 Đang giao
-        {
-          id: "TQG1021",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 3, name: "Ổi Ruby không hạt", price: 45000, quantity: 3, image: "images/fruits/Ổi Ruby.png" }
-          ],
-          subtotal: 135000,
-          shipping: 30000,
-          discount: 10000,
-          total: 155000,
-          status: "Đang giao",
-          date: "2026-06-29T09:30:00.000Z",
-          note: "Giao giờ hành chính"
-        },
-        {
-          id: "TQG1020",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "E-wallet",
-          items: [
-            { productId: 47, name: "Granola hạt & trái cây tự nhiên", price: 129000, quantity: 1, image: "images/granola/Granola.png" }
-          ],
-          subtotal: 129000,
-          shipping: 15000,
-          discount: 0,
-          total: 144000,
-          status: "Đang giao",
-          date: "2026-06-28T08:20:00.000Z",
-          note: ""
-        },
-        {
-          id: "TQG1019",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 2, name: "Cam xoàn Lai Vung", price: 65000, quantity: 2, image: "images/fruits/Quýt đường.png" }
-          ],
-          subtotal: 130000,
-          shipping: 30000,
-          discount: 0,
-          total: 160000,
-          status: "Đang giao",
-          date: "2026-06-28T14:40:00.000Z",
-          note: ""
-        },
-        {
-          id: "TQG1018",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "E-wallet",
-          items: [
-            { productId: 6, name: "Bơ sáp Đắk Lắk", price: 55000, quantity: 2, image: "images/fruits/Bơ.png" }
-          ],
-          subtotal: 110000,
-          shipping: 20000,
-          discount: 0,
-          total: 130000,
-          status: "Đang giao",
-          date: "2026-06-27T11:15:00.000Z",
-          note: ""
-        },
-        // 5 Hoàn thành
-        {
-          id: "TQG1017",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 50, name: "Combo Quà Tặng Gia Đình Tứ Quý", price: 399000, quantity: 1, image: "images/Product_Images/03. Hình ảnh/combo/Healthy Gift Box.png" }
-          ],
-          subtotal: 399000,
-          shipping: 30000,
-          discount: 50000,
-          total: 379000,
-          status: "Hoàn thành",
-          date: "2026-06-26T16:00:00.000Z",
-          note: ""
-        },
-        {
-          id: "TQG1016",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "E-wallet",
-          items: [
-            { productId: 14, name: "Sầu riêng Musang King", price: 250000, quantity: 1, image: "images/fruits/Sầu riêng Musang.png" }
-          ],
-          subtotal: 250000,
-          shipping: 0,
-          discount: 20000,
-          total: 230000,
-          status: "Hoàn thành",
-          date: "2026-06-25T09:20:00.000Z",
-          note: ""
-        },
-        {
-          id: "TQG1015",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 45, name: "Mix Hạt Dinh Dưỡng 5 loại cao cấp", price: 149000, quantity: 2, image: "images/granola/Mix hạt.png" }
-          ],
-          subtotal: 298000,
-          shipping: 30000,
-          discount: 0,
-          total: 328000,
-          status: "Hoàn thành",
-          date: "2026-06-24T14:35:00.000Z",
-          note: ""
-        },
-        {
-          id: "TQG1014",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 12, name: "Dừa xiêm xanh gọt trọc", price: 25000, quantity: 4, image: "images/fruits/Dừa xiêm.png" }
-          ],
-          subtotal: 100000,
-          shipping: 30000,
-          discount: 0,
-          total: 130000,
-          status: "Hoàn thành",
-          date: "2026-06-23T10:10:00.000Z",
-          note: ""
-        },
-        {
-          id: "TQG1013",
-          userId: "u_linh",
-          customerName: "Linh Ngô",
-          customerPhone: "0911181438",
-          customerEmail: "ntthaolinhcv@gmail.com",
-          address: "Số 12, Đường Hoa Sứ, Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
-          paymentMethod: "COD",
-          items: [
-            { productId: 13, name: "Dứa mật MD2 cao cấp", price: 45000, quantity: 2, image: "images/fruits/Dứa mật.png" }
-          ],
-          subtotal: 90000,
-          shipping: 30000,
-          discount: 0,
-          total: 120000,
-          status: "Hoàn thành",
-          date: "2026-06-22T15:30:00.000Z",
-          note: ""
-        }
-      ];
-      orders.unshift(...mockLinhOrders);
-      window.OrderService.saveOrders(orders);
-    }
-  }
-}
-
-// Prefill form inputs
 function prefillProfileForm(user) {
   const nameInput = document.getElementById("profile-name");
   const emailInput = document.getElementById("profile-email");
@@ -447,25 +176,11 @@ function isValidEmail(email) {
 let pendingEmailChange = null;
 let pendingProfileChange = null;
 
-function updateCurrentUserEmail(newEmail) {
+function updateCurrentUserEmail() { window.showToast('Đổi email cần dịch vụ xác minh email; chưa được cấu hình.', 'info'); return false; }
+
+async function saveProfileCore(name, phone, goal, successMessage) {
   if (!window.AuthService) return false;
-  const currentUser = window.AuthService.getCurrentUser();
-  if (!currentUser) return false;
-
-  const users = window.AuthService.getUsers();
-  const userIdx = users.findIndex(u => u.id === currentUser.id);
-  if (userIdx === -1) return false;
-
-  users[userIdx].email = newEmail;
-  window.AuthService.saveUsers(users);
-  localStorage.setItem("tqg_current_user", JSON.stringify(users[userIdx]));
-  window.dispatchEvent(new Event("authChanged"));
-  return true;
-}
-
-function saveProfileCore(name, phone, goal, successMessage) {
-  if (!window.AuthService) return false;
-  const result = window.AuthService.updateProfile(name, phone, goal);
+  const result = await window.AuthService.updateProfile(name, phone, goal);
 
   if (!result.success) {
     window.showToast(result.message, "error");
@@ -482,22 +197,7 @@ function saveProfileCore(name, phone, goal, successMessage) {
   return true;
 }
 
-window.openEmailOtpModal = function(newEmail) {
-  pendingEmailChange = newEmail;
-  const modal = document.getElementById("email-otp-modal");
-  const input = document.getElementById("email-otp-input");
-  const error = document.getElementById("email-otp-error");
-  if (input) {
-    input.value = "";
-    input.classList.remove("error");
-  }
-  if (error) error.style.display = "none";
-  if (modal) {
-    modal.hidden = false;
-    modal.style.display = "flex";
-    setTimeout(() => input && input.focus(), 50);
-  }
-};
+window.openEmailOtpModal = function() { window.showToast('Đổi email chưa được cấu hình. Các thông tin khác vẫn có thể cập nhật.', 'info'); };
 
 window.closeEmailOtpModal = function() {
   const modal = document.getElementById("email-otp-modal");
@@ -649,7 +349,7 @@ function handleRewardModalKeydown(event) {
   }
 }
 
-window.confirmEmailOtp = function() {
+window.confirmEmailOtp = async function() {
   const input = document.getElementById("email-otp-input");
   const error = document.getElementById("email-otp-error");
   const otp = input ? input.value.trim() : "";
@@ -666,7 +366,7 @@ window.confirmEmailOtp = function() {
     return;
   }
 
-  if (!saveProfileCore(pendingProfileChange.name, pendingProfileChange.phone, pendingProfileChange.goal, "Lưu thông tin thành công")) {
+  if (!await saveProfileCore(pendingProfileChange.name, pendingProfileChange.phone, pendingProfileChange.goal, "Lưu thông tin thành công")) {
     return;
   }
 
@@ -786,7 +486,7 @@ window.cancelEditMode = function() {
 };
 
 // Handle Profile Save
-function handleProfileSave(e) {
+async function handleProfileSave(e) {
   e.preventDefault();
 
   const name = document.getElementById("profile-name").value.trim();
@@ -811,7 +511,7 @@ function handleProfileSave(e) {
     return;
   }
 
-  if (saveProfileCore(name, phone, goal, "Lưu thông tin thành công")) {
+  if (await saveProfileCore(name, phone, goal, "Lưu thông tin thành công")) {
     pendingProfileChange = null;
   }
 }
@@ -1316,8 +1016,9 @@ window.handleLogoutClick = function() {
     ? "Are you sure you want to log out?" 
     : "Bạn có chắc chắn muốn đăng xuất tài khoản?";
 
-  window.showConfirmModal(confirmMsg, () => {
-    window.AuthService.logout();
+  window.showConfirmModal(confirmMsg, async () => {
+    const result = await window.AuthService.logout();
+    if (!result.success) { window.showToast(result.message, "error"); return; }
     window.showToast(
       document.body.classList.contains("lang-en") ? "Logged out successfully" : "Đã đăng xuất tài khoản", 
       "success"
@@ -1337,7 +1038,7 @@ window.cancelOrder = function(orderId) {
     ? "Are you sure you want to cancel this order? This action cannot be undone."
     : "Bạn có chắc chắn muốn hủy đơn hàng này không? Hành động này không thể hoàn tác.";
 
-  window.showConfirmModal(confirmMsg, () => {
+  window.showConfirmModal(confirmMsg, async () => {
     const orders = window.OrderService.getOrders();
     const idx = orders.findIndex(o => o.id === orderId);
     if (idx === -1) return;
@@ -1349,7 +1050,7 @@ window.cancelOrder = function(orderId) {
     }
 
     orders[idx].status = "Đã hủy";
-    window.OrderService.saveOrders(orders);
+    try { await window.OrderService.saveOrders(orders); } catch (error) { window.showToast(error.message, "error"); return; }
     window.showToast(
       isEn ? `Order #${orderId} has been cancelled successfully.` : `Đơn hàng #${orderId} đã được hủy thành công.`,
       "success"
@@ -1367,7 +1068,7 @@ window.markOrderReceived = function(orderId) {
     ? "Confirm that you have received this order?"
     : "Xác nhận bạn đã nhận được đơn hàng này?";
 
-  window.showConfirmModal(confirmMsg, () => {
+  window.showConfirmModal(confirmMsg, async () => {
     const orders = window.OrderService.getOrders();
     const idx = orders.findIndex(o => o.id === orderId);
     if (idx === -1) return;
@@ -1378,7 +1079,7 @@ window.markOrderReceived = function(orderId) {
     }
 
     orders[idx].status = "Hoàn thành";
-    window.OrderService.saveOrders(orders);
+    try { await window.OrderService.saveOrders(orders); } catch (error) { window.showToast(error.message, "error"); return; }
     window.showToast(
       isEn ? `Order #${orderId} confirmed as received. Thank you!` : `Đơn hàng #${orderId} đã được xác nhận hoàn thành. Cảm ơn bạn!`,
       "success"
@@ -1430,7 +1131,7 @@ window.requestOrderRefund = function(orderId) {
   }
 };
 
-window.submitRefundRequest = function(orderId) {
+window.submitRefundRequest = async function(orderId) {
   const isEn = document.body.classList.contains("lang-en");
   const reasonEl = document.getElementById("refund-reason-select");
   const noteEl = document.getElementById("refund-note-input");
@@ -1448,7 +1149,7 @@ window.submitRefundRequest = function(orderId) {
         note,
         requestedAt: new Date().toISOString()
       };
-      window.OrderService.saveOrders(orders);
+      try { await window.OrderService.saveOrders(orders); } catch (error) { window.showToast(error.message, "error"); return; }
     }
   }
 

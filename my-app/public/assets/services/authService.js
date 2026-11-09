@@ -1,207 +1,68 @@
-// services/authService.js
-window.AuthService = {
-  getUsers() {
-    const users = localStorage.getItem("tqg_users");
-    return users ? JSON.parse(users) : [
-      {
-        id: "admin",
-        name: "Admin Quản trị viên",
-        email: "admin@tuquygarden.vn",
-        phone: "0901234567",
-        password: "admin",
-        healthGoal: "Gia đình",
-        isAdmin: true
-      }
-    ];
-  },
-
-  saveUsers(users) {
-    localStorage.setItem("tqg_users", JSON.stringify(users));
-  },
-
-  getCurrentUser() {
-    const user = localStorage.getItem("tqg_current_user");
-    return user ? JSON.parse(user) : null;
-  },
-
-  register(name, email, phone, password, healthGoal = "Eat Clean") {
-    const users = this.getUsers();
-    
-    if (users.find(u => u.email === email)) {
-      return { success: false, message: "Email này đã được đăng ký." };
-    }
-
-    const newUser = {
-      id: "u_" + Date.now(),
-      name,
-      email,
-      phone,
-      password,
-      healthGoal,
-      isAdmin: false,
-      wishlist: [],
-      isNewUser: true,
-      surveyCompleted: false
-    };
-
-    users.push(newUser);
-    this.saveUsers(users);
-
-    return { success: true, message: "Đăng ký tài khoản thành công! Vui lòng đăng nhập." };
-  },
-
-  loginOrRegisterGoogle(name, email) {
-    const users = this.getUsers();
-    let user = users.find(u => u.email === email);
-    let isNew = false;
-    
-    if (!user) {
-      user = {
-        id: "u_" + Date.now(),
-        name,
-        email,
-        phone: "Đăng nhập Google",
-        password: "",
-        healthGoal: "Eat Clean",
-        isAdmin: false,
-        wishlist: [],
-        isNewUser: true,
-        surveyCompleted: false
-      };
-      users.push(user);
-      this.saveUsers(users);
-      isNew = true;
-    }
-    
-    // Set active session
-    localStorage.setItem("tqg_current_user", JSON.stringify(user));
-    
-    if (user.isAdmin) {
-      localStorage.removeItem("tqg_cart");
-    }
-    
-    // Trigger login event
-    window.dispatchEvent(new Event("authChanged"));
-    return { success: true, message: `Chào mừng ${user.name} đăng nhập bằng Google thành công!`, user, isNew };
-  },
-
-  login(email, password, rememberMe = false) {
-    const users = this.getUsers();
-    const user = users.find(u => u.email === email && u.password === password);
-
-    if (!user) {
-      return { success: false, message: "Email hoặc mật khẩu không chính xác." };
-    }
-
-    // Set active session
-    localStorage.setItem("tqg_current_user", JSON.stringify(user));
-    
-    if (user.isAdmin) {
-      localStorage.removeItem("tqg_cart");
-    }
-
-    // Trigger login event
-    window.dispatchEvent(new Event("authChanged"));
-    return { success: true, message: `Chào mừng ${user.name} quay trở lại!`, user };
-  },
-
-  logout() {
-    localStorage.removeItem("tqg_current_user");
-    window.dispatchEvent(new Event("authChanged"));
-    return { success: true, message: "Đã đăng xuất tài khoản." };
-  },
-
-  updateProfile(name, phone, healthGoal) {
-    const currentUser = this.getCurrentUser();
-    if (!currentUser) return { success: false, message: "Chưa đăng nhập." };
-
-    const users = this.getUsers();
-    const userIdx = users.findIndex(u => u.id === currentUser.id);
-
-    if (userIdx === -1) return { success: false, message: "Không tìm thấy người dùng." };
-
-    users[userIdx].name = name;
-    users[userIdx].phone = phone;
-    users[userIdx].healthGoal = healthGoal;
-
-    this.saveUsers(users);
-
-    // Update session
-    localStorage.setItem("tqg_current_user", JSON.stringify(users[userIdx]));
-    window.dispatchEvent(new Event("authChanged"));
-
-    return { success: true, message: "Cập nhật thông tin cá nhân thành công!" };
-  },
-
-  getWishlist() {
-    const currentUser = this.getCurrentUser();
-    if (!currentUser) return [];
-    
-    const users = this.getUsers();
-    const user = users.find(u => u.id === currentUser.id);
-    return user && user.wishlist ? user.wishlist : [];
-  },
-
-  toggleWishlist(productId) {
-    const currentUser = this.getCurrentUser();
-    if (!currentUser) return { success: false, message: "Vui lòng đăng nhập để yêu thích sản phẩm." };
-
-    const users = this.getUsers();
-    const userIdx = users.findIndex(u => u.id === currentUser.id);
-
-    if (userIdx === -1) return { success: false, message: "Không tìm thấy người dùng." };
-
-    if (!users[userIdx].wishlist) {
-      users[userIdx].wishlist = [];
-    }
-
-    const itemIdx = users[userIdx].wishlist.indexOf(productId);
-    let isAdded = false;
-
-    if (itemIdx > -1) {
-      users[userIdx].wishlist.splice(itemIdx, 1);
-    } else {
-      users[userIdx].wishlist.push(productId);
-      isAdded = true;
-    }
-
-    this.saveUsers(users);
-    
-    // Update session
-    localStorage.setItem("tqg_current_user", JSON.stringify(users[userIdx]));
-    window.dispatchEvent(new Event("wishlistChanged"));
-
-    return { 
-      success: true, 
-      message: isAdded ? "Đã thêm vào danh sách yêu thích." : "Đã xóa khỏi danh sách yêu thích.",
-      isAdded
-    };
-  },
-
-  isInWishlist(productId) {
-    return this.getWishlist().includes(productId);
-  },
-
-  changePassword(oldPassword, newPassword) {
-    const currentUser = this.getCurrentUser();
-    if (!currentUser) return { success: false, message: "Chưa đăng nhập." };
-
-    const users = this.getUsers();
-    const userIdx = users.findIndex(u => u.id === currentUser.id);
-
-    if (userIdx === -1) return { success: false, message: "Không tìm thấy người dùng." };
-
-    if (users[userIdx].password !== oldPassword) {
-      return { success: false, message: "Mật khẩu cũ không chính xác." };
-    }
-
-    users[userIdx].password = newPassword;
-    this.saveUsers(users);
-
-    // Update session
-    localStorage.setItem("tqg_current_user", JSON.stringify(users[userIdx]));
-
-    return { success: true, message: "Đổi mật khẩu thành công!" };
-  }
-};
-
+// Server sessions are authoritative. Cached display data never grants access.
+(() => {
+  let currentUser = null;
+  let users = [];
+  const publish = user => {
+    currentUser = user;
+    localStorage.removeItem('tqg_users');
+    localStorage.removeItem('tqg_current_user');
+    window.dispatchEvent(new Event('authChanged'));
+    return user;
+  };
+  const request = async (url, method = 'GET', body) => {
+    if (window.angularApiRequest) return window.angularApiRequest(url, method, body);
+    const response = await fetch(url, { method, credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'TuQuyGarden' }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || 'Không thể lưu dữ liệu');
+    return data;
+  };
+  window.apiRequest = request;
+  const action = async fn => {
+    try { return await fn(); } catch (error) { return { success: false, message: error.message || 'Không kết nối được máy chủ' }; }
+  };
+  window.AuthService = {
+    getCurrentUser: () => currentUser,
+    getUsers: () => structuredClone(users),
+    async refreshUsers() { users = await request('/api/users'); return users; },
+    async refresh() {
+      try { return publish(await request('/api/users/me')); }
+      catch { return publish(null); }
+    },
+    register(name, email, phone, password, healthGoal = 'Eat Clean') {
+      return action(() => request('/api/users/register', 'POST', { name, email, phone, password, healthGoal }));
+    },
+    login(email, password, rememberMe = false) {
+      return action(async () => {
+        const result = await request('/api/users/login', 'POST', { email, password, rememberMe });
+        publish(result.user); return result;
+      });
+    },
+    async logout() {
+      const result = await action(() => request('/api/users/logout', 'POST', {}));
+      if (result.success) { publish(null); window.OrderService?.clear(); }
+      return result;
+    },
+    updateProfile(name, phone, healthGoal) { return this.saveProfile({ name, phone, healthGoal }); },
+    saveProfile(data) {
+      return action(async () => {
+        const result = await request('/api/users/me', 'PUT', data);
+        publish(result.user); return result;
+      });
+    },
+    getWishlist: () => currentUser?.wishlist || [],
+    isInWishlist(id) { return this.getWishlist().includes(id); },
+    toggleWishlist(id) {
+      return action(async () => {
+        if (!currentUser) throw new Error('Vui lòng đăng nhập');
+        const isAdded = !this.isInWishlist(id);
+        const wishlist = isAdded ? [...this.getWishlist(), id] : this.getWishlist().filter(x => x !== id);
+        const result = await this.saveProfile({ wishlist });
+        if (result.success) window.dispatchEvent(new Event('wishlistChanged'));
+        return { ...result, isAdded };
+      });
+    },
+    changePassword(oldPassword, newPassword) { return action(() => request('/api/users/me/password', 'PUT', { oldPassword, newPassword })); },
+    async deleteUser(id) { await request('/api/users/' + encodeURIComponent(id), 'DELETE'); await this.refreshUsers(); }
+  };
+  window.authReady = window.AuthService.refresh();
+})();

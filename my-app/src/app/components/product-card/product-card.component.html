@@ -55,13 +55,13 @@
       <div class="card-stars">
         <span *ngFor="let s of getStarsArray()" class="star" [class.fill]="s.fill" [class.half]="s.half">&#9733;</span>
       </div>
-      <span class="card-rating-num">{{ product.rating || 5 | number:'1.1-1' }} ({{ product.reviewsCount || 12 }})</span>
+      <span class="card-rating-num">{{ product.rating || 5 | number:'1.1-1' }} ({{ product.reviewsCount || product['reviews']?.length || 0 }})</span>
     </div>
 
     <div class="card-bottom-row">
       <div class="card-price-box">
         <span class="current-price">{{ product.price | number:'1.0-0' }}đ</span>
-        <span class="old-price" *ngIf="product.originalPrice && product.originalPrice > product.price">{{ product.originalPrice | number:'1.0-0' }}đ</span>
+        <span class="old-price" *ngIf="(product.originalPrice || product['oldPrice']) && (product.originalPrice || product['oldPrice']) > product.price">{{ (product.originalPrice || product['oldPrice']) | number:'1.0-0' }}đ</span>
       </div>
 
       <button class="circle-cart-btn" (click)="addToCart($event)" [title]="addedAlert ? 'Đã thêm' : 'Thêm giỏ hàng'">

@@ -2,10 +2,9 @@
 
 // Shared initialization on DOM ready
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Initialize Lang (Permanently forced to English)
-  localStorage.setItem("tqg_lang", "en");
-  const currentLang = "en";
-  document.body.className = "lang-en";
+  // 1. Initialize Lang (Default: English)
+  const savedLang = localStorage.getItem("tqg_lang") || "en";
+  document.body.className = "lang-" + savedLang;
 
   // 1b. Update search placeholder based on language
   const searchInput = document.getElementById("header-search-input");
@@ -13,37 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.placeholder = "Search products...";
   }
 
-  // 2. Initialize database if not exists, or sync latest data.js additions & gallery updates
-  const storedProds = localStorage.getItem("tqg_products");
-
-  if (!storedProds) {
-    if (window.MOCK_PRODUCTS) {
-      localStorage.setItem("tqg_products", JSON.stringify(window.MOCK_PRODUCTS));
-    }
-  } else {
-    try {
-      const parsed = JSON.parse(storedProds);
-      const oldTotalGalleries = parsed.reduce((sum, p) => sum + (p.gallery ? p.gallery.length : 0), 0);
-      const newTotalGalleries = window.MOCK_PRODUCTS ? window.MOCK_PRODUCTS.reduce((sum, p) => sum + (p.gallery ? p.gallery.length : 0), 0) : 0;
-      
-      if (window.MOCK_PRODUCTS && (parsed.length < window.MOCK_PRODUCTS.length || oldTotalGalleries !== newTotalGalleries)) {
-        localStorage.setItem("tqg_products", JSON.stringify(window.MOCK_PRODUCTS));
-      } else {
-        window.MOCK_PRODUCTS = parsed;
-      }
-    } catch (e) {
-      window.MOCK_PRODUCTS = JSON.parse(storedProds);
-    }
-  }
-
-  // 3. Initialize mock users if not exists
-  if (!localStorage.getItem("tqg_users")) {
-    if (window.MOCK_USERS) {
-      localStorage.setItem("tqg_users", JSON.stringify(window.MOCK_USERS));
-    }
-  } else {
-    window.MOCK_USERS = JSON.parse(localStorage.getItem("tqg_users"));
-  }
+  // Product/user caches cannot overwrite the server's current catalog or session.
+  localStorage.removeItem('tqg_users');
+  localStorage.removeItem('tqg_orders');
+  localStorage.removeItem('tqg_products');
 
   // 4. Setup roots
   setupCommonRoots();
@@ -224,25 +196,8 @@ if (!window.Components.renderSiteFooter) {
 
 // Setup toast container & modal overlay dynamically
 function setupCommonRoots() {
-  let activeNav = "home";
+  // Angular owns the header/footer; shared overlays still need a root.
   const path = window.location.pathname;
-  if (path.includes("about.html")) activeNav = "about";
-  else if (path.includes("products.html") || path.includes("detail.html")) activeNav = "products";
-  else if (path.includes("nutrition.html")) activeNav = "nutrition";
-  else if (path.includes("traceability.html")) activeNav = "traceability";
-  else if (path.includes("contact.html")) activeNav = "contact";
-
-  const headerEl = document.querySelector(".main-header");
-  if (headerEl && window.Components && window.Components.renderSiteHeader) {
-    const overrideNav = headerEl.getAttribute("data-active-nav");
-    const active = overrideNav || activeNav;
-    headerEl.outerHTML = window.Components.renderSiteHeader(active);
-  }
-
-  const footerEl = document.querySelector(".main-footer");
-  if (footerEl && window.Components && window.Components.renderSiteFooter) {
-    footerEl.outerHTML = window.Components.renderSiteFooter();
-  }
 
   // Auto-inject breadcrumb bar only on pages that do not render their own.
   const hasInlineBreadcrumbPage = ["nutrition.html", "traceability.html", "detail.html", "cart.html"].some(function(page) {
@@ -320,7 +275,7 @@ function setupCommonRoots() {
   }
 
   // Inject chatbot widget if not already present
-  if (!document.getElementById("chatbotWidget")) {
+  if (!document.querySelector("app-root") && !document.getElementById("chatbotWidget")) {
     const chatWidget = document.createElement("div");
     chatWidget.id = "chatbotWidget";
     chatWidget.className = "chatbot-widget";
@@ -424,6 +379,7 @@ function updateHeaderState() {
 
 // Event listeners for static pages
 function bindCommonEvents() {
+  if (document.querySelector('app-header')) return; // Angular owns these bindings.
   // Language switcher trigger
   const langToggle = document.getElementById("lang-toggle-btn");
   if (langToggle) {
@@ -480,10 +436,10 @@ window.showToast = function(message, type = "success") {
     ? `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-primary);"><polyline points="20 6 9 17 4 12"></polyline></svg>`
     : `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-danger);"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
 
-  toast.innerHTML = `
-    ${icon}
-    <span>${message}</span>
-  `;
+  toast.innerHTML = icon;
+  const text = document.createElement("span");
+  text.textContent = message;
+  toast.appendChild(text);
 
   container.appendChild(toast);
 
@@ -629,7 +585,7 @@ window.checkNewUserSurvey = function() {
   }
 };
 
-window.submitUserSurvey = function(e) {
+window.submitUserSurvey = async function(e) {
   e.preventDefault();
   const selectedProds = Array.from(document.querySelectorAll('input[name="survey-product"]:checked')).map(el => el.value);
   const selectedFlavors = Array.from(document.querySelectorAll('input[name="survey-flavor"]:checked')).map(el => el.value);
@@ -646,17 +602,8 @@ window.submitUserSurvey = function(e) {
       preferredFlavors: selectedFlavors
     };
     
-    // Save to registered users list in localStorage
-    const users = window.AuthService.getUsers();
-    const idx = users.findIndex(u => u.id === user.id);
-    if (idx !== -1) {
-      users[idx] = { ...users[idx], ...user };
-      window.AuthService.saveUsers(users);
-    }
-    
-    // Save to current active session
-    localStorage.setItem("tqg_current_user", JSON.stringify(user));
-    window.dispatchEvent(new Event("authChanged"));
+    const result = await window.AuthService.saveProfile({ healthGoal, surveyCompleted: true, surveyData: { preferredCategories: selectedProds, preferredFlavors: selectedFlavors } });
+    if (!result.success) { window.showToast(result.message, 'error'); return; }
     window.closeCustomModal();
     window.showToast("Preferences saved successfully! Customizing your recommendations...", "success");
     

@@ -2,32 +2,36 @@
 
 const CHECKOUT_SELECTED_KEY = "tuquy_checkout_selected_ids";
 const CART_VOUCHERS = [
-  { 
-    code: "FREESHIP", 
-    titleVi: "Miễn phí vận chuyển", titleEn: "Free Shipping", 
-    descVi: "Áp dụng cho mọi đơn hàng", descEn: "Applies to all orders", 
-    condVi: "Không giới hạn đơn tối thiểu", condEn: "No minimum order required", 
-    minOrder: 0 
+  {
+    code: "FREESHIP",
+    titleVi: "Miễn phí vận chuyển", titleEn: "Free Shipping",
+    descVi: "Áp dụng cho mọi đơn hàng", descEn: "Applies to all orders",
+    condVi: "Không giới hạn đơn tối thiểu", condEn: "No minimum order required",
+    minOrder: 0
   },
-  { 
-    code: "TUQUYGARDEN10", 
-    titleVi: "Giảm 10%", titleEn: "10% Discount", 
-    descVi: "Tối đa 50.000đ", descEn: "Max 50,000đ", 
-    condVi: "Áp dụng cho mọi đơn hàng", condEn: "Applies to all orders", 
-    minOrder: 0 
+  {
+    code: "TUQUYGARDEN10",
+    titleVi: "Giảm 10%", titleEn: "10% Discount",
+    descVi: "Tối đa 100.000đ", descEn: "Max 100,000đ",
+    condVi: "Áp dụng cho mọi đơn hàng", condEn: "Applies to all orders",
+    minOrder: 0
   },
-  { 
-    code: "HEALTHY50", 
-    titleVi: "Giảm 50.000đ", titleEn: "50,000đ Discount", 
-    descVi: "Cho đơn hàng từ 500.000đ", descEn: "For orders from 500,000đ", 
-    condVi: "Đơn hàng từ 500.000đ", condEn: "Orders from 500,000đ", 
-    minOrder: 500000 
+  {
+    code: "HEALTHY50",
+    titleVi: "Giảm 50.000đ", titleEn: "50,000đ Discount",
+    descVi: "Cho đơn hàng từ 500.000đ", descEn: "For orders from 500,000đ",
+    condVi: "Đơn hàng từ 500.000đ", condEn: "Orders from 500,000đ",
+    minOrder: 500000
   }
 ];
 
 const cartPageState = { selectedIds: new Set(), manuallyDeselected: new Set(), initialized: false };
 
-window.initCartPage = function() {
+window.initCartPage = async function() {
+  await window.authReady;
+  try { const vouchers = await window.apiRequest('/api/vouchers'); CART_VOUCHERS.splice(0, CART_VOUCHERS.length, ...vouchers.map(v => ({ ...v, titleVi: v.code, titleEn: v.code, descVi: v.description, descEn: v.description, condVi: 'Tối thiểu ' + v.minOrder + 'đ', condEn: 'Minimum ' + v.minOrder + 'đ' }))); } catch {}
+
+  try { window.MOCK_PRODUCTS = await window.apiRequest('/api/products'); } catch (error) { window.showToast(error.message, 'error'); return; }
   const currentUser = window.AuthService ? window.AuthService.getCurrentUser() : null;
   if (currentUser && currentUser.isAdmin) {
     window.location.replace("admin/dashboard");
@@ -173,18 +177,18 @@ function renderCartPage() {
       <h1 class="page-title font-serif" style="font-size:32px; color:var(--color-text-dark); margin-bottom:20px;">
         <span class="lang-vi">Giỏ Hàng Của Bạn</span><span class="lang-en">Your Shopping Cart</span>
       </h1>
-      
+
       <div class="freeship-progress-banner bg-cream-light" style="background-color:var(--color-cream-light); padding:15px 20px; border-radius:12px; border:1px solid var(--color-gray-border); margin-bottom:30px;">
         <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; gap:12px;">
           <span>
             <span class="lang-vi">
-              ${progress.isFree 
-                ? "Congratulations! Selected items are eligible for <strong>Free nationwide shipping</strong>!" 
+              ${progress.isFree
+                ? "Congratulations! Selected items are eligible for <strong>Free nationwide shipping</strong>!"
                 : `Buy <strong>${formatCurrency(progress.needed)}</strong> more to get Free shipping nationwide.`}
             </span>
             <span class="lang-en">
-              ${progress.isFree 
-                ? "Congratulations! Selected items qualify for <strong>Free Shipping nationwide</strong>!" 
+              ${progress.isFree
+                ? "Congratulations! Selected items qualify for <strong>Free Shipping nationwide</strong>!"
                 : `Add <strong>${formatCurrency(progress.needed)}</strong> more selected items to qualify for Free Shipping.`}
             </span>
           </span>
@@ -224,7 +228,7 @@ function renderCartPage() {
             <h3 style="font-size:18px; color:var(--color-text-dark); margin:0 0 20px 0; border-bottom:1px solid var(--color-gray-border); padding-bottom:8px;">
               <span class="lang-vi">Tổng đơn hàng</span><span class="lang-en">Order Summary</span>
             </h3>
-            
+
             <div style="display:flex; flex-direction:column; gap:12px; font-size:14px; margin-bottom:20px;">
               <div style="display:flex; justify-content:space-between; gap:12px;">
                 <span><span class="lang-vi">Đã chọn:</span><span class="lang-en">Selected:</span></span>
@@ -269,7 +273,7 @@ function renderCartPage() {
                   const placeholderText = currentLang === "en" ? "e.g. TUQUYGARDEN10" : "Ví dụ: TUQUYGARDEN10";
                   return `<input type="text" id="cart-voucher-input" placeholder="${placeholderText}" style="flex:1; min-width:160px; padding:8px 10px; border-radius:6px; border:1px solid var(--color-gray-border); font-size:13px; outline:none;" value="${totals.voucherCode || ""}" ${totals.voucherCode ? "disabled" : ""}>`;
                 })()}
-                ${totals.voucherCode 
+                ${totals.voucherCode
                   ? `<button class="btn btn-danger" style="padding:8px 12px; font-size:13px;" onclick="removeVoucher()"><span class="lang-vi">Gỡ</span><span class="lang-en">Remove</span></button>`
                   : `<button class="btn btn-primary" style="padding:8px 12px; font-size:13px;" onclick="applyVoucher()"><span class="lang-vi">Áp dụng</span><span class="lang-en">Apply</span></button>`
                 }
@@ -280,11 +284,11 @@ function renderCartPage() {
                 let displayDesc = totals.voucherDescription;
                 if (currentLang === "en") {
                   if (totals.voucherCode === "FREESHIP") displayDesc = "Free shipping";
-                  else if (totals.voucherCode === "TUQUYGARDEN10") displayDesc = "10% off, max 50,000đ";
-                  else if (totals.voucherCode === "HEALTHY50") displayDesc = "50,000đ off for orders from 500,000đ";
+                  else if (totals.voucherCode === "TUQUYGARDEN10") displayDesc = "10% off, max 100,000đ";
+                  else if (totals.voucherCode === "HEALTHY50") displayDesc = "100,000đ off for orders from 500,000đ";
                 }
-                return totals.voucherCode 
-                  ? `<p style="font-size:11px; color:var(--color-primary); margin-top:8px; font-weight:600;">✓ ${escapeHTML(displayDesc)}</p>` 
+                return totals.voucherCode
+                  ? `<p style="font-size:11px; color:var(--color-primary); margin-top:8px; font-weight:600;">✓ ${escapeHTML(displayDesc)}</p>`
                   : `<p style="font-size:10px; color:var(--color-text-light); margin-top:6px;">
                       <span class="lang-vi">* Thử mã: <strong>FREESHIP</strong>, <strong>TUQUYGARDEN10</strong> hoặc <strong>HEALTHY50</strong></span>
                       <span class="lang-en">* Try code: <strong>FREESHIP</strong>, <strong>TUQUYGARDEN10</strong> or <strong>HEALTHY50</strong></span>
@@ -379,8 +383,8 @@ function renderVoucherModal(selectedSubtotal) {
             const title = currentLang === "en" ? voucher.titleEn : voucher.titleVi;
             const description = currentLang === "en" ? voucher.descEn : voucher.descVi;
             const condition = currentLang === "en" ? voucher.condEn : voucher.condVi;
-            const btnText = eligible 
-              ? (currentLang === "en" ? "Apply" : "Áp dụng") 
+            const btnText = eligible
+              ? (currentLang === "en" ? "Apply" : "Áp dụng")
               : (currentLang === "en" ? "Not eligible" : "Chưa đủ điều kiện");
             return `
               <div class="cart-voucher-item ${eligible ? "" : "is-disabled"}">
@@ -557,7 +561,7 @@ window.removeItem = function(productId) {
 window.clearCart = function() {
   if (!window.CartService) return;
   const isEn = (localStorage.getItem("tqg_lang") || "en") === "en";
-  
+
   const title = isEn ? "Clear Cart" : "Xóa giỏ hàng";
   const message = isEn ? "Are you sure you want to clear your entire cart?" : "Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng không?";
   const confirmBtnText = isEn ? "Clear Cart" : "Xóa giỏ hàng";
@@ -608,7 +612,7 @@ window.applyVoucher = function() {
   window.applyVoucherCode(input.value.trim());
 };
 
-window.applyVoucherCode = function(code) {
+window.applyVoucherCode = async function(code) {
   if (!window.CartService) return;
   const formattedCode = code.trim().toUpperCase();
   const validation = validateVoucherForSelected(formattedCode);
@@ -617,7 +621,7 @@ window.applyVoucherCode = function(code) {
     return;
   }
 
-  const result = window.CartService.applyVoucher(formattedCode);
+  const result = await window.CartService.applyVoucher(formattedCode);
   if (result.success) {
     const input = document.getElementById("cart-voucher-input");
     if (input) input.value = formattedCode;
@@ -657,9 +661,9 @@ window.handleCheckoutClick = function(event) {
     event.preventDefault();
     const isEn = (localStorage.getItem("tqg_lang") || "en") === "en";
     showCartToast(
-      isEn 
-        ? "Please log in to make a purchase." 
-        : "Vui lòng đăng nhập tài khoản để thực hiện mua hàng.", 
+      isEn
+        ? "Please log in to make a purchase."
+        : "Vui lòng đăng nhập tài khoản để thực hiện mua hàng.",
       "error"
     );
     setTimeout(() => {
